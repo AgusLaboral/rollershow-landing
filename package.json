@@ -1,0 +1,12 @@
+{
+  "name": "rollershow-landing",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "shot": "node scripts/screenshot-mobile.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
+  }
+}

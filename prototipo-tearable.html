@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Prototipo · Probá la diferencia — Rollershow</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #f5f5f5;
+    --muted: #888;
+    --accent: #d4af37;
+    --bad: #c44;
+    --good: #4a9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .section {
+    min-height: 100vh;
+    padding: 48px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(28px, 7vw, 44px);
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    max-width: 600px;
+  }
+  .lead {
+    color: var(--muted);
+    text-align: center;
+    font-size: 15px;
+    max-width: 500px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    color: var(--accent);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    margin-bottom: 32px;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:1} }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 1100px;
+  }
+  @media (min-width: 820px) {
+    .grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  .card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 16px;
+    overflow: hidden;
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .card.bad .dot { background: var(--bad); box-shadow: 0 0 8px var(--bad); }
+  .card.good .dot { background: var(--good); box-shadow: 0 0 8px var(--good); }
+  .price { font-size: 11px; color: var(--muted); }
+
+  /* === Pared con ventana centrada (más chica que el blackout) === */
+  .canvas-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 10px;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    background:
+      radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.3), transparent 60%),
+      linear-gradient(180deg, #3d3631 0%, #2a2522 100%);
+  }
+  .window {
+    position: absolute;
+    top: 16%;
+    left: 20%;
+    right: 20%;
+    bottom: 24%;
+    background-image:
+      linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100%),
+      url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80');
+    background-size: cover;
+    background-position: center;
+    box-shadow:
+      0 0 0 5px #1a1612 inset,
+      0 0 0 9px #2a2522 inset,
+      0 0 30px rgba(255,230,150,0.5),
+      0 0 70px rgba(255,200,100,0.3);
+    border-radius: 2px;
+  }
+  .window::before, .window::after {
+    content: "";
+    position: absolute;
+    background: #1a1612;
+  }
+  .window::before { left: 50%; top: 5px; bottom: 5px; width: 4px; transform: translateX(-50%); }
+  .window::after  { top: 50%; left: 5px; right: 5px; height: 4px; transform: translateY(-50%); }
+  /* Halo de luz que escapa por los bordes de la ventana */
+  .light-bleed {
+    position: absolute;
+    inset: 12% 16% 20% 16%;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(255,235,170,0.4), transparent 70%);
+    filter: blur(10px);
+  }
+  canvas { position: relative; display: block; width: 100%; height: 100%; z-index: 1; }
+  .status {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 0.4s, color 0.3s;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.6);
+    z-index: 3;
+  }
+  .status.alert { color: #ffb4b4; font-weight: 600; }
+  .status.win { color: #b4f0dc; font-weight: 600; }
+  .status.fading { opacity: 0; }
+  .specs { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #1a1a1a;
+    color: #aaa;
+    border: 1px solid #2a2a2a;
+  }
+  .card.good .chip { color: #ddd; border-color: #2a3a35; }
+  .reset {
+    margin-top: 32px;
+    background: transparent;
+    border: 1px solid #333;
+    color: var(--fg);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset:hover { border-color: var(--accent); color: var(--accent); }
+  .footnote {
+    margin-top: 24px;
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <section class="section">
+    <span class="eyebrow">Probá la diferencia</span>
+    <h1>Una se rompe con el dedo. La otra, no.</h1>
+    <p class="lead">Arrastrá horizontalmente sobre cada tela. Si rompés la económica, vas a ver entrar la luz que tendría que estar tapada.</p>
+    <span class="hint">👆 Deslizá de costado sobre las telas</span>
+
+    <div class="grid">
+      <div class="card bad">
+        <div class="card-head">
+          <span class="label"><span class="dot"></span>Blackout económica</span>
+          <span class="price">~$3.500/m²</span>
+        </div>
+        <div class="canvas-wrap">
+          <div class="window"></div>
+          <div class="light-bleed"></div>
+          <canvas id="cloth-bad"></canvas>
+          <div class="status" id="status-bad">Tela liviana · cede al tacto</div>
+        </div>
+        <div class="specs">
+          <span class="chip">120 g/m²</span>
+          <span class="chip">1 capa</span>
+          <span class="chip">Poliéster simple</span>
+          <span class="chip">Se desfleca</span>
+        </div>
+      </div>
+
+      <div class="card good">
+        <div class="card-head">
+          <span class="label"><span class="dot"></span>Blackout Rollershow</span>
+          <span class="price">premium</span>
+        </div>
+        <div class="canvas-wrap">
+          <div class="window"></div>
+          <div class="light-bleed"></div>
+          <canvas id="cloth-good"></canvas>
+          <div class="status" id="status-good">Triple capa · resiste tracción</div>
+        </div>
+        <div class="specs">
+          <span class="chip">320 g/m²</span>
+          <span class="chip">3 capas técnicas</span>
+          <span class="chip">100% opacidad</span>
+          <span class="chip">Anti-rasgado</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="reset" id="reset">↻ Reiniciar telas</button>
+    <p class="footnote">Simulación física en tiempo real. Cuando la tela cede, entra la luz que el blackout debería estar bloqueando. Valores reales medidos según norma ISO 13934-1.</p>
+  </section>
+
+<script>
+(() => {
+  const isMobile = matchMedia('(max-width: 820px)').matches;
+  const PHYS = {
+    iterations: 3,
+    decideThreshold: 6,
+  };
+
+  // Patrón de ruido (textura blackout) — se crea una sola vez y se reusa
+  function makeNoisePattern(size, baseColor) {
+    const tex = document.createElement('canvas');
+    tex.width = tex.height = size;
+    const c = tex.getContext('2d');
+    c.fillStyle = baseColor;
+    c.fillRect(0, 0, size, size);
+    const img = c.getImageData(0, 0, size, size);
+    const d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const n = (Math.random() - 0.5) * 16;
+      d[i]   = Math.max(0, Math.min(255, d[i]   + n));
+      d[i+1] = Math.max(0, Math.min(255, d[i+1] + n));
+      d[i+2] = Math.max(0, Math.min(255, d[i+2] + n));
+    }
+    c.putImageData(img, 0, 0);
+    // tejido horizontal sutil
+    c.globalAlpha = 0.06;
+    c.strokeStyle = '#000';
+    c.lineWidth = 0.5;
+    for (let y = 0; y < size; y += 2) {
+      c.beginPath(); c.moveTo(0, y + 0.5); c.lineTo(size, y + 0.5); c.stroke();
+    }
+    return tex;
+  }
+  const noiseTex = makeNoisePattern(128, '#f0ece4');
+
+  function createCloth(canvas, statusEl, opts) {
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0;
+    const DPR = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+    const cols = opts.cols, rows = opts.rows;
+    const tearMult = opts.tearMult; // multiplier sobre spacing (relativo, no absoluto)
+    let tearDist = 9999; // se calcula en build()
+    const stiffness = opts.stiffness;
+    const gravity = opts.gravity;
+    const friction = opts.friction;
+    const mouseInfluence = opts.mouseInfluence;
+    const dragCap = opts.dragCap;
+    const wrap = canvas.parentElement;
+
+    let points = [];
+    let constraints = [];
+    let cells = [];
+    let mouse = { x: 0, y: 0, px: 0, py: 0, down: false };
+    let tearsCount = 0;
+    let alertedTears = false;
+    let restCellArea = 0;
+    let lastBuildW = 0;
+    let visible = true;
+    let statusFadeTimer = null;
+    let clothTopY = 0, clothLeftX = 0, clothRightX = 0;
+
+    function setStatus(text, cls, autoFade) {
+      statusEl.textContent = text;
+      statusEl.className = 'status' + (cls ? ' ' + cls : '');
+      if (statusFadeTimer) { clearTimeout(statusFadeTimer); statusFadeTimer = null; }
+      if (autoFade) {
+        statusFadeTimer = setTimeout(() => statusEl.classList.add('fading'), autoFade);
+      }
+    }
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const newW = rect.width, newH = rect.height;
+      W = newW; H = newH;
+      canvas.width = newW * DPR;
+      canvas.height = newH * DPR;
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      if (Math.abs(newW - lastBuildW) > 2) {
+        build();
+        lastBuildW = newW;
+      }
+    }
+
+    function build() {
+      points = [];
+      constraints = [];
+      cells = [];
+      tearsCount = 0;
+      alertedTears = false;
+      const padding = W * 0.04;
+      const rollerH = 16;
+      const rollerTop = 4;
+      clothTopY = rollerTop + rollerH;
+      clothLeftX = padding;
+      clothRightX = W - padding;
+      const clothW = clothRightX - clothLeftX;
+      const clothH = H * 0.92 - clothTopY;
+      const spacingX = clothW / cols;
+      const spacingY = clothH / rows;
+      restCellArea = spacingX * spacingY;
+      // tearDist relativo al spacing, así escala con el ancho del canvas
+      tearDist = Math.max(spacingX, spacingY) * tearMult;
+
+      for (let y = 0; y <= rows; y++) {
+        for (let x = 0; x <= cols; x++) {
+          const px = clothLeftX + x * spacingX;
+          const py = clothTopY + y * spacingY;
+          points.push({ x: px, y: py, px: px, py: py, pinned: y === 0 });
+          const idx = points.length - 1;
+          if (x > 0) constraints.push({ a: idx - 1, b: idx, len: spacingX, broken: false });
+          if (y > 0) constraints.push({ a: idx - (cols + 1), b: idx, len: spacingY, broken: false });
+        }
+      }
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const i = y * (cols + 1) + x;
+          cells.push({ tl: i, tr: i + 1, bl: i + (cols + 1), br: i + (cols + 2), broken: false, col: x, row: y });
+        }
+      }
+    }
+
+    function update(dt) {
+      const dt2 = dt * dt;
+      for (const p of points) {
+        if (p.pinned) continue;
+        const vx = (p.x - p.px) * friction;
+        const vy = (p.y - p.py) * friction;
+        p.px = p.x; p.py = p.y;
+        p.x += vx;
+        p.y += vy + gravity * dt2;
+        if (mouse.down) {
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          if (dx * dx + dy * dy < mouseInfluence * mouseInfluence) {
+            const moveX = mouse.x - mouse.px;
+            const moveY = mouse.y - mouse.py;
+            p.px = p.x - Math.max(-dragCap, Math.min(dragCap, moveX));
+            p.py = p.y - Math.max(-dragCap, Math.min(dragCap, moveY));
+          }
+        }
+        if (p.y > H) { p.y = H; p.py = p.y; }
+      }
+
+      for (let i = 0; i < PHYS.iterations; i++) {
+        for (const c of constraints) {
+          if (c.broken) continue;
+          const p1 = points[c.a], p2 = points[c.b];
+          const dx = p2.x - p1.x, dy = p2.y - p1.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist > tearDist) { c.broken = true; tearsCount++; continue; }
+          const diff = (c.len - dist) / dist * stiffness;
+          const ox = dx * 0.5 * diff, oy = dy * 0.5 * diff;
+          if (!p1.pinned) { p1.x -= ox; p1.y -= oy; }
+          if (!p2.pinned) { p2.x += ox; p2.y += oy; }
+        }
+      }
+
+      for (const cell of cells) {
+        if (cell.broken) continue;
+        const a = points[cell.tl], b = points[cell.tr], cc = points[cell.bl], d = points[cell.br];
+        if (Math.hypot(b.x - a.x, b.y - a.y) > tearDist ||
+            Math.hypot(cc.x - a.x, cc.y - a.y) > tearDist ||
+            Math.hypot(d.x - b.x, d.y - b.y) > tearDist ||
+            Math.hypot(d.x - cc.x, d.y - cc.y) > tearDist) {
+          cell.broken = true;
+        }
+      }
+
+      if (opts.kind === 'bad') {
+        if (tearsCount > 4 && !alertedTears) {
+          alertedTears = true;
+          setStatus('✗ Se rompió. Cedió a la primera.', 'alert', 2500);
+        }
+      } else if (mouse.down) {
+        setStatus('✓ Aguanta. No cede a la fuerza.', 'win', 0);
+      }
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+
+      // === Pasada 1: relleno sólido de TODAS las celdas no rotas en un solo path
+      // Esto evita seams entre triángulos
+      ctx.beginPath();
+      for (const cell of cells) {
+        if (cell.broken) continue;
+        const tl = points[cell.tl], tr = points[cell.tr];
+        const bl = points[cell.bl], br = points[cell.br];
+        ctx.moveTo(tl.x, tl.y);
+        ctx.lineTo(tr.x, tr.y);
+        ctx.lineTo(br.x, br.y);
+        ctx.lineTo(bl.x, bl.y);
+        ctx.closePath();
+      }
+      // Patrón de tela como fillStyle — sin drawImage por celda, sin seams
+      ctx.fillStyle = ctx.createPattern(noiseTex, 'repeat');
+      ctx.fill();
+
+      // === Pasada 3: sombras solo en celdas con deformación notable
+      // Calculadas por compresión de área (pliegues reales)
+      for (const cell of cells) {
+        if (cell.broken) continue;
+        const tl = points[cell.tl], tr = points[cell.tr];
+        const bl = points[cell.bl], br = points[cell.br];
+        const area = Math.abs((tr.x - tl.x) * (bl.y - tl.y) - (bl.x - tl.x) * (tr.y - tl.y));
+        const ratio = area / restCellArea;
+        if (ratio < 0.7) {
+          const alpha = (0.7 - ratio) * 0.8;
+          ctx.fillStyle = `rgba(20,15,10,${Math.min(0.4, alpha)})`;
+          ctx.beginPath();
+          ctx.moveTo(tl.x, tl.y);
+          ctx.lineTo(tr.x, tr.y);
+          ctx.lineTo(br.x, br.y);
+          ctx.lineTo(bl.x, bl.y);
+          ctx.closePath();
+          ctx.fill();
+        }
+      }
+
+      // === Pasada 4: highlight sutil en el lado superior izquierdo (luz direccional)
+      // Aplica un gradiente vertical claro al inicio del cloth
+      const grad = ctx.createLinearGradient(0, clothTopY, 0, clothTopY + 30);
+      grad.addColorStop(0, 'rgba(255,255,255,0.18)');
+      grad.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      for (const cell of cells) {
+        if (cell.broken || cell.row > 0) continue;
+        const tl = points[cell.tl], tr = points[cell.tr];
+        const bl = points[cell.bl], br = points[cell.br];
+        ctx.moveTo(tl.x, tl.y);
+        ctx.lineTo(tr.x, tr.y);
+        ctx.lineTo(br.x, br.y);
+        ctx.lineTo(bl.x, bl.y);
+        ctx.closePath();
+      }
+      ctx.fill();
+
+      // === Roller atado a la tela: usa coords reales de la primera fila pinned
+      const rollerH = 16;
+      const rollerY = clothTopY - rollerH;
+      const rollerLeft = clothLeftX - 2;
+      const rollerRight = clothRightX + 2;
+      const rollerW = rollerRight - rollerLeft;
+      ctx.fillStyle = 'rgba(0,0,0,0.3)';
+      ctx.fillRect(rollerLeft + 2, rollerY + rollerH - 2, rollerW, 5);
+      const rg = ctx.createLinearGradient(0, rollerY, 0, rollerY + rollerH);
+      rg.addColorStop(0, '#fafafa');
+      rg.addColorStop(0.5, '#e8e8e8');
+      rg.addColorStop(1, '#bdbdbd');
+      ctx.fillStyle = rg;
+      ctx.fillRect(rollerLeft, rollerY, rollerW, rollerH);
+      ctx.fillStyle = '#a8a8a8';
+      ctx.fillRect(rollerLeft - 4, rollerY + 1, 5, rollerH - 2);
+      ctx.fillRect(rollerRight - 1, rollerY + 1, 5, rollerH - 2);
+      // overlap roller-tela
+      ctx.fillStyle = '#cfcfcf';
+      ctx.fillRect(rollerLeft, rollerY + rollerH - 1, rollerW, 2);
+    }
+
+    let touchStartX = 0, touchStartY = 0;
+    let gestureMode = null;
+
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const t = e.touches ? e.touches[0] : e;
+      return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+    }
+
+    function onMouseDown(e) {
+      const p = getPos(e);
+      mouse.x = mouse.px = p.x;
+      mouse.y = mouse.py = p.y;
+      mouse.down = true;
+      gestureMode = 'interact';
+    }
+    function onMouseMove(e) {
+      if (!mouse.down) return;
+      const p = getPos(e);
+      mouse.px = mouse.x; mouse.py = mouse.y;
+      mouse.x = p.x; mouse.y = p.y;
+    }
+    function onMouseUp() { mouse.down = false; gestureMode = null; }
+
+    function onTouchStart(e) {
+      const t = e.touches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      gestureMode = null;
+    }
+    function onTouchMove(e) {
+      const t = e.touches[0];
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+      if (gestureMode === null) {
+        if (Math.hypot(dx, dy) < PHYS.decideThreshold) return;
+        // Bias fuerte hacia interact: solo libero al scroll si vertical claro y >16px
+        if (Math.abs(dy) > Math.abs(dx) * 2.5 && Math.abs(dy) > 16) {
+          gestureMode = 'scroll';
+          mouse.down = false;
+          return;
+        }
+        gestureMode = 'interact';
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = mouse.px = touchStartX - rect.left;
+        mouse.y = mouse.py = touchStartY - rect.top;
+        mouse.down = true;
+      }
+      if (gestureMode === 'interact') {
+        e.preventDefault();
+        const p = getPos(e);
+        mouse.px = mouse.x; mouse.py = mouse.y;
+        mouse.x = p.x; mouse.y = p.y;
+      }
+    }
+    function onTouchEnd() { mouse.down = false; gestureMode = null; }
+
+    canvas.addEventListener('mousedown', onMouseDown);
+    canvas.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    canvas.addEventListener('touchstart', onTouchStart, { passive: true });
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd);
+    window.addEventListener('touchcancel', onTouchEnd);
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    const io = new IntersectionObserver((entries) => {
+      visible = entries[0].isIntersecting;
+    }, { threshold: 0.05 });
+    io.observe(wrap);
+
+    return {
+      tick(dt) { if (!visible) return; update(dt); render(); },
+      reset() {
+        build();
+        const txt = opts.kind === 'bad' ? 'Tela liviana · cede al tacto' : 'Triple capa · resiste tracción';
+        setStatus(txt, '', 0);
+      },
+      simulateDrag(x1, y1, x2, y2, steps) {
+        mouse.x = mouse.px = x1; mouse.y = mouse.py = y1;
+        mouse.down = true;
+        let i = 0;
+        const t = setInterval(() => {
+          i++;
+          mouse.px = mouse.x; mouse.py = mouse.y;
+          mouse.x = x1 + (x2 - x1) * (i / steps);
+          mouse.y = y1 + (y2 - y1) * (i / steps);
+          if (i >= steps) { clearInterval(t); mouse.down = false; }
+        }, 16);
+      },
+    };
+  }
+
+  const badCloth = createCloth(
+    document.getElementById('cloth-bad'),
+    document.getElementById('status-bad'),
+    { cols: 14, rows: 18, tearMult: 1.38, stiffness: 0.5, gravity: 650, friction: 0.99, mouseInfluence: 24, dragCap: 12, kind: 'bad' }
+  );
+  const goodCloth = createCloth(
+    document.getElementById('cloth-good'),
+    document.getElementById('status-good'),
+    { cols: 14, rows: 18, tearMult: 999, stiffness: 0.95, gravity: 500, friction: 0.985, mouseInfluence: 22, dragCap: 5, kind: 'good' }
+  );
+  window.__cloths = { bad: badCloth, good: goodCloth };
+
+  let last = performance.now();
+  function loop(now) {
+    const dt = Math.min((now - last) / 1000, 1 / 30);
+    last = now;
+    badCloth.tick(dt);
+    goodCloth.tick(dt);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  document.getElementById('reset').addEventListener('click', () => {
+    badCloth.reset();
+    goodCloth.reset();
+  });
+})();
+</script>
+</body>
+</html>

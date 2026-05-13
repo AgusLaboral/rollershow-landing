@@ -1,0 +1,52 @@
+# Dependencias
+node_modules/
+package-lock.json
+
+# Builds derivados (se regeneran con _make-singlefile.py)
+index-standalone.html
+*-standalone.html
+
+# Backups y zips
+*.zip
+*.rar
+*.7z
+
+# Screenshots y checkpoints intermedios
+_screenshots/
+_checkpoints/
+
+# Assets originales pesados (mover a Drive/S3 si hace falta versionar)
+_assets-originales/
+fotos producto stock tradicionales/
+
+# Repos embebidos (skills clonadas)
+.claude/skills/*/
+
+# Logs y temporales
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.cursor/
+
+# Claude Code session local
+.claude/local/
+.claude/sessions/
+
+# Env / secretos
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+secrets/
+
+# Cache de Playwright
+playwright-report/
+test-results/
