@@ -38,6 +38,7 @@ desktop.ini
 # Claude Code session local
 .claude/local/
 .claude/sessions/
+.claude/worktrees/
 
 # Env / secretos
 .env
