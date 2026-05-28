@@ -12,6 +12,14 @@
 
 <title>Cortinas Roller a medida — Cotizá en 2 minutos · RollerShow</title>
 
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W9W7D9');</script>
+<!-- End Google Tag Manager -->
+
 <link rel="icon" type="image/svg+xml" href="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2205,6 +2213,11 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 </head>
 <body>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9W7D9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <a href="#main" class="skip-link">Saltar al contenido</a>
 
 <header class="site-header" id="siteHeader">
@@ -3669,6 +3682,44 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
   requestAnimationFrame(loop);
 
   // Reset manual eliminado — el auto-reset interno (3.5s tras soltar) maneja todo
+})();
+</script>
+
+<script>
+/* Analytics: WhatsApp clicks + cotizador submit → dataLayer (GTM-W9W7D9) */
+(() => {
+  window.dataLayer = window.dataLayer || [];
+
+  const sectionOf = (el) => {
+    const s = el.closest('section, header, footer, aside, .quoter, .sticky-cta');
+    if (!s) return 'unknown';
+    return s.id || s.getAttribute('aria-label') || s.getAttribute('aria-labelledby') || s.className.split(/\s+/)[0] || s.tagName.toLowerCase();
+  };
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href*="wa.me/"]');
+    if (!a) return;
+    window.dataLayer.push({
+      event: 'whatsapp_click',
+      cta_location: sectionOf(a),
+      cta_text: (a.innerText || a.getAttribute('aria-label') || '').trim().slice(0, 60),
+    });
+  }, true);
+
+  const form = document.getElementById('quoterForm');
+  if (form) {
+    form.addEventListener('submit', () => {
+      const w = parseFloat(document.getElementById('width')?.value);
+      const h = parseFloat(document.getElementById('height')?.value);
+      if (!w || w < 45 || w > 600 || !h || h < 40 || h > 500) return;
+      window.dataLayer.push({
+        event: 'quote_submit',
+        fabric: document.querySelector('input[name="fabric"]:checked')?.value || 'blackout',
+        width_cm: w,
+        height_cm: h,
+      });
+    }, true);
+  }
 })();
 </script>
 
