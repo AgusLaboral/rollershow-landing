@@ -780,8 +780,8 @@ section { padding-block: var(--section-y); position: relative; }
   padding-right: 8px;
   padding-left: 2px;
   font-size: 0.78rem;
-  color: var(--fg-mute);
-  font-weight: 500;
+  color: var(--fg-soft);
+  font-weight: 600;
   letter-spacing: 0.04em;
 }
 @media (max-width: 760px) {
@@ -3099,7 +3099,7 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 </svg>
 
 <!-- Sticky CTA dock — aparece cuando el cotizador sale del viewport -->
-<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+<div class="sticky-cta" id="stickyCta" aria-hidden="true" inert>
   <a href="https://wa.me/5491140813223?text=Hola!%20Quiero%20cotizar%20una%20cortina%20Roller" class="sticky-cta__wa" aria-label="WhatsApp">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.08.55 4.11 1.6 5.9L0 24l6.42-1.7a11.83 11.83 0 005.62 1.43h.01c6.54 0 11.84-5.3 11.84-11.84 0-3.16-1.23-6.13-3.37-8.41z"/></svg>
   </a>
@@ -3176,6 +3176,8 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
         const shouldShow = !e.isIntersecting;
         stickyCta.classList.toggle('is-visible', shouldShow);
         stickyCta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+        if (shouldShow) stickyCta.removeAttribute('inert');
+        else stickyCta.setAttribute('inert', '');
       });
     }, { threshold: 0, rootMargin: '-80px 0px 0px 0px' });
     dockIO.observe(cotizadorEl);
