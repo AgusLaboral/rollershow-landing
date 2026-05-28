@@ -2337,7 +2337,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
                     <source srcset="img/blackout-still.webp" type="image/webp" />
                     <img class="fabric-card__media-img" src="img/blackout-still.png" alt="Cortina Roller Blackout cubriendo la ventana" loading="eager" fetchpriority="high" width="400" height="500" />
                   </picture>
-                  <video class="fabric-card__media-video" src="img/blackout-loop.mp4" poster="img/blackout-still.webp" muted loop playsinline preload="none" data-fabric="blackout"></video>
+                  <video class="fabric-card__media-video" poster="img/blackout-still.webp" muted loop playsinline preload="none" data-fabric="blackout">
+                    <source src="img/blackout-loop.webm" type="video/webm" />
+                    <source src="img/blackout-loop.opt.mp4" type="video/mp4" />
+                  </video>
                 </span>
                 <span class="fabric-card__label">
                   <b>Blackout</b>
@@ -2352,7 +2355,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
                 <input type="radio" id="fab-sunscreen" name="fabric" value="sunscreen" />
                 <span class="fabric-card__media">
                   <img class="fabric-card__media-img" src="img/sunscreen-still.jpg" alt="Cortina Roller Sunscreen filtrando luz con vista al exterior" loading="eager" fetchpriority="high" width="400" height="500" />
-                  <video class="fabric-card__media-video" src="img/sunscreen-loop.mp4" poster="img/sunscreen-still.jpg" muted loop playsinline preload="none" data-fabric="sunscreen"></video>
+                  <video class="fabric-card__media-video" poster="img/sunscreen-still.jpg" muted loop playsinline preload="none" data-fabric="sunscreen">
+                    <source src="img/sunscreen-loop.webm" type="video/webm" />
+                    <source src="img/sunscreen-loop.opt.mp4" type="video/mp4" />
+                  </video>
                 </span>
                 <span class="fabric-card__label">
                   <b>Sunscreen</b>
