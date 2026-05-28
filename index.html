@@ -33,6 +33,8 @@
 <link rel="preconnect" href="https://cdn.rollershow.com.ar" />
 <link rel="preconnect" href="https://assets.rollershow.com.ar" />
 
+<link rel="preload" as="image" href="img/blackout-still.webp" type="image/webp" fetchpriority="high" />
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" />
 
 <script type="application/ld+json">
@@ -47,33 +49,62 @@
   "description": "Cortinas Roller a medida con asesoramiento personalizado. Más de 1.200.000 cortinas instaladas en 16 años.",
   "foundingDate": "2010",
   "areaServed": { "@type": "Country", "name": "Argentina" },
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "telephone": "+5491140813223",
-    "contactType": "sales",
-    "areaServed": "AR",
-    "availableLanguage": ["Spanish"]
-  }],
-  "location": [
+  "contactPoint": [
     {
-      "@type": "Place",
-      "name": "RollerShow Capital Federal",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ciudad Autónoma de Buenos Aires",
-        "addressRegion": "CABA",
-        "addressCountry": "AR"
+      "@type": "ContactPoint",
+      "telephone": "+54-800-220-4010",
+      "contactType": "customer service",
+      "areaServed": "AR",
+      "availableLanguage": ["Spanish"],
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
       }
     },
     {
-      "@type": "Place",
-      "name": "RollerShow Villa Carlos Paz",
+      "@type": "ContactPoint",
+      "telephone": "+5491140813223",
+      "contactType": "sales",
+      "areaServed": "AR",
+      "availableLanguage": ["Spanish"]
+    }
+  ],
+  "location": [
+    {
+      "@type": "Store",
+      "name": "RollerShow Capital Federal",
+      "telephone": "+541170780541",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Roseti 1674",
+        "postalCode": "C1427BWH",
+        "addressLocality": "Ciudad Autónoma de Buenos Aires",
+        "addressRegion": "CABA",
+        "addressCountry": "AR"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "10:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "13:00" }
+      ]
+    },
+    {
+      "@type": "Store",
+      "name": "RollerShow Villa Carlos Paz",
+      "telephone": "+543517000201",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. San Martín 1919",
+        "postalCode": "X5152",
         "addressLocality": "Villa Carlos Paz",
         "addressRegion": "Córdoba",
         "addressCountry": "AR"
-      }
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "10:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "13:00" }
+      ]
     }
   ]
 }
@@ -2175,7 +2206,11 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
-  background: #2a2520 url('img/tear-window.png') center / cover no-repeat;
+  background-color: #2a2520;
+  background-image: image-set(url('img/tear-window.webp') type('image/webp'), url('img/tear-window.png') type('image/png'));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .tear__wrap canvas { position: relative; display: block; width: 100%; height: 100%; z-index: 1; }
 
@@ -2298,8 +2333,11 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
               <label class="fabric-card" for="fab-blackout">
                 <input type="radio" id="fab-blackout" name="fabric" value="blackout" checked />
                 <span class="fabric-card__media">
-                  <img class="fabric-card__media-img" src="img/blackout-still.png" alt="Cortina Roller Blackout cubriendo la ventana" loading="eager" width="400" height="500" />
-                  <video class="fabric-card__media-video" src="img/blackout-loop.mp4" poster="img/blackout-still.png" muted loop playsinline preload="metadata" data-fabric="blackout"></video>
+                  <picture>
+                    <source srcset="img/blackout-still.webp" type="image/webp" />
+                    <img class="fabric-card__media-img" src="img/blackout-still.png" alt="Cortina Roller Blackout cubriendo la ventana" loading="eager" fetchpriority="high" width="400" height="500" />
+                  </picture>
+                  <video class="fabric-card__media-video" src="img/blackout-loop.mp4" poster="img/blackout-still.webp" muted loop playsinline preload="none" data-fabric="blackout"></video>
                 </span>
                 <span class="fabric-card__label">
                   <b>Blackout</b>
@@ -2313,8 +2351,8 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
               <label class="fabric-card" for="fab-sunscreen">
                 <input type="radio" id="fab-sunscreen" name="fabric" value="sunscreen" />
                 <span class="fabric-card__media">
-                  <img class="fabric-card__media-img" src="img/sunscreen-still.jpg" alt="Cortina Roller Sunscreen filtrando luz con vista al exterior" loading="eager" width="400" height="500" />
-                  <video class="fabric-card__media-video" src="img/sunscreen-loop.mp4" poster="img/sunscreen-still.jpg" muted loop playsinline preload="metadata" data-fabric="sunscreen"></video>
+                  <img class="fabric-card__media-img" src="img/sunscreen-still.jpg" alt="Cortina Roller Sunscreen filtrando luz con vista al exterior" loading="eager" fetchpriority="high" width="400" height="500" />
+                  <video class="fabric-card__media-video" src="img/sunscreen-loop.mp4" poster="img/sunscreen-still.jpg" muted loop playsinline preload="none" data-fabric="sunscreen"></video>
                 </span>
                 <span class="fabric-card__label">
                   <b>Sunscreen</b>
@@ -2476,7 +2514,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
     <div class="testimonials__grid">
       <article class="testimonial reveal">
         <a class="testimonial__media" href="#cotizador" aria-label="Cotizar como Camila">
-          <img src="img/blackout-gris-living.jpg" alt="Living con cortina Roller Blackout gris textura" loading="lazy" />
+          <picture>
+            <source srcset="img/blackout-gris-living.webp" type="image/webp" />
+            <img src="img/blackout-gris-living.jpg" alt="Living con cortina Roller Blackout gris textura" loading="lazy" />
+          </picture>
         </a>
         <div class="testimonial__body">
           <div class="testimonial__stars" aria-label="5 de 5">★★★★★</div>
@@ -2493,7 +2534,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 
       <article class="testimonial reveal">
         <a class="testimonial__media" href="#cotizador" aria-label="Cotizar como Martín">
-          <img src="img/blackout-white-bedroom.jpg" alt="Dormitorio con cortina Roller Blackout blanca" loading="lazy" />
+          <picture>
+            <source srcset="img/blackout-white-bedroom.webp" type="image/webp" />
+            <img src="img/blackout-white-bedroom.jpg" alt="Dormitorio con cortina Roller Blackout blanca" loading="lazy" />
+          </picture>
         </a>
         <div class="testimonial__body">
           <div class="testimonial__stars" aria-label="5 de 5">★★★★★</div>
@@ -2510,7 +2554,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 
       <article class="testimonial reveal">
         <a class="testimonial__media" href="#cotizador" aria-label="Cotizar como Lucía">
-          <img src="img/blackout-sand-office.jpg" alt="Home office con cortina Roller Blackout sand" loading="lazy" />
+          <picture>
+            <source srcset="img/blackout-sand-office.webp" type="image/webp" />
+            <img src="img/blackout-sand-office.jpg" alt="Home office con cortina Roller Blackout sand" loading="lazy" />
+          </picture>
         </a>
         <div class="testimonial__body">
           <div class="testimonial__stars" aria-label="5 de 5">★★★★★</div>
@@ -2527,7 +2574,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 
       <article class="testimonial reveal">
         <a class="testimonial__media" href="#cotizador" aria-label="Cotizar como Federico">
-          <img src="img/blackout-white-deskroom.jpg" alt="Estudio con cortina Roller Blackout blanca" loading="lazy" />
+          <picture>
+            <source srcset="img/blackout-white-deskroom.webp" type="image/webp" />
+            <img src="img/blackout-white-deskroom.jpg" alt="Estudio con cortina Roller Blackout blanca" loading="lazy" />
+          </picture>
         </a>
         <div class="testimonial__body">
           <div class="testimonial__stars" aria-label="5 de 5">★★★★★</div>
@@ -2544,7 +2594,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 
       <article class="testimonial reveal">
         <a class="testimonial__media" href="#cotizador" aria-label="Cotizar como Sofía">
-          <img src="img/sunscreen-living.jpg" alt="Living con cortina Roller Sunscreen" loading="lazy" />
+          <picture>
+            <source srcset="img/sunscreen-living.webp" type="image/webp" />
+            <img src="img/sunscreen-living.jpg" alt="Living con cortina Roller Sunscreen" loading="lazy" />
+          </picture>
         </a>
         <div class="testimonial__body">
           <div class="testimonial__stars" aria-label="5 de 5">★★★★★</div>
@@ -2561,7 +2614,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 
       <article class="testimonial reveal">
         <a class="testimonial__media" href="#cotizador" aria-label="Cotizar como Diego">
-          <img src="img/blackout-sand-bedroom.jpg" alt="Dormitorio con cortina Roller Blackout sand" loading="lazy" />
+          <picture>
+            <source srcset="img/blackout-sand-bedroom.webp" type="image/webp" />
+            <img src="img/blackout-sand-bedroom.jpg" alt="Dormitorio con cortina Roller Blackout sand" loading="lazy" />
+          </picture>
         </a>
         <div class="testimonial__body">
           <div class="testimonial__stars" aria-label="5 de 5">★★★★★</div>
@@ -2591,7 +2647,10 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 
       <div class="ba-slider reveal" id="baSlider">
         <div class="ba-slider__frame">
-          <img class="ba-slider__img ba-slider__img--before" src="img/blackout-still.png" alt="Misma habitación con cortina Roller Blackout: oscuridad controlada" draggable="false" />
+          <picture>
+            <source srcset="img/blackout-still.webp" type="image/webp" />
+            <img class="ba-slider__img ba-slider__img--before" src="img/blackout-still.png" alt="Misma habitación con cortina Roller Blackout: oscuridad controlada" draggable="false" />
+          </picture>
           <img class="ba-slider__img ba-slider__img--after" src="img/sunscreen-still.jpg" alt="Misma habitación con cortina Roller Sunscreen: vista filtrada" draggable="false" />
           <span class="ba-slider__label ba-slider__label--left">Blackout</span>
           <span class="ba-slider__label ba-slider__label--right">Sunscreen</span>
@@ -2624,8 +2683,14 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
 
   <!-- ============================================================ TEAR — Misma cortina, dos calidades ============================================================ -->
   <!-- Imágenes de cortinas preloaded — el build script las embebe en el standalone -->
-  <img id="tearImgGood" src="img/tear-curtain-good-nobg.png" alt="" style="display:none" aria-hidden="true" />
-  <img id="tearImgBad" src="img/tear-curtain-bad-nobg.png" alt="" style="display:none" aria-hidden="true" />
+  <picture>
+    <source srcset="img/tear-curtain-good-nobg.webp" type="image/webp" />
+    <img id="tearImgGood" src="img/tear-curtain-good-nobg.png" alt="" style="display:none" aria-hidden="true" />
+  </picture>
+  <picture>
+    <source srcset="img/tear-curtain-bad-nobg.webp" type="image/webp" />
+    <img id="tearImgBad" src="img/tear-curtain-bad-nobg.png" alt="" style="display:none" aria-hidden="true" />
+  </picture>
 
   <section class="tear" aria-labelledby="tear-title">
     <div class="container">
