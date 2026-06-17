@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gracias",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "C:\\Users\\Agus\\Desktop\\rollershow-src",
+      "port": 4321
+    },
+    {
+      "name": "landing",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8099"],
+      "cwd": "C:\\Users\\Agus\\Desktop\\rollershow",
+      "port": 8099
+    }
+  ]
+}

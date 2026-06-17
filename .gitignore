@@ -11,7 +11,11 @@ index-standalone.html
 *.rar
 *.7z
 
-# Screenshots y checkpoints intermedios
+# Trabajo descartable: scripts de captura one-off, screenshots y video fuente.
+# Convención: TODO lo efímero/local va en _scratch/ (ver README).
+_scratch/
+
+# Screenshots y checkpoints intermedios (legacy)
 _screenshots/
 _checkpoints/
 
