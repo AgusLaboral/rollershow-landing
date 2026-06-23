@@ -2223,7 +2223,7 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
     <div class="hero__grid">
       <div class="hero__copy">
         <h1 class="hero__title h-display" id="hero-title">
-          La cortina justa para tu ventana. <span class="hero__title-soft">Te asesoramos con la tela, la medida y el precio antes de comprar.</span>
+          Cotizá tus cortinas online fácil y rápido. <span class="hero__title-soft">Te acompañamos en cada parte del proceso.</span>
         </h1>
       </div>
 
@@ -2262,8 +2262,40 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
               </label>
             </div>
 
+          <style>
+            .size-field--width { position: relative; }
+            .size-tip {
+              position: absolute;
+              top: calc(100% + 10px);
+              left: 0;
+              z-index: 30;
+              width: max(100%, 230px);
+              max-width: calc(100vw - 56px);
+              background: #1C1816;
+              color: #fff;
+              font-size: 0.82rem;
+              line-height: 1.45;
+              padding: 12px 14px;
+              border-radius: 10px;
+              box-shadow: 0 18px 40px -12px rgba(28, 24, 22, 0.5);
+              opacity: 0;
+              transform: translateY(-4px);
+              pointer-events: none;
+              transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+            }
+            .size-tip::before {
+              content: '';
+              position: absolute;
+              bottom: 100%;
+              left: 26px;
+              border: 7px solid transparent;
+              border-bottom-color: #1C1816;
+            }
+            .size-tip.is-visible { opacity: 1; transform: translateY(0); }
+            .size-tip b { color: #fff; font-weight: 600; }
+          </style>
           <div class="size-row">
-            <div class="size-field">
+            <div class="size-field size-field--width">
               <span class="size-field__label" aria-hidden="true">
                 <svg class="size-field__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="3" y1="8" x2="13" y2="8"/>
@@ -2278,6 +2310,7 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
                 <span class="stepper__unit">cm</span>
                 <button type="button" class="stepper__btn" data-target="width" data-step="10" aria-label="Sumar 10 cm al ancho">+</button>
               </div>
+              <div class="size-tip" id="widthTip" role="status" aria-hidden="true">La tela queda unos <b>4 cm más angosta</b> que el ancho indicado, por el espacio de los soportes. Te recomendamos <b>sumar +15 cm</b>.</div>
             </div>
             <div class="size-field">
               <span class="size-field__label" aria-hidden="true">
@@ -3049,6 +3082,16 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
     syncFabricVideo();
   }));
   updateWaLink();
+
+  /* ---------- Tip contextual del Ancho (soportes / +15 cm) ---------- */
+  const widthTip = document.getElementById('widthTip');
+  if (widthTip) {
+    const showTip = () => { widthTip.classList.add('is-visible'); widthTip.setAttribute('aria-hidden', 'false'); };
+    const hideTip = () => { widthTip.classList.remove('is-visible'); widthTip.setAttribute('aria-hidden', 'true'); };
+    widthEl.addEventListener('focus', showTip);
+    widthEl.addEventListener('blur', () => setTimeout(hideTip, 150));
+    document.querySelectorAll('.stepper__btn[data-target="width"]').forEach(b => b.addEventListener('click', showTip));
+  }
 
   /* ---------- Steppers ± 10 cm ---------- */
   const clampNum = (v, min, max) => Math.max(min, Math.min(max, v));
