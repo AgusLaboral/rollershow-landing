@@ -3291,10 +3291,11 @@ details.faq-item > div b { color: var(--fg); font-weight: 600; }
   /* ---------- Form submit → WhatsApp ---------- */
   document.getElementById('quoterForm').addEventListener('submit', (e) => {
     e.preventDefault();
+    widthEl.setCustomValidity(''); heightEl.setCustomValidity('');
     const w = parseFloat(widthEl.value);
     const h = parseFloat(heightEl.value);
-    if (!w || w < 45 || w > 600) { widthEl.focus(); widthEl.reportValidity(); return; }
-    if (!h || h < 40 || h > 500) { heightEl.focus(); heightEl.reportValidity(); return; }
+    if (!w || w < 45 || w > 600) { widthEl.setCustomValidity(!w ? 'Completá el ancho en cm' : 'El ancho va entre 45 y 600 cm'); widthEl.reportValidity(); widthEl.focus(); return; }
+    if (!h || h < 40 || h > 500) { heightEl.setCustomValidity(!h ? 'Completá el alto en cm' : 'El alto va entre 40 y 500 cm'); heightEl.reportValidity(); heightEl.focus(); return; }
     const text = `Hola! Quiero cotizar mis cortinas a medida`;
     // Último paso: abrir la conversación de WhatsApp en pestaña nueva...
     window.open(`https://wa.me/5491140813223?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
