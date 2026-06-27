@@ -1,0 +1,934 @@
+<!DOCTYPE html><html lang="es-AR"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><!-- Maqueta en desarrollo: evita que el navegador (sobre todo en mobile)
+         sirva una versión vieja cacheada mientras se itera. --><meta http-equiv="Cache-Control" content="no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://cdn.rollershow.com.ar"><link rel="preconnect" href="https://assets.rollershow.com.ar"><link rel="dns-prefetch" href="https://www.rollershow.com.ar"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- Tipografía: el sitio usa Geist + Instrument Serif (masterplan §26);
+         las landings con bareLayout traen su propio sistema (Bricolage + Manrope).
+         Se carga solo el set que la página usa — un único <link>, no @import. --><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"><title>Simulador de cortinas RollerShow: probá cómo queda antes de comprar</title><meta name="description" content="Subí la foto de tu ventana, elegí la tela y en segundos ves cómo van a quedar tus cortinas. Sin costo, sin compromiso."><link rel="canonical" href="https://www.rollershow.com.ar/simulador"><meta property="og:type" content="website"><meta property="og:title" content="Simulador de cortinas RollerShow: probá cómo queda antes de comprar"><meta property="og:description" content="Subí la foto de tu ventana, elegí la tela y en segundos ves cómo van a quedar tus cortinas. Sin costo, sin compromiso."><meta property="og:url" content="https://www.rollershow.com.ar/simulador"><meta property="og:image" content="https://www.rollershow.com.ar/assets/og-default.jpg"><meta property="og:site_name" content="RollerShow"><meta property="og:locale" content="es_AR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Simulador de cortinas RollerShow: probá cómo queda antes de comprar"><meta name="twitter:description" content="Subí la foto de tu ventana, elegí la tela y en segundos ves cómo van a quedar tus cortinas. Sin costo, sin compromiso."><meta name="twitter:image" content="https://www.rollershow.com.ar/assets/og-default.jpg"><!-- Alpine.js para interactividad puntual (mega-menú, modales, before/after, filtros). --><script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script><!-- Preloads / hints específicos de cada página (ej. imagen LCP de fondo). --><link rel="preload" as="image" fetchpriority="high" href="https://cdn.rollershow.com.ar/web/landing/sunscreen-still-6a077d07d8760.jpg?width=900&format=auto&quality=64"><link rel="stylesheet" href="/rollershow-landing/_astro/_familia_.DsOpv4aC.css">
+<link rel="stylesheet" href="/rollershow-landing/_astro/simulador.BGvD75aB.css"></head> <body class="min-h-screen flex flex-col bg-bg ">       <div x-data="simulador()" :class="{ 'sim-inflow': step !== 1 }"> <header class="site-header" id="siteHeader" data-scrolled="false"> <div class="container"> <div class="site-header__inner"> <a href="/" class="brand" aria-label="RollerShow — inicio"> <img class="brand-logo" src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" width="600" height="52"> </a> <div class="header-actions"> <a href="tel:08002204010" class="phone-pill">0800-220-4010, 24 hs</a> <a href="https://wa.me/5491140813223?text=Hola!%20Quiero%20cotizar%20mis%20cortinas%20a%20medida" class="phone-pill phone-pill--wa" aria-label="WhatsApp" target="_blank" rel="noopener"> <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.08.55 4.11 1.6 5.9L0 24l6.42-1.7a11.83 11.83 0 005.62 1.43h.01c6.54 0 11.84-5.3 11.84-11.84 0-3.16-1.23-6.13-3.37-8.41z"></path></svg> <span>WhatsApp</span> </a> </div> </div> </div> </header> <!-- ============================================================ HERO ============================================================ --> <main> <section class="hero container" id="cotizador" aria-labelledby="sim-title"> <div class="hero__grid"> <!-- Copy izquierda --> <div class="hero__copy"> <h1 class="hero__title h-display" id="sim-title">
+Probá la cortina en tu ventana <span class="hero__title-soft">antes de comprar.</span> </h1> </div> <!-- Simulador — protagonista del hero --> <div class="quoter" id="simulador" aria-label="Simulador de cortinas Roller" role="region"> <!-- PASO 1 — Subir foto (el upload ES el protagonista) --> <div x-show="step === 1" x-cloak class="sim-step"> <label class="sim-upload-zone" :class="{ 'is-over': isDragOver }" @dragover.prevent="isDragOver = true" @dragleave="isDragOver = false" @drop.prevent="isDragOver = false; onFileDrop($event)"> <p class="sim-upload-zone__title">Subí una foto de tu ventana</p> <p class="sim-upload-zone__sub">Gratis y en segundos: mirá cómo te queda y cuánto sale.</p> <span class="sim-upload-zone__btn"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+Elegir foto
+</span> <input type="file" accept="image/*" style="display:none" @change="onFileChange"> </label> </div> <!-- PASO 2 — Elegir tela (tipo → color) --> <div x-show="step === 2" x-cloak class="sim-step"> <div class="sim-step-head"> <span class="sim-step-count">Paso 2 de 3</span> <h2>Elegí tu tela</h2> </div> <div class="sim-photo-thumb"> <img :src="photoUrl" :alt="photoName"> <div class="sim-photo-thumb__info"> <p class="sim-photo-thumb__name" x-text="photoName"></p> <p class="sim-photo-thumb__label">Tu ventana</p> </div> <button type="button" class="sim-photo-thumb__change" @click="step = 1; photoUrl = null; selectedFuncion = null; selectedTela = null; selectedTelaId = null">
+Cambiar
+</button> </div>   <div class="sim-block"> <p class="sim-sublabel">¿Para qué la querés?</p> <div class="sim-tipos"> <button type="button" class="sim-tipo" @click="selectFuncion('opaca')" :class="{ 'is-active': selectedFuncion === 'opaca' }" :aria-pressed="selectedFuncion === 'opaca'"> <span class="sim-tipo__name">Black Out</span> <span class="sim-tipo__desc">Bloquea toda la luz. Ideal para dormitorios.</span> </button><button type="button" class="sim-tipo" @click="selectFuncion('transparente')" :class="{ 'is-active': selectedFuncion === 'transparente' }" :aria-pressed="selectedFuncion === 'transparente'"> <span class="sim-tipo__name">Sun Screen</span> <span class="sim-tipo__desc">Filtra el sol y dejás ver hacia afuera.</span> </button> </div> </div>  <div class="sim-block" x-show="selectedFuncion" x-cloak x-transition.opacity.duration.250ms> <p class="sim-sublabel">Elegí el color</p> <div class="sim-telas-grid"> <button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1746,&#34;name&#34;:&#34;Black Out Liviana Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;color_family&#34;:&#34;blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/1746-black-out-liviana-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/1746-black-out-liviana-blanco.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/1746-black-out-liviana-blanco.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1746 }" :aria-pressed="selectedTelaId === 1746" aria-label="Black Out Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/1746-black-out-liviana-blanco.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Liviana Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1750,&#34;name&#34;:&#34;Black Out Liviana Natural&#34;,&#34;color&#34;:&#34;Natural&#34;,&#34;color_family&#34;:&#34;natural&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-natural.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-natural.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-natural.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1750 }" :aria-pressed="selectedTelaId === 1750" aria-label="Black Out Natural"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-liviana-natural.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Liviana Natural" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Natural</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1748,&#34;name&#34;:&#34;Black Out Liviana Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;color_family&#34;:&#34;gris&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-gris.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-gris.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1748 }" :aria-pressed="selectedTelaId === 1748" aria-label="Black Out Gris"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-liviana-gris.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Liviana Gris" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Gris</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1755,&#34;name&#34;:&#34;Sun Screen 5% Liviana Blanco cálido&#34;,&#34;color&#34;:&#34;Blanco cálido&#34;,&#34;color_family&#34;:&#34;blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/1755-sun-screen-5-liviana-blanco-calido.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/1755-sun-screen-5-liviana-blanco-calido.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/1755-sun-screen-5-liviana-blanco-calido.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1755 }" :aria-pressed="selectedTelaId === 1755" aria-label="Sun Screen Blanco cálido"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/1755-sun-screen-5-liviana-blanco-calido.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Liviana Blanco cálido" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco cálido</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1756,&#34;name&#34;:&#34;Sun Screen 5% Liviana Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;color_family&#34;:&#34;beige&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-beige.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-beige.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1756 }" :aria-pressed="selectedTelaId === 1756" aria-label="Sun Screen Beige"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-beige.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Liviana Beige" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Beige</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1757,&#34;name&#34;:&#34;Sun Screen 5% Liviana Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;color_family&#34;:&#34;gris&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-gris-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-gris-beige.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-gris-beige.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1757 }" :aria-pressed="selectedTelaId === 1757" aria-label="Sun Screen Gris"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-gris-beige.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Liviana Gris" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Gris</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1768,&#34;name&#34;:&#34;Black Out Intermedia Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;color_family&#34;:&#34;blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-blanco.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-blanco.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1768 }" :aria-pressed="selectedTelaId === 1768" aria-label="Black Out Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-intermedia-blanco.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Intermedia Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1770,&#34;name&#34;:&#34;Black Out Intermedia Natural&#34;,&#34;color&#34;:&#34;Natural&#34;,&#34;color_family&#34;:&#34;natural&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-natural.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-natural.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-natural.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1770 }" :aria-pressed="selectedTelaId === 1770" aria-label="Black Out Natural"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-intermedia-natural.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Intermedia Natural" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Natural</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1769,&#34;name&#34;:&#34;Black Out Intermedia Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;color_family&#34;:&#34;gris&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-gris.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-intermedia-gris.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1769 }" :aria-pressed="selectedTelaId === 1769" aria-label="Black Out Gris"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-intermedia-gris.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Intermedia Gris" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Gris</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1773,&#34;name&#34;:&#34;Sun Screen 5% Intermedia Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;color_family&#34;:&#34;blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-blanco-snow.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-blanco-snow.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-blanco-snow.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1773 }" :aria-pressed="selectedTelaId === 1773" aria-label="Sun Screen Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-blanco-snow.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Intermedia Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1774,&#34;name&#34;:&#34;Sun Screen 5% Intermedia Blanco Beige&#34;,&#34;color&#34;:&#34;Blanco Beige&#34;,&#34;color_family&#34;:&#34;beige&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-beige-snow.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-beige-snow.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-beige-snow.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1774 }" :aria-pressed="selectedTelaId === 1774" aria-label="Sun Screen Blanco Beige"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-beige-snow.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Intermedia Blanco Beige" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco Beige</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1775,&#34;name&#34;:&#34;Sun Screen 5% Intermedia Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;color_family&#34;:&#34;gris&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-gris-snow.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-gris-snow.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-gris-snow.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1775 }" :aria-pressed="selectedTelaId === 1775" aria-label="Sun Screen Gris"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-intermedia-gris-snow.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Intermedia Gris" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Gris</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1782,&#34;name&#34;:&#34;Black Out Pesada Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;color_family&#34;:&#34;blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-blanco.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-blanco.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1782 }" :aria-pressed="selectedTelaId === 1782" aria-label="Black Out Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-pesada-blanco.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Pesada Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1805,&#34;name&#34;:&#34;Black Out Pesada Natural&#34;,&#34;color&#34;:&#34;Natural&#34;,&#34;color_family&#34;:&#34;natural&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-natural.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-natural.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-natural.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1805 }" :aria-pressed="selectedTelaId === 1805" aria-label="Black Out Natural"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-pesada-natural.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Pesada Natural" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Natural</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1783,&#34;name&#34;:&#34;Black Out Pesada Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;color_family&#34;:&#34;beige&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-beige.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-beige.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1783 }" :aria-pressed="selectedTelaId === 1783" aria-label="Black Out Beige"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-pesada-beige.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Pesada Beige" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Beige</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1784,&#34;name&#34;:&#34;Black Out Pesada Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;color_family&#34;:&#34;gris&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-gris.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-gris.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1784 }" :aria-pressed="selectedTelaId === 1784" aria-label="Black Out Gris"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-pesada-gris.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Pesada Gris" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Gris</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1806,&#34;name&#34;:&#34;Black Out Pesada Negro&#34;,&#34;color&#34;:&#34;Negro&#34;,&#34;color_family&#34;:&#34;negro&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-negro.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-negro.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-negro.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1806 }" :aria-pressed="selectedTelaId === 1806" aria-label="Black Out Negro"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-pesada-negro.chica.jpg?width=400&auto=webp" alt="Cortina Black Out Pesada Negro" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Negro</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1786,&#34;name&#34;:&#34;Sun Screen 5% Pesada Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;color_family&#34;:&#34;blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-blanco.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-blanco.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1786 }" :aria-pressed="selectedTelaId === 1786" aria-label="Sun Screen Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-blanco.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Pesada Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1835,&#34;name&#34;:&#34;Sun Screen 5% Pesada Beige Blanco&#34;,&#34;color&#34;:&#34;Beige Blanco&#34;,&#34;color_family&#34;:&#34;natural&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-beige-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-beige-blanco.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-beige-blanco.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1835 }" :aria-pressed="selectedTelaId === 1835" aria-label="Sun Screen Beige Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-beige-blanco.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Pesada Beige Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Beige Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1836,&#34;name&#34;:&#34;Sun Screen 5% Pesada Gris Blanco&#34;,&#34;color&#34;:&#34;Gris Blanco&#34;,&#34;color_family&#34;:&#34;gris&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-gris-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-gris-blanco.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-gris-blanco.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1836 }" :aria-pressed="selectedTelaId === 1836" aria-label="Sun Screen Gris Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-gris-blanco.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 5% Pesada Gris Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Gris Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1600,&#34;name&#34;:&#34;Black Out TrueColors Celeste&#34;,&#34;color&#34;:&#34;Celeste&#34;,&#34;color_family&#34;:&#34;otro&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-celeste.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-celeste.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-celeste.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1600 }" :aria-pressed="selectedTelaId === 1600" aria-label="Black Out Celeste"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-celeste.chica.jpg?width=400&auto=webp" alt="Cortina Black Out TrueColors Celeste" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Celeste</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1601,&#34;name&#34;:&#34;Black Out TrueColors Rosa &#34;,&#34;color&#34;:&#34;Rosa &#34;,&#34;color_family&#34;:&#34;otro&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;funcion_label&#34;:&#34;Black Out&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-rosa.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-rosa.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-rosa.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'opaca'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1601 }" :aria-pressed="selectedTelaId === 1601" aria-label="Black Out Rosa"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-rosa.chica.jpg?width=400&auto=webp" alt="Cortina Black Out TrueColors Rosa " loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Rosa </p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1646,&#34;name&#34;:&#34;Sun Screen 1% Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;color_family&#34;:&#34;blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-blanco.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-blanco.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1646 }" :aria-pressed="selectedTelaId === 1646" aria-label="Sun Screen Blanco"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-blanco.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 1% Blanco" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Blanco</p> </div> </button><button type="button" class="sim-tela-card" data-tela="{&#34;id&#34;:1647,&#34;name&#34;:&#34;Sun Screen 1% Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;color_family&#34;:&#34;beige&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;funcion_label&#34;:&#34;Sun Screen&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;img_card&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-beige.1.jpg?width=850&#38;auto=webp&#34;,&#34;img_preview&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-beige.recorte.png?auto=webp&#34;}" x-show="selectedFuncion === 'transparente'" @click="selectTela(JSON.parse($el.dataset.tela))" :class="{ 'is-selected': selectedTelaId === 1647 }" :aria-pressed="selectedTelaId === 1647" aria-label="Sun Screen Beige"> <img class="sim-tela-card__swatch" src="https://cdn.rollershow.com.ar/telas/sun-screen-1-solarcool-7500-beige.chica.jpg?width=400&auto=webp" alt="Cortina Sun Screen 1% Beige" loading="lazy" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name">Beige</p> </div> </button> </div> </div> <div class="quoter__cta"> <button type="button" class="btn--hero" @click="simulate()" :disabled="!selectedTela"> <span>Ver cómo me queda</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> </div> <p class="quoter__trust">Es gratis y no te compromete a nada. Lo ves al toque.</p>  </div> <!-- PASO 3 — Generando simulación --> <div x-show="step === 3" x-cloak class="sim-step"> <div class="sim-loader" aria-live="polite"> <div class="sim-loader__msgs"> <template x-for="(msg, i) in loadSteps" :key="i"> <p class="sim-loader__msg" x-show="loadStep === i"><span x-text="msg"></span></p> </template> </div> <div class="sim-loader__track" aria-hidden="true"> <template x-for="(msg, i) in loadSteps" :key="i"> <span class="sim-loader__seg" :class="{ 'is-done': loadStep > i, 'is-active': loadStep === i }"></span> </template> </div> </div> </div> <!-- PASO 4 — Before / after slider --> <div x-show="step === 4" x-cloak class="sim-step"> <div class="sim-step-head"> <span class="sim-step-count">¡Listo!</span> <h2>Mirá cómo te queda con <span x-text="selectedTela?.name" style="font-weight:500;color:var(--fg-soft)"></span></h2> </div> <div class="sim-slider"> <!-- Before: foto original --> <div class="sim-slider__before"> <img :src="photoUrl" alt="Tu ventana antes"> </div> <!-- After: foto + overlay de la tela seleccionada, clip a la derecha del slider --> <div class="sim-slider__after" :style="`clip-path: inset(0 ${100 - sliderPos}% 0 0)`"> <img class="sim-slider__after-photo" :src="photoUrl" alt="Tu ventana con cortina simulada"> <img class="sim-slider__after-tela" :src="selectedTela?.img_thumb" :alt="selectedTela?.name"> </div> <!-- Divider & handle (decorativos; el control es el range de abajo) --> <div class="sim-slider__divider" :style="`left: ${sliderPos}%`" aria-hidden="true"></div> <div class="sim-slider__handle" :style="`left: ${sliderPos}%`" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg> </div> <span class="sim-slider__label sim-slider__label--before" aria-hidden="true">Antes</span> <span class="sim-slider__label sim-slider__label--after" aria-hidden="true">Con tu cortina</span> <!-- Control real: range nativo (robusto en mouse, touch y teclado) --> <input type="range" min="0" max="100" step="0.5" x-model.number="sliderPos" class="sim-slider__range" aria-label="Deslizá para comparar tu ventana antes y después"> </div> <div class="sim-tela-selected-info"> <img :src="selectedTela?.img_thumb" :alt="selectedTela?.name"> <div class="sim-tela-selected-info__text"> <p class="sim-tela-selected-info__name" x-text="selectedTela?.name"></p> <p class="sim-tela-selected-info__color" x-text="selectedTela?.color"></p> </div> <button type="button" class="btn--ghost" @click="step = 2" style="margin-left:auto">Cambiar tela</button> </div> <div class="quoter__cta"> <button type="button" class="btn--hero" @click="step = 5; formStep = 1"> <span>Quiero saber el precio</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> </div> <p class="quoter__trust">Te pasamos la simulación y el precio por WhatsApp</p> </div> <!-- PASO 5 — Formulario de lead (multi-step: baja la resistencia) --> <div x-show="step === 5" x-cloak class="sim-step"> <!-- Recap de la tela elegida (contexto en ambos sub-pasos) --> <div class="sim-tela-recap"> <img :src="selectedTela?.img_thumb" :alt="selectedTela?.name"> <div class="sim-tela-recap__text"> <p class="sim-tela-recap__label">Tu simulación con</p> <p class="sim-tela-recap__name" x-text="selectedTela?.name"></p> </div> <button type="button" class="btn--ghost" @click="step = 4" style="margin-left:auto;font-size:var(--fs-caption)">Ver de nuevo</button> </div> <!-- Sub-paso 1: medidas (fácil, opcional, sobre tu ventana) --> <div x-show="formStep === 1" class="sim-substep"> <div class="sim-step-head"> <span class="sim-step-count">Casi listo</span> <h2>¿Qué medidas tiene tu ventana?</h2> </div> <div class="sim-measures"> <div class="sim-measure"> <label for="sim-ancho"> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"></line><polyline points="5.5 5.5 3 8 5.5 10.5"></polyline><polyline points="10.5 5.5 13 8 10.5 10.5"></polyline></svg>
+Ancho
+</label> <div class="sim-measure__input"> <input type="number" id="sim-ancho" x-model="ancho" placeholder="120" min="20" max="600" inputmode="numeric" @keydown.enter="formStep = 2"> <span>cm</span> </div> </div> <div class="sim-measure"> <label for="sim-alto"> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="3" x2="8" y2="13"></line><polyline points="5.5 5.5 8 3 10.5 5.5"></polyline><polyline points="5.5 10.5 8 13 10.5 10.5"></polyline></svg>
+Alto
+</label> <div class="sim-measure__input"> <input type="number" id="sim-alto" x-model="alto" placeholder="150" min="20" max="400" inputmode="numeric" @keydown.enter="formStep = 2"> <span>cm</span> </div> </div> </div> <p class="sim-measures-hint">Opcional. Con las medidas te damos el precio exacto; si no las tenés a mano, seguí igual.</p> <div class="quoter__cta"> <button type="button" class="btn--hero" @click="formStep = 2"> <span>Continuar</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> <button type="button" class="btn--ghost btn--block" @click="step = 4">Volver a la simulación</button> </div> </div> <!-- Sub-paso 2: contacto (el dato clave, después de involucrarse) --> <div x-show="formStep === 2" x-cloak class="sim-substep"> <div class="sim-step-head"> <span class="sim-step-count">Último paso</span> <h2>¿A qué WhatsApp te lo mando?</h2> </div> <div class="sim-field"> <label for="sim-telefono">Tu número de WhatsApp</label> <input type="tel" id="sim-telefono" x-model="telefono" placeholder="11 2345 6789" autocomplete="tel" inputmode="tel" @keydown.enter="$el.closest('.sim-substep').querySelector('#sim-nombre').focus()"> </div> <div class="sim-field"> <label for="sim-nombre">Tu nombre <span class="sim-sublabel__opt">(opcional)</span></label> <input type="text" id="sim-nombre" x-model="nombre" placeholder="Cómo te llamás" autocomplete="given-name" @keydown.enter="submitForm()"> </div> <template x-if="formError"> <p class="sim-form-error" x-text="formError" role="alert"></p> </template> <div class="quoter__cta"> <button type="button" class="btn--hero" @click="submitForm()" :disabled="sending || !telefono.trim()"> <span x-text="sending ? 'Enviando…' : 'Recibir mi simulación'"></span> <svg x-show="!sending" class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> <button type="button" class="btn--ghost btn--block" @click="formStep = 1">Volver</button> </div> <p class="quoter__foot">
+Desde 2010, ninguna ventana nos queda mal. Del otro lado hay una persona que se va a ocupar de la tuya.
+</p> </div> </div> <!-- PASO 6 — Gracias --> <div x-show="step === 6" x-cloak class="sim-step"> <div class="sim-thanks"> <div class="sim-thanks__icon"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> </div> <p class="sim-thanks__title">¡Listo<span x-text="nombre ? ', ' + nombre : ''"></span>! Ya tenés tu cortina elegida</p> <p class="sim-thanks__sub">En minutos te escribe un asesor por WhatsApp con tu simulación y el precio exacto. Mientras tanto, tu ventana sigue esperándola.</p> </div> <div class="quoter__cta"> <a :href="`https://wa.me/5491140813223?text=${encodeURIComponent('Hola! Acabo de simular una cortina ' + (selectedTela?.name ?? '') + ' y quiero saber el precio.')}`" class="btn--whatsapp btn btn--block" target="_blank" rel="noopener"> <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.08.55 4.11 1.6 5.9L0 24l6.42-1.7a11.83 11.83 0 005.62 1.43h.01c6.54 0 11.84-5.3 11.84-11.84 0-3.16-1.23-6.13-3.37-8.41z"></path></svg>
+Escribinos ahora por WhatsApp
+</a> <button type="button" class="btn--ghost btn--block" @click="reset()">
+Probar otra ventana
+</button> </div> </div> </div><!-- /quoter --> </div><!-- /hero__grid --> </section> <!-- Debajo del simulador: mismas secciones que la landing (A/B cotizador vs simulador) --> <div class="below-hero"> <!-- ============================================================ TRUST STRIP — editorial asimétrico ============================================================ --> <section class="trust" aria-label="Por qué elegirnos"> <div class="container"> <div class="trust__editorial"> <div class="trust__hero reveal"> <div class="trust__big">1.200.000<span>+</span></div> <div class="trust__big-lab">Cortinas a medida instaladas desde 2010. Es lo único que hacemos.</div> </div> <ul class="trust__items"> <li class="reveal" style="--delay: 60ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-2.9L6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3z"></path></svg> </span> <span class="trust__items-num">5/5</span> <span class="trust__items-lab">10.000+ reseñas verificadas. Promedio 5 / 5.</span> </li> <li class="reveal" style="--delay: 120ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg> </span> <span class="trust__items-num">75+</span> <span class="trust__items-lab">Telas para elegir entre Blackout, Sunscreen, decorativas.</span> </li> <li class="reveal" style="--delay: 180ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9.5 4.5-1 8-4.5 8-9.5V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg> </span> <span class="trust__items-num">Hasta 3 años</span> <span class="trust__items-lab">De garantía sobre el sistema, los herrajes y la confección.</span> </li> <li class="reveal" style="--delay: 240ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> </span> <span class="trust__items-num">5–10 días</span> <span class="trust__items-lab">De fabricación a medida desde que confirmás el pedido.</span> </li> </ul> </div> </div> </section> <!-- ============================================================ RESEÑAS — estilo Google / Facebook (sin logos) ============================================================ --> <section class="container"> <header class="testimonials__head reveal"> <h2 class="h-display h2">10.000 personas eligieron RollerShow.</h2> <p class="lead">Reseñas verificadas con foto del producto instalado en casas reales. Promedio 5 / 5.</p> </header> <div class="rev-block reveal"> <p class="rev-block__src">Reseñas en <b>Google</b> <span class="rev-block__rating">4,9 / 5</span></p> <div class="rev-grid"> <article class="rev rev--google reveal"> <header class="rev__head"> <img class="rev__avatar" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/perfiles/perfil-06-6a3b065d44e67.jpg" alt="" loading="lazy" width="44" height="44"> <div class="rev__id"> <span class="rev__name">Camila R.</span> <span class="rev__meta">hace 3 semanas</span> </div> </header> <div class="rev__stars" aria-label="5 de 5">★★★★★</div> <p class="rev__text">buscaba algo sobrio para el living y el blackout gris quedó super bien, me asesoró muy bien Antonella gracias por la paciencia</p> <a class="rev__photo" href="#cotizador" aria-label="Simular como Camila"><img src="https://cdn.rollershow.com.ar/fotos/foto-vendedor-black-out-intermedia-gris-393.jpg?width=900&auto=webp&quality=80" alt="Living con cortina Roller Blackout gris" loading="lazy"></a> <span class="rev__tela">Roller Blackout, Gris, Palermo</span> </article> <article class="rev rev--google reveal"> <header class="rev__head"> <img class="rev__avatar" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/perfiles/perfil-03-6a3b06594d41c.jpg" alt="" loading="lazy" width="44" height="44"> <div class="rev__id"> <span class="rev__name">Martín G.</span> <span class="rev__meta">hace 1 mes</span> </div> </header> <div class="rev__stars" aria-label="5 de 5">★★★★★</div> <p class="rev__text">Necesitaba oscuridad para dormir de día y este cumplió re bien, nada que ver con las anteriores que había comprado que tenía huequitos, Micaela me atendió</p> <a class="rev__photo" href="#cotizador" aria-label="Simular como Martín"><img src="https://cdn.rollershow.com.ar/fotos/black-out-intermedia-blanco-335.jpg?width=900&auto=webp&quality=80" alt="Dormitorio con cortina Roller Blackout blanca" loading="lazy"></a> <span class="rev__tela">Roller Blackout, Blanco, Belgrano</span> </article> <article class="rev rev--google reveal"> <header class="rev__head"> <img class="rev__avatar" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/perfiles/perfil-05-6a3b065be7cb6.jpg" alt="" loading="lazy" width="44" height="44"> <div class="rev__id"> <span class="rev__name">Javier P.</span> <span class="rev__meta">hace 6 días</span> </div> </header> <div class="rev__stars" aria-label="5 de 5">★★★★★</div> <p class="rev__text">buscaba una cortina para dejar de renegar mientras laburo con la pc, esta tela cálida no sabía que venía y en persona se ve inclusive mejor, menos mal que me la recomendó el chico que me asesoró, les debo hacer las del living ahora jaja</p> <a class="rev__photo" href="#cotizador" aria-label="Simular como Javier"><img src="https://cdn.rollershow.com.ar/fotos/foto-vendedor-black-out-intermedia-natural-412.jpg?width=900&auto=webp&quality=80" alt="Home office con cortina Roller Blackout sand" loading="lazy"></a> <span class="rev__tela">Roller Blackout, Sand, Caballito</span> </article> </div> </div> <div class="rev-block reveal"> <p class="rev-block__src">Reseñas en <b>Facebook</b> <span class="rev-block__rating">Recomendado por clientes</span></p> <div class="rev-grid"> <article class="rev rev--fb reveal"> <header class="rev__head"> <img class="rev__avatar" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/perfiles/perfil-01-6a3b0656722b6.jpg" alt="" loading="lazy" width="44" height="44"> <div class="rev__id"> <span class="rev__name">Federico A.</span> <span class="rev__meta">hace 2 meses</span> </div> </header> <span class="rev__rec"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21h2V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 6.59 7.59C6.22 7.95 6 8.45 6 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1z"></path></svg> Recomienda a RollerShow</span> <p class="rev__text">Mandé una foto y dos medidas, al otro día vinieron, instalaron y quedó prolijo, me hubiera gustado igual la otra cadenita que tienen</p> <a class="rev__photo" href="#cotizador" aria-label="Simular como Federico"><img src="https://cdn.rollershow.com.ar/fotos/foto-whatsapp-black-out-pesada-blanco-437.jpg?width=900&auto=webp&quality=80" alt="Estudio con cortina Roller Blackout blanca" loading="lazy"></a> <span class="rev__tela">Roller Blackout, Blanco, Villa Crespo</span> </article> <article class="rev rev--fb reveal"> <header class="rev__head"> <img class="rev__avatar" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/perfiles/perfil-02-6a3b0657f21ce.jpg" alt="" loading="lazy" width="44" height="44"> <div class="rev__id"> <span class="rev__name">Sofía L.</span> <span class="rev__meta">hace 4 días</span> </div> </header> <span class="rev__rec"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21h2V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 6.59 7.59C6.22 7.95 6 8.45 6 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1z"></path></svg> Recomienda a RollerShow</span> <p class="rev__text">Quería luz pero que no me vean porque mi casa da a la vereda y un patio compartido, puse el sunscreen, re amable Pablo el chico que me atendió</p> <a class="rev__photo" href="#cotizador" aria-label="Simular como Sofía"><img src="https://cdn.rollershow.com.ar/fotos/foto-whatsapp-sun-screen-5-intermedia-beige-snow-487.jpg?width=900&auto=webp&quality=80" alt="Living con cortina Roller Sunscreen" loading="lazy"></a> <span class="rev__tela">Roller Sunscreen, Living</span> </article> <article class="rev rev--fb reveal"> <header class="rev__head"> <img class="rev__avatar" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/perfiles/perfil-04-6a3b065a9f014.jpg" alt="" loading="lazy" width="44" height="44"> <div class="rev__id"> <span class="rev__name">Marcela G.</span> <span class="rev__meta">hace 2 semanas</span> </div> </header> <span class="rev__rec"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21h2V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 6.59 7.59C6.22 7.95 6 8.45 6 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1z"></path></svg> Recomienda a RollerShow</span> <p class="rev__text">es la primera vez que compro algo tan caro online sin verlo, me sorprende cómo tienen todo resuelto para mostrarte un producto sin verlo en persona, compré con mis dudas pero llegó justo lo que me dijeron y hasta les sequé la mente para instalarlas pobre Lucía mil gracias por la paciencia, quedaron bellas</p> <a class="rev__photo" href="#cotizador" aria-label="Simular como Marcela"><img src="https://cdn.rollershow.com.ar/fotos/black-out-liviana-natural-309.jpg?width=900&auto=webp&quality=80" alt="Dormitorio con cortina Roller Blackout sand" loading="lazy"></a> <span class="rev__tela">Roller Blackout, Sand, Núñez</span> </article> </div> </div> </section> <!-- ============================================================ BLACKOUT O SUNSCREEN — slider visual + specs (módulo fusionado) ============================================================ --> <section class="compare" aria-labelledby="compare-title"> <div class="container"> <header class="compare__head reveal"> <h2 class="h-display h2" id="compare-title">Mismo sistema, dos efectos.</h2> <p class="lead">
+Deslizá para ver el efecto de cada tela en el mismo ambiente. Abajo, los números para decidir cuál va con vos.
+</p> </header> <div class="ba-slider reveal" id="baSlider"> <div class="ba-slider__frame"> <img class="ba-slider__img ba-slider__img--before" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/compare/blackout-6a3b094104314.png" alt="Misma habitación con cortina Roller Blackout: oscuridad controlada" draggable="false"> <img class="ba-slider__img ba-slider__img--after" src="https://cdn.rollershow.com.ar/web/landing-whatsapp/compare/sunscreen-6a3b09455d334.png" alt="Misma habitación con cortina Roller Sunscreen: vista filtrada" draggable="false"> <span class="ba-slider__label ba-slider__label--left">Blackout</span> <span class="ba-slider__label ba-slider__label--right">Sunscreen</span> <div class="ba-slider__handle" role="slider" tabindex="0" aria-label="Comparar Blackout y Sunscreen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"> <span class="ba-slider__line"></span> <span class="ba-slider__knob" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 8 18 12 14 16"></polyline><polyline points="10 16 6 12 10 8"></polyline></svg> </span> </div> <input type="range" class="ba-slider__range" min="0" max="100" value="50" step="0.5" aria-label="Posición del comparador (mover con flechas)"> </div> <p class="ba-slider__hint">Arrastrá el control para comparar las dos telas en el mismo ambiente</p> </div> <div class="spec-cards reveal"> <article class="spec-card"> <p class="spec-card__name">Blackout</p> <p class="spec-card__sub">Oscuridad total para dormir de día.</p> <dl class="spec-bars"> <div class="spec-bar"> <dt>Bloqueo de luz</dt> <dd>99<span>%</span></dd> <div class="spec-bar__track" style="--v:99%"><i></i></div> </div> <div class="spec-bar"> <dt>Filtro de rayos UV</dt> <dd>100<span>%</span></dd> <div class="spec-bar__track" style="--v:100%"><i></i></div> </div> <div class="spec-bar"> <dt>Aislación térmica</dt> <dd>85<span>%</span></dd> <div class="spec-bar__track" style="--v:85%"><i></i></div> </div> </dl> <div class="spec-card__foot"> <p class="spec-card__price"><span>Desde</span>$47.665</p> <a href="#cotizador" class="spec-card__cta" data-fabric="blackout"> Simular Blackout
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </article> <article class="spec-card"> <p class="spec-card__name">Sunscreen</p> <p class="spec-card__sub">Filtra el sol y te deja ver afuera.</p> <dl class="spec-bars"> <div class="spec-bar"> <dt>Filtro de rayos UV</dt> <dd>95<span>%</span></dd> <div class="spec-bar__track" style="--v:95%"><i></i></div> </div> <div class="spec-bar"> <dt>Control del calor solar</dt> <dd>80<span>%</span></dd> <div class="spec-bar__track" style="--v:80%"><i></i></div> </div> <div class="spec-bar"> <dt>Visión hacia el exterior</dt> <dd>90<span>%</span></dd> <div class="spec-bar__track" style="--v:90%"><i></i></div> </div> </dl> <div class="spec-card__foot"> <p class="spec-card__price"><span>Desde</span>$60.885</p> <a href="#cotizador" class="spec-card__cta" data-fabric="sunscreen"> Simular Sunscreen
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </article> </div> <p class="spec-cards__shared reveal"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9.5 4.5-1 8-4.5 8-9.5V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>
+Las dos: <b>hasta 3 años de garantía</b>, fabricación en <b>5 a 10 días</b>, envío a todo el país y <b>llegan listas para instalar</b>, con tarugos, tornillos e instructivo paso a paso.
+</p> </div> </section> <!-- ============================================================ ASISTENTE — chat en vivo simulado que deriva a WhatsApp ============================================================ --> <section class="asistente"> <div class="container"> <div class="asistente__grid reveal"> <div class="asistente__intro"> <h2 class="h-display h2 asistente__title">Hablá con nosotros ahora mismo.</h2> <p class="asistente__lead">
+Te responde una persona real del equipo. Escribinos acá y seguimos por WhatsApp.
+</p> <p class="asistente__status" id="asistenteStatus" aria-live="polite"> <svg class="asistente__status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> <span id="asistenteEstado">Atención: lunes a sábado de 9 a 20 h</span> </p> </div> <div class="chat" id="chat"> <header class="chat__bar"> <span class="chat__avatar" aria-hidden="true">RS</span> <span class="chat__id"> <b>Asistente RollerShow</b> <span class="chat__presence" id="chatPresence">en línea</span> </span> </header> <div class="chat__body" id="chatBody" role="log" aria-live="polite" aria-label="Conversación con un asesor de RollerShow"></div> <div class="chat__quick" id="chatQuick" aria-label="Preguntas rápidas"></div> <form class="chat__composer" id="chatForm" autocomplete="off"> <input type="text" id="chatInput" class="chat__input" aria-label="Escribí tu consulta" placeholder="Escribí tu consulta…"> <button type="submit" class="chat__send" aria-label="Enviar mensaje"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> </button> </form> </div> </div> </div> </section> <!-- ============================================================ PROMO — urgencia pegada al cierre ============================================================ --> <section class="container" aria-label="Promoción 2x1"> <div class="promo__band reveal"> <div> <h2 class="promo__title">Cortinas Roller 2x1, llevate dos por una.</h2> <p class="promo__sub">
+Aplica sobre líneas seleccionadas de Blackout y Sunscreen. Lo confirmamos en la cotización, sin letra chica.
+</p> <p class="promo__deadline">Promo vigente hasta el <span data-promo-deadline></span>.</p> </div> <a href="#cotizador" class="btn btn--lg">
+Aprovechar la promo
+<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </section> <!-- ============================================================ FINAL CTA ============================================================ --> <section class="container"> <div class="cta-final__inner reveal"> <h2 class="cta-final__title">Probá tu cortina en tu ventana, gratis.<br />El resto lo manejamos nosotros.</h2> <p class="cta-final__sub"> Subí una foto de tu ventana y mirá cómo te queda antes de decidir. Si te gusta, te pasamos el precio exacto, sin presión y sin compromiso. </p> <a href="#cotizador" class="btn btn--lg" style="margin-top: 0.5rem;"> Probar en mi ventana <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> <p class="cta-final__reassurance"> <span aria-hidden="true">★★★★★</span> Simulación gratis, sin compromiso y con respuesta en minutos </p> <div class="payments"> <span class="payments__label">Aceptamos</span> <span class="payments__list">
+Mercado Pago, Visa, Mastercard, American Express, Transferencia y <b>hasta 12 cuotas</b> </span> </div> </div> </section> <!-- Sticky CTA dock — aparece cuando el cotizador sale del viewport --> <div class="sticky-cta" id="stickyCta" aria-hidden="true"> <a href="https://wa.me/5491140813223?text=Hola!%20Quiero%20cotizar%20mis%20cortinas%20a%20medida" class="sticky-cta__wa" aria-label="WhatsApp"> <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.08.55 4.11 1.6 5.9L0 24l6.42-1.7a11.83 11.83 0 005.62 1.43h.01c6.54 0 11.84-5.3 11.84-11.84 0-3.16-1.23-6.13-3.37-8.41z"></path></svg> </a> <a href="#cotizador" class="sticky-cta__btn"> <span class="sticky-cta__label">Probá tu cortina</span> <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </div> <script>
+(() => {
+  'use strict';
+
+  /* ---------- Promo: fecha del último día del mes corriente (sin countdown) ---------- */
+  const promoDeadline = (() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+  })();
+  const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  document.querySelectorAll('[data-promo-deadline]').forEach(el => {
+    el.textContent = `${promoDeadline.getDate()} de ${months[promoDeadline.getMonth()]}`;
+  });
+
+  /* ---------- Reveal ---------- */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const delay = e.target.style.getPropertyValue('--delay') || '0ms';
+          e.target.style.transitionDelay = delay;
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach((el) => io.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  /* ---------- Sticky CTA dock — visible cuando el cotizador sale del viewport ---------- */
+  const stickyCta = document.getElementById('stickyCta');
+  const cotizadorEl = document.getElementById('cotizador');
+  if (stickyCta && cotizadorEl && 'IntersectionObserver' in window) {
+    const dockIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        // Mostrar el dock cuando el cotizador NO está intersectando (out of viewport)
+        const shouldShow = !e.isIntersecting;
+        stickyCta.classList.toggle('is-visible', shouldShow);
+        stickyCta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      });
+    }, { threshold: 0, rootMargin: '-80px 0px 0px 0px' });
+    dockIO.observe(cotizadorEl);
+  }
+
+  /* ---------- Before/After slider Blackout vs Sunscreen ---------- */
+  const baSlider = document.getElementById('baSlider');
+  if (baSlider) {
+    const baFrame = baSlider.querySelector('.ba-slider__frame');
+    const baAfterImg = baSlider.querySelector('.ba-slider__img--after');
+    const baHandle = baSlider.querySelector('.ba-slider__handle');
+    const baRange = baSlider.querySelector('.ba-slider__range');
+
+    const setBaValue = (pct) => {
+      const v = Math.max(0, Math.min(100, pct));
+      // clip-path inset(top right bottom left) — el sunscreen se descubre desde la izquierda
+      const clip = `inset(0 0 0 ${v}%)`;
+      baAfterImg.style.clipPath = clip;
+      baAfterImg.style.webkitClipPath = clip;
+      baHandle.style.left = v + '%';
+      baRange.value = v;
+      baHandle.setAttribute('aria-valuenow', Math.round(v));
+    };
+    setBaValue(50);
+
+    let dragging = false;
+    let baTouchStartX = 0, baTouchStartY = 0, baGesture = null; // 'scroll' | 'drag'
+    const positionFromEvent = (e) => {
+      const rect = baFrame.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      return ((clientX - rect.left) / rect.width) * 100;
+    };
+
+    // Mouse: drag inmediato
+    const startDragMouse = (e) => {
+      dragging = true;
+      baSlider.classList.add('is-dragging');
+      setBaValue(positionFromEvent(e));
+      e.preventDefault();
+    };
+
+    // Touch: detectar dirección antes de capturar
+    const startDragTouch = (e) => {
+      const t = e.touches[0];
+      baTouchStartX = t.clientX;
+      baTouchStartY = t.clientY;
+      baGesture = null;
+      // NO preventDefault todavía — dejamos que el browser decida si scrollea
+    };
+    const moveDragTouch = (e) => {
+      const t = e.touches[0];
+      const dx = t.clientX - baTouchStartX;
+      const dy = t.clientY - baTouchStartY;
+      if (baGesture === null) {
+        if (Math.hypot(dx, dy) < 6) return;
+        // bias fuerte hacia drag horizontal
+        if (Math.abs(dy) > Math.abs(dx) * 2.5 && Math.abs(dy) > 16) {
+          baGesture = 'scroll';
+          return;
+        }
+        baGesture = 'drag';
+        dragging = true;
+        baSlider.classList.add('is-dragging');
+        setBaValue(positionFromEvent(e));
+      }
+      if (baGesture === 'drag') {
+        e.preventDefault();
+        setBaValue(positionFromEvent(e));
+      }
+    };
+
+    const moveDrag = (e) => {
+      if (!dragging) return;
+      setBaValue(positionFromEvent(e));
+    };
+    const endDrag = () => {
+      if (!dragging && baGesture !== 'drag') { baGesture = null; return; }
+      dragging = false;
+      baGesture = null;
+      baSlider.classList.remove('is-dragging');
+    };
+
+    baFrame.addEventListener('mousedown', startDragMouse);
+    baFrame.addEventListener('touchstart', startDragTouch, { passive: true });
+    baFrame.addEventListener('touchmove', moveDragTouch, { passive: false });
+    window.addEventListener('mousemove', moveDrag);
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+    window.addEventListener('touchcancel', endDrag);
+
+    // Keyboard via the handle
+    baHandle.addEventListener('keydown', (e) => {
+      const step = (e.shiftKey ? 10 : 2);
+      let v = parseFloat(baRange.value);
+      if (e.key === 'ArrowLeft') { setBaValue(v - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setBaValue(v + step); e.preventDefault(); }
+      if (e.key === 'Home') { setBaValue(0); e.preventDefault(); }
+      if (e.key === 'End') { setBaValue(100); e.preventDefault(); }
+    });
+    // Native range for accessibility tools
+    baRange.addEventListener('input', () => setBaValue(parseFloat(baRange.value)));
+
+    // Teaser: al entrar al viewport hace una mini-demo oscilando una vez
+    if ('IntersectionObserver' in window) {
+      const teaserIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting || e.target.dataset.demoed) return;
+          e.target.dataset.demoed = '1';
+          const targets = [30, 70, 50];
+          let i = 0;
+          const tick = () => {
+            if (i >= targets.length) return;
+            const target = targets[i++];
+            const start = parseFloat(baRange.value);
+            const startTime = performance.now();
+            const dur = 800;
+            const ease = (t) => 1 - Math.pow(1 - t, 3);
+            const animate = (now) => {
+              const t = Math.min(1, (now - startTime) / dur);
+              setBaValue(start + (target - start) * ease(t));
+              if (t < 1) requestAnimationFrame(animate);
+              else setTimeout(tick, 260);
+            };
+            requestAnimationFrame(animate);
+          };
+          setTimeout(tick, 700);
+          teaserIO.unobserve(e.target);
+        });
+      }, { threshold: 0.55 });
+      teaserIO.observe(baSlider);
+    }
+  }
+})();
+</script> <script>
+/* ============================================================
+   Tearable cloth — interacción "Probá la calidad"
+   ============================================================ */
+(() => {
+  const badCanvas = document.getElementById('tearClothBad');
+  const goodCanvas = document.getElementById('tearClothGood');
+  if (!badCanvas || !goodCanvas) return;
+
+  const isMobile = matchMedia('(max-width: 820px)').matches;
+  const PHYS = { iterations: 3, decideThreshold: 6 };
+
+  // Usa <img> ya en el DOM (compatible con standalone donde el build embebe el src como data URI)
+  function imgFromElement(id) {
+    return new Promise((resolve) => {
+      const img = document.getElementById(id);
+      if (!img) return resolve(null);
+      if (img.complete && img.naturalWidth > 0) return resolve(img);
+      img.addEventListener('load', () => resolve(img), { once: true });
+      img.addEventListener('error', () => resolve(null), { once: true });
+    });
+  }
+  const imgPromises = {
+    bad: imgFromElement('tearImgBad'),
+    good: imgFromElement('tearImgGood'),
+  };
+
+  function makeNoisePattern(size, baseColor) {
+    const tex = document.createElement('canvas');
+    tex.width = tex.height = size;
+    const c = tex.getContext('2d');
+    c.fillStyle = baseColor;
+    c.fillRect(0, 0, size, size);
+    const img = c.getImageData(0, 0, size, size);
+    const d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const n = (Math.random() - 0.5) * 16;
+      d[i]   = Math.max(0, Math.min(255, d[i]   + n));
+      d[i+1] = Math.max(0, Math.min(255, d[i+1] + n));
+      d[i+2] = Math.max(0, Math.min(255, d[i+2] + n));
+    }
+    c.putImageData(img, 0, 0);
+    c.globalAlpha = 0.06;
+    c.strokeStyle = '#000';
+    c.lineWidth = 0.5;
+    for (let y = 0; y < size; y += 2) {
+      c.beginPath(); c.moveTo(0, y + 0.5); c.lineTo(size, y + 0.5); c.stroke();
+    }
+    return tex;
+  }
+  const noiseTex = makeNoisePattern(128, '#f0ece4');
+
+  function createCloth(canvas, statusEl, opts) {
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0;
+    const DPR = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+    const cols = opts.cols, rows = opts.rows;
+    const tearMult = opts.tearMult;
+    const mouseInfluenceMult = opts.mouseInfluenceMult;
+    const dragCapMult = opts.dragCapMult;
+    let tearDist = 9999, mouseInfluence = 9999, dragCap = 9999;
+    const stiffness = opts.stiffness;
+    const gravity = opts.gravity;
+    const friction = opts.friction;
+    const wrap = canvas.parentElement;
+    const tapHint = wrap.querySelector('.tear__tap');
+    function dismissTapHint() {
+      if (!tapHint || tapHint.classList.contains('is-dismissed')) return;
+      tapHint.classList.add('is-dismissed');
+      setTimeout(() => tapHint.remove(), 500);
+    }
+
+    let points = [], constraints = [], cells = [];
+    let mouse = { x: 0, y: 0, px: 0, py: 0, down: false };
+    let tearsCount = 0, alertedTears = false, restCellArea = 0, lastBuildW = 0;
+    let visible = true, statusFadeTimer = null;
+    let clothTopY = 0, clothLeftX = 0, clothRightX = 0;
+    let curtainImg = null;
+    let autoResetTimer = null;
+    let hasInteracted = false;
+    imgPromises[opts.kind].then(img => {
+      curtainImg = img;
+      // Dibujo inmediato de la cortina al cargar la imagen — no depende del
+      // loop de animación (que puede no arrancar si el documento está oculto).
+      resize();
+      render();
+    });
+
+    function scheduleAutoReset() {
+      if (autoResetTimer) clearTimeout(autoResetTimer);
+      autoResetTimer = setTimeout(() => {
+        autoResetTimer = null;
+        if (mouse.down) return; // si está tocando, no resetear
+        if (hasInteracted) {
+          hasInteracted = false;
+          build();
+          const txt = opts.kind === 'bad' ? 'Cede al tacto' : 'Blackout verdadero';
+          setStatus(txt, '', 0);
+        }
+      }, 3500);
+    }
+    function cancelAutoReset() {
+      if (autoResetTimer) { clearTimeout(autoResetTimer); autoResetTimer = null; }
+    }
+
+    function setStatus(html, cls, autoFade) {
+      statusEl.innerHTML = html;
+      statusEl.className = 'tear__status' + (cls ? ' ' + cls : '');
+      if (statusFadeTimer) { clearTimeout(statusFadeTimer); statusFadeTimer = null; }
+      if (autoFade) statusFadeTimer = setTimeout(() => statusEl.classList.add('is-fading'), autoFade);
+    }
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width, h = rect.height;
+      if (!w || !h) return;                       // canvas aún sin layout
+      if (Math.abs(w - W) < 1 && Math.abs(h - H) < 1) return; // sin cambios → no tocar
+      W = w; H = h;
+      canvas.width = W * DPR; canvas.height = H * DPR;
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      if (Math.abs(W - lastBuildW) > 2) { build(); lastBuildW = W; }
+    }
+
+    function build() {
+      points = []; constraints = []; cells = [];
+      tearsCount = 0; alertedTears = false;
+      // La cortina se posiciona JUSTO sobre la ventana real (medida en la imagen de fondo):
+      //   - Dest area: x=12-88%, y=8-79% del wrap
+      //   - Dentro: roller en el top ~11% de esa área, fabric debajo
+      // clothTopY queda justo debajo del roller (8% + 11% × 71% ≈ 15.7% del wrap)
+      clothTopY = H * 0.157;
+      clothLeftX = W * 0.12;
+      clothRightX = W * 0.88;
+      const clothW = clothRightX - clothLeftX;
+      const clothH = H * 0.79 - clothTopY;
+      const spacingX = clothW / cols, spacingY = clothH / rows;
+      restCellArea = spacingX * spacingY;
+      tearDist = Math.max(spacingX, spacingY) * tearMult;
+      mouseInfluence = spacingX * mouseInfluenceMult;
+      dragCap = spacingX * dragCapMult;
+
+      for (let y = 0; y <= rows; y++) {
+        for (let x = 0; x <= cols; x++) {
+          const px = clothLeftX + x * spacingX;
+          const py = clothTopY + y * spacingY;
+          points.push({ x: px, y: py, px: px, py: py, pinned: y === 0 });
+          const idx = points.length - 1;
+          if (x > 0) constraints.push({ a: idx - 1, b: idx, len: spacingX, broken: false });
+          if (y > 0) constraints.push({ a: idx - (cols + 1), b: idx, len: spacingY, broken: false });
+        }
+      }
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const i = y * (cols + 1) + x;
+          cells.push({ tl: i, tr: i + 1, bl: i + (cols + 1), br: i + (cols + 2), broken: false, col: x, row: y });
+        }
+      }
+    }
+
+    function update(dt) {
+      const dt2 = dt * dt;
+      for (const p of points) {
+        if (p.pinned) continue;
+        const vx = (p.x - p.px) * friction;
+        const vy = (p.y - p.py) * friction;
+        p.px = p.x; p.py = p.y;
+        p.x += vx; p.y += vy + gravity * dt2;
+        if (mouse.down) {
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          if (dx*dx + dy*dy < mouseInfluence * mouseInfluence) {
+            const moveX = mouse.x - mouse.px, moveY = mouse.y - mouse.py;
+            p.px = p.x - Math.max(-dragCap, Math.min(dragCap, moveX));
+            p.py = p.y - Math.max(-dragCap, Math.min(dragCap, moveY));
+          }
+        }
+        // Clamp Y al borde inferior visible de la cortina, no a H del wrap
+        // así la tela no "cuelga" debajo de la ventana cuando hay gravedad/drag
+        const yLimit = H * 0.79;
+        if (p.y > yLimit) { p.y = yLimit; p.py = p.y; }
+      }
+      for (let i = 0; i < PHYS.iterations; i++) {
+        for (const c of constraints) {
+          if (c.broken) continue;
+          const p1 = points[c.a], p2 = points[c.b];
+          const dx = p2.x - p1.x, dy = p2.y - p1.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist > tearDist) { c.broken = true; tearsCount++; continue; }
+          const diff = (c.len - dist) / dist * stiffness;
+          const ox = dx * 0.5 * diff, oy = dy * 0.5 * diff;
+          if (!p1.pinned) { p1.x -= ox; p1.y -= oy; }
+          if (!p2.pinned) { p2.x += ox; p2.y += oy; }
+        }
+      }
+      for (const cell of cells) {
+        if (cell.broken) continue;
+        const a = points[cell.tl], b = points[cell.tr], cc = points[cell.bl], d = points[cell.br];
+        if (Math.hypot(b.x-a.x, b.y-a.y) > tearDist ||
+            Math.hypot(cc.x-a.x, cc.y-a.y) > tearDist ||
+            Math.hypot(d.x-b.x, d.y-b.y) > tearDist ||
+            Math.hypot(d.x-cc.x, d.y-cc.y) > tearDist) cell.broken = true;
+      }
+      if (opts.kind === 'bad') {
+        if (tearsCount > 4 && !alertedTears) {
+          alertedTears = true;
+          setStatus('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Se rompió. Cedió a la primera.', 'is-alert', 2500);
+        }
+      } else if (mouse.down) {
+        setStatus('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Aguanta. No cede a la fuerza.', 'is-win', 0);
+      }
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+
+      if (!curtainImg || !curtainImg.naturalWidth) return;
+
+      // 1. Roller + Fabric en una sola pasada con clip combinado.
+      //    - Roller area (top de wrap, antes del cloth) siempre visible
+      //    - Cells intactas son visibles
+      //    - Cells rotas → transparente → muestran la ventana detrás
+      // Bounds reales de la cortina dentro del PNG (medidos): 12-88% horizontal, 12-86% vertical
+      const iw = curtainImg.naturalWidth;
+      const ih = curtainImg.naturalHeight;
+      const SRC_X = iw * 0.119, SRC_Y = ih * 0.121;
+      const SRC_W = iw * 0.761, SRC_H = ih * 0.739;
+
+      // Dest area de la cortina en el wrap — alineado con la ventana real de la imagen de fondo:
+      // top 8%, bottom 79%, left 12%, right 88%
+      const DST_X = W * 0.12;
+      const DST_Y = H * 0.08;
+      const DST_W = W * 0.76;
+      const DST_H = H * 0.71;
+
+      ctx.save();
+      ctx.beginPath();
+      // Roller — siempre visible, área superior del rect de la cortina
+      ctx.rect(DST_X, DST_Y, DST_W, clothTopY - DST_Y);
+      // Cells intactas del cloth (fabric, tearable). Sin rect de cadena —
+      // la cadenita es parte del PNG y queda dentro de las cells.
+      for (const cell of cells) {
+        if (cell.broken) continue;
+        const tl = points[cell.tl], tr = points[cell.tr];
+        const bl = points[cell.bl], br = points[cell.br];
+        ctx.moveTo(tl.x, tl.y); ctx.lineTo(tr.x, tr.y);
+        ctx.lineTo(br.x, br.y); ctx.lineTo(bl.x, bl.y);
+        ctx.closePath();
+      }
+      ctx.clip();
+      // Recorto SOLO la cortina del PNG y la mando al rect de la ventana
+      ctx.drawImage(curtainImg, SRC_X, SRC_Y, SRC_W, SRC_H, DST_X, DST_Y, DST_W, DST_H);
+      ctx.restore();
+
+      // 2. Sombras de pliegue en celdas comprimidas
+      for (const cell of cells) {
+        if (cell.broken) continue;
+        const tl = points[cell.tl], tr = points[cell.tr];
+        const bl = points[cell.bl], br = points[cell.br];
+        const area = Math.abs((tr.x-tl.x)*(bl.y-tl.y) - (bl.x-tl.x)*(tr.y-tl.y));
+        const ratio = area / restCellArea;
+        if (ratio < 0.7) {
+          const alpha = (0.7 - ratio) * 0.7;
+          ctx.fillStyle = `rgba(0,0,0,${Math.min(0.32, alpha)})`;
+          ctx.beginPath();
+          ctx.moveTo(tl.x, tl.y); ctx.lineTo(tr.x, tr.y);
+          ctx.lineTo(br.x, br.y); ctx.lineTo(bl.x, bl.y);
+          ctx.closePath();
+          ctx.fill();
+        }
+      }
+
+    }
+
+    let touchStartX = 0, touchStartY = 0, gestureMode = null;
+    function getPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const t = e.touches ? e.touches[0] : e;
+      return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+    }
+    function onMouseDown(e) {
+      cancelAutoReset();
+      dismissTapHint();
+      const p = getPos(e);
+      mouse.x = mouse.px = p.x; mouse.y = mouse.py = p.y;
+      mouse.down = true; gestureMode = 'interact';
+      hasInteracted = true;
+    }
+    function onMouseMove(e) {
+      if (!mouse.down) return;
+      const p = getPos(e);
+      mouse.px = mouse.x; mouse.py = mouse.y;
+      mouse.x = p.x; mouse.y = p.y;
+    }
+    function onMouseUp() {
+      mouse.down = false; gestureMode = null;
+      if (hasInteracted) scheduleAutoReset();
+    }
+    // Tap-to-tear: en mobile el canvas es chico y el drag físico compite con el
+    // scroll, así que un toque simple desgarra (bad) o sacude sin ceder (good).
+    function onTouchStart(e) {
+      cancelAutoReset();
+      dismissTapHint();
+      const t = e.touches[0];
+      touchStartX = t.clientX; touchStartY = t.clientY;
+      gestureMode = null;
+    }
+    function onTouchMove(e) {
+      const t = e.touches[0];
+      const dx = t.clientX - touchStartX, dy = t.clientY - touchStartY;
+      if (gestureMode === null) {
+        if (Math.hypot(dx, dy) < PHYS.decideThreshold) return;
+        if (Math.abs(dy) > Math.abs(dx) * 2.5 && Math.abs(dy) > 16) {
+          gestureMode = 'scroll'; mouse.down = false; return;
+        }
+        gestureMode = 'interact';
+        hasInteracted = true;
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = mouse.px = touchStartX - rect.left;
+        mouse.y = mouse.py = touchStartY - rect.top;
+        mouse.down = true;
+      }
+      if (gestureMode === 'interact') {
+        e.preventDefault();
+        const p = getPos(e);
+        mouse.px = mouse.x; mouse.py = mouse.y;
+        mouse.x = p.x; mouse.y = p.y;
+      }
+    }
+    function onTouchEnd() {
+      mouse.down = false; gestureMode = null;
+      if (hasInteracted) scheduleAutoReset();
+    }
+
+    canvas.addEventListener('mousedown', onMouseDown);
+    canvas.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    canvas.addEventListener('touchstart', onTouchStart, { passive: true });
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd);
+    window.addEventListener('touchcancel', onTouchEnd);
+    resize();
+    // ResizeObserver: en mobile el canvas suele obtener su tamaño real DESPUÉS
+    // de que corre el script (layout tardío, sección fuera de viewport). Sin
+    // esto, la tela se construye con tamaño 0 y nunca se rehace → no se ve.
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(() => resize()).observe(canvas);
+    } else {
+      window.addEventListener('resize', resize);
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      visible = entries[0].isIntersecting;
+      if (visible) resize(); // re-medir al entrar en viewport, por si el tamaño cambió
+    }, { threshold: 0.05 });
+    io.observe(wrap);
+
+    return {
+      // render() corre SIEMPRE → la cortina se dibuja apenas carga la imagen,
+      // sin depender del IntersectionObserver. El IO solo decide si se simula
+      // la física (update), que es lo costoso. Así nunca queda el canvas vacío.
+      tick(dt) { resize(); if (visible) update(dt); render(); },
+      reset() {
+        build();
+        const txt = opts.kind === 'bad' ? 'Tela liviana, cede al tacto' : 'Triple capa, resiste tracción';
+        setStatus(txt, '', 0);
+      },
+    };
+  }
+
+  // Tela económica: mesh denso (28×36) → al desgarrarse los agujeros quedan
+  // a la mitad de tamaño. La RollerShow no se rompe, así que va liviana (14×18)
+  // y no agrega carga en teléfonos viejos.
+  // Balance para el mesh denso (28×36): la gravedad se baja a la mitad (300) para
+  // que el peso propio no rasgue la tela sola; el umbral de rotura queda bajo
+  // (tearMult 1.6) para que un toque la siga rasgando fácil y se vea el agujero.
+  const badCloth = createCloth(badCanvas, document.getElementById('tearStatusBad'),
+    { cols: 28, rows: 36, tearMult: 1.6, stiffness: 0.78, gravity: 300, friction: 0.985,
+      mouseInfluenceMult: 2.0, dragCapMult: 2.5, kind: 'bad' });
+  const goodCloth = createCloth(goodCanvas, document.getElementById('tearStatusGood'),
+    { cols: 14, rows: 18, tearMult: 999, stiffness: 0.97, gravity: 450, friction: 0.98,
+      mouseInfluenceMult: 1.1, dragCapMult: 0.16, kind: 'good' });
+
+  let last = performance.now();
+  function loop(now) {
+    const dt = Math.min((now - last) / 1000, 1 / 30);
+    last = now;
+    badCloth.tick(dt); goodCloth.tick(dt);
+    requestAnimationFrame(loop);
+  }
+  // El loop corre SIEMPRE: dibuja la cortina y procesa el toque. La demo es
+  // funcional, no decorativa — prefers-reduced-motion NO debe dejar el canvas
+  // vacío (ese era el bug: con "reducir animaciones" no se veía la tela).
+  requestAnimationFrame(loop);
+
+  // Reset manual eliminado — el auto-reset interno (3.5s tras soltar) maneja todo
+})();
+</script> <script>
+/* ============================================================
+   Asistente — chat en vivo simulado. Arranca solo al entrar en
+   viewport: saludo, "escribiendo…", respuestas y derivación a WhatsApp.
+   ============================================================ */
+(() => {
+  const chat = document.getElementById('chat');
+  const body = document.getElementById('chatBody');
+  const quick = document.getElementById('chatQuick');
+  const presence = document.getElementById('chatPresence');
+  if (!chat || !body || !quick) return;
+
+  const WHATSAPP = '5491140813223';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Pregunta → respuesta del asesor. Texto estático (sin datos de usuario).
+  const QA = [
+    { q: '¿Cómo tomo las medidas?',
+      a: 'Es fácil: con un metro tomá el ancho y el alto del vano de la ventana. Si la cortina va por fuera del marco, sumale unos 10 cm de cada lado. Si querés, mandanos una foto y te confirmamos las medidas exactas.' },
+    { q: '¿Cuánto sale la instalación?',
+      a: 'En CABA y GBA coordinamos la instalación con vos. En el resto del país la cortina llega lista para colgar: con tarugos, tornillos e instructivo, la ponés en unos 15 minutos.' },
+    { q: '¿Instalan en mi zona?',
+      a: 'Fabricamos a medida y enviamos a todo el país. Decinos tu localidad y te confirmamos los tiempos y si hay instalación coordinada en tu zona.' },
+    { q: '¿Cuánto sale el envío?',
+      a: 'El envío depende de tu localidad y en muchas zonas está bonificado. Pasanos tu código postal y te lo calculamos al toque.' },
+    { q: '¿Cuánto me sale en distintas medidas?',
+      a: 'El precio sale del ancho, el alto y la tela que elijas. Pasanos las medidas de tu ventana y te armamos la cotización exacta en minutos.' },
+  ];
+
+  let started = false;
+  const asked = new Set();
+
+  function scrollDown() { body.scrollTop = body.scrollHeight; }
+
+  function addMsg(side, text, ctaFor) {
+    const msg = document.createElement('div');
+    msg.className = 'msg msg--' + side;
+    const bubble = document.createElement('div');
+    bubble.className = 'msg__bubble';
+    bubble.textContent = text;
+    msg.appendChild(bubble);
+    if (ctaFor) {
+      const cta = document.createElement('a');
+      cta.className = 'msg__cta';
+      cta.href = 'https://wa.me/' + WHATSAPP + '?text=' +
+        encodeURIComponent('Hola! Te escribo por: ' + ctaFor);
+      cta.target = '_blank';
+      cta.rel = 'noopener';
+      cta.textContent = 'Seguir por WhatsApp';
+      msg.appendChild(cta);
+    }
+    body.appendChild(msg);
+    scrollDown();
+  }
+
+  let typingEl = null;
+  function showTyping() {
+    if (presence) presence.textContent = 'escribiendo…';
+    typingEl = document.createElement('div');
+    typingEl.className = 'msg msg--bot';
+    typingEl.innerHTML = '<div class="msg__bubble msg__typing"><span></span><span></span><span></span></div>';
+    body.appendChild(typingEl);
+    scrollDown();
+  }
+  function hideTyping() {
+    if (typingEl) { typingEl.remove(); typingEl = null; }
+    if (presence) presence.textContent = 'en línea';
+  }
+
+  function renderQuick() {
+    quick.innerHTML = '';
+    const pendientes = QA.filter((x) => !asked.has(x.q));
+    if (!pendientes.length) {
+      const all = document.createElement('a');
+      all.className = 'chat__quick-all';
+      all.href = 'https://wa.me/' + WHATSAPP + '?text=' +
+        encodeURIComponent('Hola! Quiero cotizar una cortina a medida.');
+      all.target = '_blank';
+      all.rel = 'noopener';
+      all.textContent = 'Cotizar mi cortina por WhatsApp';
+      quick.appendChild(all);
+      return;
+    }
+    pendientes.forEach((item) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chat__chip';
+      chip.textContent = item.q;
+      chip.addEventListener('click', () => ask(item));
+      quick.appendChild(chip);
+    });
+  }
+
+  function ask(item) {
+    asked.add(item.q);
+    addMsg('user', item.q);
+    quick.innerHTML = '';
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addMsg('bot', item.a, item.q);
+      renderQuick();
+    }, reduce ? 200 : 1150);
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addMsg('bot', '¡Hola! Soy del equipo de RollerShow. Contame qué necesitás saber y te ayudo en el momento.');
+      renderQuick();
+    }, reduce ? 200 : 900);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { start(); io.disconnect(); }
+    }, { threshold: 0.3 });
+    io.observe(chat);
+  } else {
+    start();
+  }
+
+  // Composer — el usuario escribe texto libre; el asesor deriva a WhatsApp.
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  if (chatForm && chatInput) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const txt = chatInput.value.trim();
+      if (!txt) return;
+      chatInput.value = '';
+      started = true;
+      addMsg('user', txt);
+      quick.innerHTML = '';
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        addMsg('bot', 'Gracias por tu mensaje. Para darte una respuesta exacta al instante seguimos por WhatsApp, donde te atiende un asesor del equipo.', txt);
+        renderQuick();
+      }, reduce ? 200 : 1150);
+    });
+  }
+
+  // Disponibilidad en vivo — calculada con la hora real del visitante (L-S 9-20 h).
+  const statusEl = document.getElementById('asistenteStatus');
+  const estadoEl = document.getElementById('asistenteEstado');
+  if (statusEl && estadoEl) {
+    const ahora = new Date();
+    const dia = ahora.getDay();
+    const hora = ahora.getHours();
+    const esHabil = dia >= 1 && dia <= 6;
+    const abierto = esHabil && hora >= 9 && hora < 20;
+    if (abierto) {
+      const hh = String(hora).padStart(2, '0');
+      const mm = String(ahora.getMinutes()).padStart(2, '0');
+      estadoEl.textContent = `Estamos atendiendo ahora, son las ${hh}:${mm}`;
+      statusEl.classList.add('is-open');
+    } else {
+      let cuando = 'mañana a las 9 h';
+      if (esHabil && hora < 9) cuando = 'hoy a las 9 h';
+      else if (dia === 6) cuando = 'el lunes a las 9 h';
+      estadoEl.textContent = `Ahora estamos cerrados, te respondemos ${cuando}`;
+      statusEl.classList.add('is-closed');
+    }
+  }
+})();
+</script> </main> <!-- ============================================================ FOOTER ============================================================ --> <footer class="site-footer"> <div class="container"> <div class="site-footer__inner"> <div class="site-footer__brand"> <a href="/" class="brand brand--invert" aria-label="RollerShow"> <img class="brand-logo" src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_w.svg" alt="RollerShow" width="600" height="52" loading="lazy"> </a> <p>Cortinas a medida con asesoramiento al instante. Desde 2010 haciendo que ninguna ventana quede mal.</p> </div> <div class="site-footer__contact"> <a href="https://wa.me/5491140813223">WhatsApp</a> <a href="tel:08002204010">0800 220 4010</a> </div> <div class="socials"> <a href="https://www.instagram.com/cortinas.rollershow" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58 0 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.18 15.58 2.16 15.2 2.16 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.18 8.8 2.16 12 2.16M12 0C8.74 0 8.33 0 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 00-2.13 1.38A5.86 5.86 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s0 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.32.83.74 1.53 1.38 2.13.6.64 1.3 1.06 2.13 1.38.76.3 1.64.5 2.91.56C8.33 24 8.74 24 12 24s3.67 0 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 002.13-1.38 5.86 5.86 0 001.38-2.13c.3-.76.5-1.64.56-2.91C24 15.67 24 15.26 24 12s0-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.13A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67 0 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm6.4-11.84a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg></a> <a href="https://www.facebook.com/rollershow" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 16.99 22 12z"></path></svg></a> <a href="https://www.tiktok.com/@cortinasrollershow" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.298-.001.595.04.88.13V9.4a6.84 6.84 0 00-1-.07A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.92a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.84-.35z"></path></svg></a> <a href="https://www.youtube.com/c/rollershow" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5a3 3 0 00-2.1 2.1A31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"></path></svg></a> </div> </div> <div class="site-footer__bottom"> <div>© <span id="year"></span> RollerShow. CUIT verificado en AFIP. Envíos a todo el país.</div> <div>Hecho a medida en Argentina</div> </div> </div> </footer> </div>  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"> <symbol id="rs-logo" viewBox="0 0 600 52"> <g transform="translate(-498.254 -197.66)" fill="currentColor"> <path d="M536,226.3c1.6-1.5,3-3.2,4-5.2s1.5-4.2,1.5-6.5c0-2.9-.8-5.7-2.3-8.1-1.5-2.3-3.5-4.2-6-5.5s-5.2-2-8-2h-26.5v49.2h9.2v-17.5h13.3l11.9,17.1.3.4l11.4.1-13.4-19.1c1.7-.7,3.3-1.7,4.6-2.9Zm-4.1-11.7c0,1.2-.4,2.4-1,3.5-.7,1.1-1.7,2-2.8,2.7-1.2.7-2.6,1-4,1h-16.1v-13.8h15.5c1.5,0,2.9.3,4.2.9c1.2.5,2.2,1.4,3,2.4.8.9,1.2,2.1,1.2,3.3v0Z"></path> <polygon points="651.9,239.2 622.9,239.2 622.9,199 613.7,199 613.7,248.2 651.9,248.2"></polygon> <polygon points="703,239.2 674.1,239.2 674.1,199 664.8,199 664.8,248.2 703,248.2"></polygon> <polygon points="754,239.2 724.7,239.2 724.7,227.5 750.3,227.5 750.3,218.5 724.7,218.5 724.7,208 754,208 754,199 715.5,199 715.5,248.2 754,248.2"></polygon> <path d="M776.1,230.7h13.3l11.9,17.1.3.4l11.4.1-13.5-19.1c1.7-.7,3.2-1.7,4.6-2.9c1.6-1.5,3-3.2,4-5.2s1.5-4.2,1.5-6.5c0-2.9-.8-5.7-2.3-8.1-1.5-2.3-3.5-4.2-5.9-5.5-2.5-1.3-5.2-2-8-2h-26.5v49.2h9.2v-17.5Zm20-9.9c-1.2.7-2.6,1-4,1h-16.1v-13.8h15.5c1.5,0,2.9.3,4.2.9c1.2.5,2.2,1.4,3,2.4.7,1,1.1,2.2,1.1,3.4s-.4,2.4-1,3.5c-.6,1-1.5,1.9-2.7,2.6v0Z"></path> <circle cx="577.1" cy="223.6" r="20.7" fill="none" stroke="currentColor" stroke-width="9.2"></circle> <path d="M882.4,222.6v0c-2.1-1-4.2-1.8-6.5-2.3s-4.8-1-7.4-1.4c-2.3-.3-4.6-.7-6.8-1.3-1.5-.4-3-1.1-4.2-2.1-.9-.8-1.4-2-1.3-3.2c0-1.8,1.2-3.4,2.9-4c2.5-1.2,5.2-1.7,7.9-1.6c2.8-.1,5.6.6,8.1,1.8c2.3,1.2,4.2,2.8,5.8,4.8l.7.9l6.2-6.7-.5-.6c-2.1-2.9-4.9-5.1-8.2-6.5-7.1-2.8-15.1-3-22.3-.5-2.9,1-5.5,2.7-7.5,5-1.9,2.2-2.9,5.1-2.9,8-.1,2.7.8,5.4,2.5,7.6c1.8,2.1,4.1,3.8,6.8,4.8c3.2,1.3,6.6,2.1,10,2.5c3.5.4,7,1.2,10.4,2.3c1.8.4,3.1,2,3.1,3.8c0,1.3-.5,2.6-1.6,3.4-1.3,1.1-2.8,1.8-4.5,2.2-1.9.5-3.8.8-5.8.8-3.3.1-6.5-.6-9.4-2.1-2.8-1.6-5.3-3.7-7.5-6.2l-.8-.9-5.9,7.6.5.6c2.7,3.2,6.2,5.7,10.1,7.3c4.1,1.5,8.4,2.3,12.7,2.2c3.9.1,7.8-.6,11.4-1.9c3-1.1,5.7-3,7.7-5.6c1.8-2.5,2.8-5.5,2.7-8.6.1-2.2-.6-4.4-1.8-6.2-1.1-1.6-2.7-2.9-4.6-3.9Z"></path> <path d="M1072.9,227.5c-.5,1.3-1,2.7-1.4,4.1l-.4,1.2c-.1-.4-.3-.8-.4-1.1-.5-1.3-1.1-2.6-1.6-3.9l-8.6-20.6h-8.2l-8.9,20.7c-.6,1.3-1.2,2.7-1.7,4-.1.4-.3.7-.4,1.1-.1-.3-.2-.7-.3-1-.4-1.4-.9-2.7-1.3-3.9l-10-29h-10l17.5,49.3h6.7l12.2-28.3l12.1,28.3h6.4l19-49.3h-9.9l-10.8,28.4Z"></path> <g transform="translate(76.567 12.526)"> <path d="M1015.5,225.4c3.1-.1,5.6,2.3,5.7,5.4s-2.3,5.6-5.4,5.7-5.6-2.3-5.7-5.4c0-.1,0-.1,0-.2-.1-2.9,2.3-5.4,5.4-5.5Zm0,10.5c2.7.1,5-2,5.1-4.7s-2-5-4.7-5.1-5,2-5.1,4.7c0,.1,0,.1,0,.2-.1,2.6,2,4.8,4.6,4.9c0,0,0,0,.1,0v0Zm-1.8-8h2c.9-.1,1.7.7,1.8,1.6c0,.1,0,.1,0,.2c0,.8-.4,1.4-1.2,1.6v0c.1.1.1.2.2.3l1.2,2.3h-.8l-1.3-2.6h-1.3v2.6h-.7l.1-6Zm1.9,3c.6,0,1.1-.4,1.2-1c0-.1,0-.1,0-.2.1-.6-.4-1.1-1-1.2-.1,0-.1,0-.2,0h-1.3v2.4h1.3Z"></path> </g> <g transform="translate(18.1 0.213)"> <rect width="9.2" height="17.8" rx="0" ry="0" transform="translate(883.2 230.2)"></rect> <rect width="9.2" height="22.3" rx="0" ry="0" transform="translate(925.1 198.7)"></rect> <polygon points="934.3,230.2 934.3,221 892.4,221 892.4,198.7 883.2,198.7 883.2,230.2 925.1,230.2 925.1,248 934.3,248 934.3,230.2 934.3,230.2 934.3,230.2"></polygon> </g> <circle cx="989.1" cy="223.5" r="20.7" fill="none" stroke="currentColor" stroke-width="9.2"></circle> </g> </symbol> </svg>  <script>
+/* ---------- Header scroll state ---------- */
+(function() {
+  var header = document.getElementById('siteHeader');
+  if (!header) return;
+  var update = function() { header.setAttribute('data-scrolled', window.scrollY > 8 ? 'true' : 'false'); };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ---------- Spotlight de foco: activo durante todo el uso del simulador ----------
+   Se enciende al primer toque/foco dentro del simulador y se mantiene; se suelta
+   al tocar fuera. Mismo concepto que la landing-cotizador. */
+(function() {
+  var q = document.querySelector('.quoter');
+  if (!q) return;
+  var on = function() { document.body.classList.add('tool-active'); };
+  q.addEventListener('focusin', on);
+  q.addEventListener('pointerdown', on);
+  document.addEventListener('pointerdown', function(e) {
+    if (!q.contains(e.target)) document.body.classList.remove('tool-active');
+  });
+})();
+
+/* ---------- Footer year ---------- */
+var yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ---------- Alpine state machine ---------- */
+window.simulador = function() {
+  return {
+    step: 1,
+    photoFile: null,
+    photoUrl: null,
+    photoName: '',
+    isDragOver: false,
+    selectedFuncion: null,
+    selectedTela: null,
+    selectedTelaId: null,
+    sliderPos: 50,
+    ancho: '',
+    alto: '',
+    nombre: '',
+    telefono: '',
+    formStep: 1,
+    sending: false,
+    formError: null,
+    loadStep: 0,
+    loadSteps: [
+      'Analizando tu ventana',
+      'Aplicando la tela elegida',
+      'Ajustando la luz natural',
+      'Generando tu simulación',
+    ],
+
+    init() {
+      // Mobile: cada paso (y sub-paso del form) arranca arriba — si no reseteo el
+      // scroll, el paso nuevo aparece a mitad de pantalla (header/hero ocultos en flujo).
+      var top = () => { if (window.innerWidth < 980) window.scrollTo(0, 0); };
+      this.$watch('step', top);
+      this.$watch('formStep', top);
+    },
+
+    onFileChange(e) {
+      var file = e.target.files?.[0];
+      if (file) this._loadFile(file);
+    },
+    onFileDrop(e) {
+      var file = e.dataTransfer?.files?.[0];
+      if (file && file.type.startsWith('image/')) this._loadFile(file);
+    },
+    _loadFile(file) {
+      if (this.photoUrl) URL.revokeObjectURL(this.photoUrl);
+      this.photoFile = file;
+      this.photoUrl = URL.createObjectURL(file);
+      this.photoName = file.name;
+      this.step = 2;
+    },
+
+    selectFuncion(funcion) {
+      if (this.selectedFuncion === funcion) return;
+      this.selectedFuncion = funcion;
+      this.selectedTela = null;
+      this.selectedTelaId = null;
+    },
+
+    selectTela(telaData) {
+      this.selectedTela = telaData;
+      this.selectedTelaId = telaData.id;
+    },
+
+    async simulate() {
+      if (!this.selectedTela) return;
+      // Labor illusion (estilo cult-ui loading-carousel): pasos visibles de procesamiento.
+      // Cada paso ~700ms; el total define cuánto "trabaja" la simulación.
+      this.loadStep = 0;
+      this.step = 3;
+      var self = this;
+      var iv = 700;
+      for (var i = 1; i < this.loadSteps.length; i++) {
+        (function (k) {
+          setTimeout(function () { if (self.step === 3) self.loadStep = k; }, iv * k);
+        })(i);
+      }
+      // TODO:NICO-API — reemplazar el setTimeout por el endpoint real:
+      // var formData = new FormData();
+      // formData.append('foto', this.photoFile);
+      // formData.append('tela_id', this.selectedTela.id);
+      // var res = await fetch('/api/v2/simulaciones', { method: 'POST', body: formData });
+      // var { data } = await res.json();
+      // this.resultUrl = data.url;
+      await new Promise(function (r) { setTimeout(r, iv * self.loadSteps.length); });
+      this.sliderPos = 50;
+      this.step = 4;
+    },
+
+    reset() {
+      this.step = 1;
+      this.photoUrl = null;
+      this.photoName = '';
+      this.selectedFuncion = null;
+      this.selectedTela = null;
+      this.selectedTelaId = null;
+      this.ancho = '';
+      this.alto = '';
+      this.formStep = 1;
+    },
+
+    async submitForm() {
+      if (!this.telefono.trim()) return;
+      this.sending = true;
+      this.formError = null;
+      try {
+        var res = await fetch('https://www.rollershow.com.ar/api/v2/cotizar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: this.nombre || null,
+            telefono: this.telefono,
+            origen: 'simulador-landing',
+            tela_id: this.selectedTela?.id ?? null,
+            ancho_cm: this.ancho || null,
+            alto_cm: this.alto || null,
+            landing_url: window.location.href,
+          }),
+        });
+        if (res.ok) {
+          // Redirigir a la pagina de gracias (TKP), igual que el cotizador.
+          // Reemplaza el ultimo /simulador del path por /gracias preservando el base.
+          var grUrl = window.location.pathname.replace(/\/simulador\/?$/, '/gracias/');
+          window.location.href = grUrl + (this.nombre ? '?n=' + encodeURIComponent(this.nombre) : '');
+          return;
+        } else {
+          this.formError = 'No pudimos enviar. Intentá de nuevo.';
+        }
+      } catch {
+        this.formError = 'Error de conexión. Intentá de nuevo.';
+      }
+      this.sending = false;
+    },
+  };
+};
+</script>   </body></html>
