@@ -64,16 +64,11 @@ body {
   padding-block: 1.1rem;
 }
 .doc-head__brand { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
-.doc-head__meta { font-size: .8rem; color: var(--fg-mute); text-align: right; }
+.doc-head__meta { font-size: .8rem; color: var(--fg-mute); text-align: right; font-style: italic; }
+.doc-head__meta b { font-style: normal; color: var(--fg-soft); }
 
 /* ---------- Portada del capítulo ---------- */
 .chapter { padding-block: clamp(2.6rem, 7vw, 5rem) clamp(2.2rem, 5vw, 3.5rem); }
-.chapter__index {
-  display: flex; justify-content: space-between; align-items: baseline;
-  border-bottom: 1px solid var(--border); padding-bottom: .8rem; margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
-}
-.chapter__index .cap { font-family: var(--font-display); font-weight: 700; font-size: .95rem; }
-.chapter__index .cap b { color: var(--cta); }
 .chapter__title {
   font-family: var(--font-display); font-weight: 800; letter-spacing: -0.025em;
   font-size: clamp(2.3rem, 8vw, 4.4rem); line-height: 0.98; max-width: 14ch;
@@ -86,12 +81,9 @@ body {
 
 /* ---------- Secciones spec ---------- */
 .spec { border-top: 1px solid var(--fg); padding-block: clamp(1.8rem, 5vw, 3rem); }
-.spec__head {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
-  margin-bottom: clamp(1.3rem, 3.5vw, 2rem);
-}
+.spec__head { margin-bottom: clamp(1.3rem, 3.5vw, 2rem); }
 .spec__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3.6vw, 1.75rem); letter-spacing: -0.015em; }
-.spec__num { font-family: var(--font-display); font-weight: 600; font-size: .95rem; color: var(--fg-mute); }
+.spec__title-num { font-weight: 600; color: var(--cta); font-variant-numeric: tabular-nums; margin-right: .55em; opacity: .8; }
 .spec__note { color: var(--fg-soft); max-width: 60ch; margin-bottom: clamp(1.3rem, 3.5vw, 1.8rem); }
 
 /* Cláusulas numeradas (reemplazo de bullets) */
@@ -223,7 +215,7 @@ body {
 }
 .toc a em { font-style: normal; color: var(--fg-mute); font-size: .8rem; }
 .toc__num { font-family: var(--font-display); font-weight: 600; color: var(--fg-mute); font-size: .85rem; font-variant-numeric: tabular-nums; }
-.toc a.is-current { color: var(--fg); font-weight: 700; box-shadow: inset 3px 0 0 var(--cta); padding-left: .9rem; }
+.toc a.is-current { color: var(--fg); font-weight: 700; }
 .toc a.is-current .toc__num { color: var(--cta); }
 
 /* ---------- Pie ---------- */
@@ -236,17 +228,13 @@ body {
 <header class="doc-head">
   <div class="wrap">
     <span class="doc-head__brand">RollerShow</span>
-    <span class="doc-head__meta">Manual de Marca<br>v0.2 mockup, julio 2026</span>
+    <span class="doc-head__meta">Capítulo <b>02</b>, Color</span>
   </div>
 </header>
 
 <main class="wrap">
 
   <section class="chapter">
-    <div class="chapter__index">
-      <span class="cap"><b>02</b> Color</span>
-      <span class="tag num">pág. 02 / 11</span>
-    </div>
     <h1 class="chapter__title">Una base cálida y un solo color que grita.</h1>
     <p class="chapter__intro">
       La paleta nace de los materiales del producto: telas crudas, madera clara, aluminio.
@@ -256,7 +244,7 @@ body {
   </section>
 
   <section class="spec">
-    <div class="spec__head"><h2 class="spec__title">Paleta base</h2><span class="spec__num num">02.1</span></div>
+    <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.1</span>Paleta base</h2></div>
     <p class="spec__note">Los neutros hacen el 90% del trabajo. El terracota queda como acento cálido de apoyo y cede el rol de acción al Rojo Teja.</p>
     <div class="palette">
       <div class="prow"><div class="prow__band" style="background:#FAF7F2"></div><div class="prow__meta"><span class="prow__name">Crema</span><span class="prow__use">Fondo general</span><span class="prow__hex">#FAF7F2</span></div></div>
@@ -269,7 +257,7 @@ body {
   </section>
 
   <section class="spec">
-    <div class="spec__head"><h2 class="spec__title">Rojo Teja, el color de acción</h2><span class="spec__num num">02.2</span></div>
+    <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.2</span>Rojo Teja, el color de acción</h2></div>
     <div class="teja">
       <div class="teja__name">Rojo Teja</div>
       <dl class="teja__specs">
@@ -294,7 +282,7 @@ body {
   </section>
 
   <section class="spec">
-    <div class="spec__head"><h2 class="spec__title">En uso</h2><span class="spec__num num">02.3</span></div>
+    <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.3</span>En uso</h2></div>
     <p class="spec__note">Especímenes reales del sistema web: rectangulares, radio 6, peso fuerte. La marca no usa botones píldora.</p>
     <div class="stage">
       <span class="tag stage__label">Acción primaria</span>
@@ -314,7 +302,7 @@ body {
   </section>
 
   <section class="spec">
-    <div class="spec__head"><h2 class="spec__title">Alternativas evaluadas</h2><span class="spec__num num">02.4</span></div>
+    <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.4</span>Alternativas evaluadas</h2></div>
     <p class="spec__note">Tres candidatos terrosos y rojizos, todos con contraste apto para texto blanco. La recomendación es la opción A por equilibrio entre temperatura de la paleta e intensidad.</p>
     <div class="alts">
       <div>
@@ -343,7 +331,7 @@ body {
   </section>
 
   <section class="spec">
-    <div class="spec__head"><h2 class="spec__title">Proporción de uso</h2><span class="spec__num num">02.5</span></div>
+    <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.5</span>Proporción de uso</h2></div>
     <div class="ratio">
       <div style="flex:60; background:#FAF7F2; color:var(--fg-mute); border-right:1px solid var(--border)">60</div>
       <div style="flex:25; background:#F1EBE0; color:var(--fg-soft); border-right:1px solid var(--border)">25</div>
@@ -359,7 +347,7 @@ body {
   </section>
 
   <section class="spec">
-    <div class="spec__head"><h2 class="spec__title">Materia y efectos</h2><span class="spec__num num">02.7</span></div>
+    <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.7</span>Materia y efectos</h2></div>
     <p class="spec__note">
       Adelanto del capítulo 11: los recursos vivos que sacan a la marca de lo plano generado por plantilla.
       Cada efecto tiene nombre, receta exacta y regla de uso; acá se muestran los tres primeros en funcionamiento.
@@ -384,7 +372,7 @@ body {
   </section>
 
   <section class="spec">
-    <div class="spec__head"><h2 class="spec__title">Índice del manual</h2><span class="spec__num">i</span></div>
+    <div class="spec__head"><h2 class="spec__title">Índice del manual</h2></div>
     <nav class="toc">
       <a href="#" onclick="return false"><span class="toc__num num">01</span>Marca<em>logo, usos, zona de seguridad</em></a>
       <a href="#" onclick="return false" class="is-current"><span class="toc__num num">02</span>Color<em>esta página</em></a>
