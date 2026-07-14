@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#FAF7F2" />
 <meta name="robots" content="noindex" />
-<title>Manual de Marca RollerShow — 02 Color (mockup)</title>
+<title>Manual de Marca RollerShow — 02 Color (mockup v0.2)</title>
 
 <link rel="icon" type="image/svg+xml" href="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,10 +15,7 @@
 <style>
 :root {
   --bg: #FAF7F2;
-  --bg-elev: #FFFFFF;
   --bg-muted: #F1EBE0;
-  --bg-deep: #1C1816;
-
   --fg: #1C1816;
   --fg-soft: #4A4039;
   --fg-mute: #87796D;
@@ -26,21 +23,17 @@
   --border-strong: #C8BCA8;
 
   --accent: #B8662C;
-  --accent-deep: #8E4D1F;
-  --accent-soft: #F3E3D2;
 
-  /* Nuevo: Rojo Teja — acción primaria */
+  /* Rojo Teja — color de acción */
   --cta: #C63A21;
   --cta-deep: #97290F;
   --cta-soft: #FAE3DC;
-  --on-cta: #FFFFFF;
 
   --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-body: 'Manrope', system-ui, sans-serif;
 
-  --container: 1080px;
-  --radius-sm: 8px;
-  --radius: 14px;
+  --container: 1040px;
+  --pad: clamp(1.1rem, 4vw, 2.5rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -54,246 +47,310 @@ body {
   line-height: 1.55;
   overflow-x: hidden;
 }
-img { max-width: 100%; display: block; }
 
-.wrap { max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 2.5rem); }
+.wrap { max-width: var(--container); margin: 0 auto; padding-inline: var(--pad); }
 
-/* ---------- Topbar ---------- */
-.topbar {
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
+/* Etiquetas de ficha técnica */
+.tag {
+  font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--fg-mute);
 }
-.topbar .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-.topbar__brand { display: flex; align-items: baseline; gap: .75rem; min-width: 0; }
-.topbar__logo { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; }
-.topbar__doc { color: var(--fg-mute); font-size: .85rem; font-weight: 600; }
-.topbar__ver {
-  font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--fg-soft); border: 1px solid var(--border-strong); border-radius: 999px; padding: .2rem .7rem;
-}
+.num { font-variant-numeric: tabular-nums; }
 
-/* ---------- Capítulo ---------- */
-.chapter { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
-.chapter__kicker {
-  font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--cta); margin-bottom: 1rem;
+/* ---------- Cabecera del documento ---------- */
+.doc-head { border-bottom: 1px solid var(--fg); }
+.doc-head .wrap {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding-block: 1.1rem;
 }
+.doc-head__brand { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
+.doc-head__meta { font-size: .8rem; color: var(--fg-mute); text-align: right; }
+
+/* ---------- Portada del capítulo ---------- */
+.chapter { padding-block: clamp(2.6rem, 7vw, 5rem) clamp(2.2rem, 5vw, 3.5rem); }
+.chapter__index {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid var(--border); padding-bottom: .8rem; margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+}
+.chapter__index .cap { font-family: var(--font-display); font-weight: 700; font-size: .95rem; }
+.chapter__index .cap b { color: var(--cta); }
 .chapter__title {
-  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
-  font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.05; max-width: 16ch;
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.025em;
+  font-size: clamp(2.3rem, 8vw, 4.4rem); line-height: 0.98; max-width: 14ch;
+  text-wrap: balance;
 }
 .chapter__intro {
-  margin-top: 1.25rem; max-width: 58ch; color: var(--fg-soft); font-size: clamp(1rem, 2.4vw, 1.1rem);
+  margin-top: 1.4rem; max-width: 56ch; color: var(--fg-soft);
+  font-size: clamp(1rem, 2.4vw, 1.12rem);
 }
 
-/* ---------- Secciones del manual ---------- */
-.spec { border-top: 1px solid var(--border); padding: clamp(1.8rem, 4.5vw, 3rem) 0; }
-.spec__head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.4rem; }
-.spec__num { font-family: var(--font-display); font-weight: 700; color: var(--fg-mute); font-size: .95rem; }
-.spec__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.25rem, 3.2vw, 1.6rem); letter-spacing: -0.01em; }
-.spec__note { color: var(--fg-soft); max-width: 62ch; margin-bottom: 1.4rem; }
-
-/* Grilla de muestras */
-.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-elev); min-width: 0; }
-.sw { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-width: 0; }
-.sw__chip { height: 84px; }
-.sw__meta { padding: .7rem .8rem .8rem; }
-.sw__name { font-weight: 700; font-size: .85rem; }
-.sw__hex { font-size: .78rem; color: var(--fg-mute); font-variant-numeric: tabular-nums; }
-.sw__use { font-size: .75rem; color: var(--fg-soft); margin-top: .3rem; }
-
-/* Bloque Rojo Teja */
-.hero-color { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-elev); }
-@media (min-width: 760px) { .hero-color { grid-template-columns: 1.1fr 1fr; } }
-.hero-color__swatch {
-  background: var(--cta); color: var(--on-cta); padding: clamp(1.6rem, 4vw, 2.6rem);
-  display: flex; flex-direction: column; justify-content: space-between; min-height: 260px;
+/* ---------- Secciones spec ---------- */
+.spec { border-top: 1px solid var(--fg); padding-block: clamp(1.8rem, 5vw, 3rem); }
+.spec__head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  margin-bottom: clamp(1.3rem, 3.5vw, 2rem);
 }
-.hero-color__name { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 5vw, 2.6rem); letter-spacing: -0.02em; line-height: 1.05; }
-.hero-color__data { margin-top: 1.2rem; font-size: .85rem; display: grid; gap: .25rem; opacity: .94; }
-.hero-color__data strong { font-weight: 700; }
-.hero-color__side { padding: clamp(1.4rem, 3.5vw, 2.2rem); display: grid; gap: 1.2rem; align-content: start; }
-.scale { display: grid; grid-template-columns: repeat(3, 1fr); border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
-.scale div { padding: 1.4rem .6rem .5rem; font-size: .72rem; font-weight: 700; }
-.rules { display: grid; gap: .55rem; font-size: .9rem; color: var(--fg-soft); }
-.rules li { list-style: none; padding-left: 1.1rem; position: relative; }
-.rules li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: var(--cta); }
+.spec__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3.6vw, 1.75rem); letter-spacing: -0.015em; }
+.spec__num { font-family: var(--font-display); font-weight: 600; font-size: .95rem; color: var(--fg-mute); }
+.spec__note { color: var(--fg-soft); max-width: 60ch; margin-bottom: clamp(1.3rem, 3.5vw, 1.8rem); }
 
-/* Demo de botones */
-.demo { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev); overflow: hidden; }
-.demo__row { padding: clamp(1.3rem, 3.5vw, 2rem); display: flex; align-items: center; gap: 1rem 1.5rem; flex-wrap: wrap; }
-.demo__row + .demo__row { border-top: 1px solid var(--border); }
-.demo__label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-mute); width: 100%; }
-@media (min-width: 640px) { .demo__label { width: 130px; flex-shrink: 0; } }
+/* Cláusulas numeradas (reemplazo de bullets) */
+.clauses { border-top: 1px solid var(--border); }
+.clauses li {
+  list-style: none; display: grid; grid-template-columns: 4.2rem 1fr; gap: .8rem;
+  padding-block: .75rem; border-bottom: 1px solid var(--border);
+  font-size: .95rem; color: var(--fg-soft);
+}
+.clauses li span:first-child { font-family: var(--font-display); font-weight: 600; font-size: .8rem; color: var(--fg-mute); font-variant-numeric: tabular-nums; padding-top: .15rem; }
+
+/* ---------- 2.1 Paleta: filas de color ---------- */
+.palette { border-top: 1px solid var(--border); }
+.prow { border-bottom: 1px solid var(--border); }
+.prow__band { height: clamp(52px, 9vw, 76px); }
+.prow__meta {
+  display: grid; grid-template-columns: 1fr auto; gap: .2rem 1.2rem; align-items: baseline;
+  padding-block: .6rem .9rem;
+}
+.prow__name { font-weight: 700; font-size: .95rem; }
+.prow__hex { font-size: .85rem; color: var(--fg-mute); font-variant-numeric: tabular-nums; text-align: right; }
+.prow__use { grid-column: 1 / -1; font-size: .84rem; color: var(--fg-soft); }
+@media (min-width: 700px) {
+  .prow { display: grid; grid-template-columns: 220px 1fr; }
+  .prow__band { height: auto; min-height: 74px; border-right: 1px solid var(--border); }
+  .prow__meta { grid-template-columns: 160px 1fr auto; padding: 1rem 0 1rem 1.4rem; align-content: center; }
+  .prow__use { grid-column: auto; }
+}
+
+/* ---------- 2.2 Rojo Teja ---------- */
+.teja { background: var(--cta); color: #fff; padding: clamp(1.8rem, 5vw, 3rem) var(--pad); margin-inline: calc(-1 * var(--pad)); }
+.teja__name {
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.025em;
+  font-size: clamp(2.6rem, 10vw, 5rem); line-height: .95;
+}
+.teja__specs { margin-top: clamp(1.5rem, 4vw, 2.2rem); border-top: 1px solid rgba(255,255,255,.35); }
+.teja__specs div {
+  display: grid; grid-template-columns: minmax(9rem, 14rem) 1fr; gap: 1rem;
+  padding-block: .6rem; border-bottom: 1px solid rgba(255,255,255,.35);
+  font-size: .92rem;
+}
+.teja__specs dt { font-weight: 700; letter-spacing: .04em; }
+.teja__specs dd { font-variant-numeric: tabular-nums; }
+.scale { display: grid; grid-template-columns: repeat(3, 1fr); margin-inline: calc(-1 * var(--pad)); border-bottom: 1px solid var(--border); }
+.scale div { padding: 2.2rem var(--pad) .6rem; font-size: .78rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---------- Especímenes (componentes reales) ---------- */
+.stage {
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  background: var(--bg-muted);
+  padding: clamp(1.6rem, 4.5vw, 2.4rem) var(--pad); margin-inline: calc(-1 * var(--pad));
+}
+.stage + .stage { border-top: 0; }
+.stage__label { display: block; margin-bottom: 1.1rem; }
+.stage__row { display: flex; align-items: center; gap: 1rem 1.4rem; flex-wrap: wrap; }
+.stage__hint { font-size: .84rem; color: var(--fg-mute); max-width: 36ch; }
+
+/* Botones reales de la landing (radio 6, barrido de luz) */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-family: var(--font-body); font-weight: 700; font-size: 1rem;
-  padding: .85rem 1.6rem; border-radius: 999px; border: 1px solid transparent;
-  text-decoration: none; cursor: pointer; transition: transform 180ms var(--ease), background 180ms var(--ease);
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 22px; font-family: var(--font-body); font-weight: 600; font-size: .94rem;
+  letter-spacing: -0.005em; border-radius: 6px; border: 1px solid transparent;
+  text-decoration: none; cursor: pointer;
+  transition: transform 180ms var(--ease), background 180ms var(--ease), box-shadow 320ms var(--ease);
+  position: relative; overflow: hidden; isolation: isolate;
 }
-.btn--teja { background: var(--cta); color: var(--on-cta); box-shadow: 0 10px 22px -10px rgba(151, 41, 15, .45); }
-.btn--teja:hover { background: var(--cta-deep); transform: translateY(-1px); }
-.btn--terracota { background: var(--accent); color: #fff; }
-.btn--ghost { background: transparent; color: var(--fg-soft); border-color: var(--border-strong); font-weight: 600; }
-.demo__hint { font-size: .82rem; color: var(--fg-mute); max-width: 34ch; }
+.btn > span { position: relative; z-index: 2; }
+.btn--teja { background: var(--cta); color: #fff; border-color: var(--cta); }
+.btn--teja:hover { background: var(--cta-deep); border-color: var(--cta-deep); transform: translateY(-1px); box-shadow: 0 8px 22px -6px rgba(151, 41, 15, .45); }
+.btn--teja::before, .btn--brasa::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%);
+  transform: translateX(-110%);
+  animation: sweep 3.4s var(--ease) infinite !important;
+  pointer-events: none;
+}
+@keyframes sweep {
+  0%, 55% { transform: translateX(-110%); }
+  85%, 100% { transform: translateX(110%); }
+}
+.btn--ink { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.btn--ink:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+.btn--link {
+  background: transparent; color: var(--fg); font-weight: 600; padding-inline: 0; overflow: visible;
+  text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; text-decoration-color: var(--border-strong);
+}
+.btn--link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.btn--brasa { background: linear-gradient(120deg, #D2451E, #97290F 82%); color: #fff; border: 0; padding: 16px 26px; font-weight: 700; }
+.btn--brasa:hover { transform: translateY(-1px); box-shadow: 0 10px 26px -8px rgba(151, 41, 15, .55); }
 
-/* Alternativas */
-.alts { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-@media (min-width: 700px) { .alts { grid-template-columns: repeat(3, 1fr); } }
-.alt { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-elev); }
-.alt__chip { height: 96px; display: flex; align-items: flex-end; padding: .7rem .9rem; color: #fff; font-weight: 700; font-size: .8rem; letter-spacing: .06em; }
-.alt__meta { padding: .9rem 1rem 1.1rem; }
-.alt__name { font-weight: 700; }
-.alt__desc { font-size: .85rem; color: var(--fg-soft); margin-top: .3rem; }
-.alt__tag { display: inline-block; margin-top: .6rem; font-size: .7rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--cta); border: 1px solid var(--cta); border-radius: 999px; padding: .18rem .6rem; }
+/* ---------- 2.4 Alternativas: columnas planas ---------- */
+.alts { display: grid; grid-template-columns: repeat(3, 1fr); margin-inline: calc(-1 * var(--pad)); border-bottom: 1px solid var(--border); min-width: 0; }
+.alt__field { height: clamp(90px, 16vw, 150px); display: flex; align-items: flex-end; padding: .7rem; color: rgba(255,255,255,.92); font-size: .74rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.alt__meta { padding: .8rem .7rem 1.1rem; border-right: 1px solid var(--border); min-width: 0; }
+.alts > div:last-child .alt__meta { border-right: 0; }
+.alt__name { font-weight: 700; font-size: .9rem; }
+.alt__desc { font-size: .8rem; color: var(--fg-soft); margin-top: .35rem; }
+.alt__pick { margin-top: .6rem; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--cta); border-bottom: 2px solid var(--cta); display: inline-block; padding-bottom: .15rem; }
+@media (min-width: 700px) {
+  .alt__field { padding: 1rem; font-size: .8rem; }
+  .alt__meta { padding: 1rem 1rem 1.3rem; }
+}
 
-/* Proporción */
-.ratio { border-radius: var(--radius-sm); overflow: hidden; display: flex; height: 64px; border: 1px solid var(--border); }
-.ratio div { display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; letter-spacing: .05em; min-width: 0; }
-.ratio__labels { display: flex; gap: 1rem; margin-top: .7rem; font-size: .82rem; color: var(--fg-soft); flex-wrap: wrap; }
+/* ---------- 2.5 Proporción ---------- */
+.ratio { display: flex; height: clamp(54px, 9vw, 72px); margin-inline: calc(-1 * var(--pad)); border-block: 1px solid var(--border); }
+.ratio div { display: flex; align-items: center; justify-content: center; font-size: .74rem; font-weight: 700; min-width: 0; font-variant-numeric: tabular-nums; }
+.ratio__labels { display: flex; gap: 1.4rem; margin-top: .8rem; font-size: .84rem; color: var(--fg-soft); flex-wrap: wrap; }
 
-/* Índice */
-.toc { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-elev); }
-@media (min-width: 760px) { .toc { grid-template-columns: 1fr 1fr; } }
+/* ---------- 2.7 Materia y efectos ---------- */
+.fx { border-top: 1px solid var(--border); }
+.fx__row { display: grid; grid-template-columns: 1fr; gap: 1rem; padding-block: 1.4rem; border-bottom: 1px solid var(--border); align-items: center; }
+@media (min-width: 760px) { .fx__row { grid-template-columns: 15rem 1fr auto; gap: 1.5rem; } }
+.fx__name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+.fx__desc { font-size: .9rem; color: var(--fg-soft); max-width: 44ch; }
+.grain {
+  width: 190px; max-width: 100%; height: 58px; background: var(--cta); position: relative;
+}
+.grain::after {
+  content: ''; position: absolute; inset: 0; opacity: .35; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Índice ---------- */
+.toc { border-top: 1px solid var(--border); }
 .toc a {
-  display: flex; gap: .9rem; align-items: baseline; padding: .95rem 1.1rem;
-  text-decoration: none; color: var(--fg-soft); border-bottom: 1px solid var(--border); font-size: .95rem;
+  display: grid; grid-template-columns: 3rem 1fr auto; gap: 1rem; align-items: baseline;
+  padding-block: .85rem; border-bottom: 1px solid var(--border);
+  text-decoration: none; color: var(--fg-soft); font-size: .95rem;
 }
-.toc a:nth-child(odd) { border-right: none; }
-@media (min-width: 760px) { .toc a:nth-child(odd) { border-right: 1px solid var(--border); } }
-.toc a:last-child, .toc a:nth-last-child(2) { border-bottom: none; }
-@media (max-width: 759px) { .toc a:nth-last-child(2) { border-bottom: 1px solid var(--border); } }
-.toc__num { font-family: var(--font-display); font-weight: 700; color: var(--fg-mute); font-size: .85rem; width: 1.6rem; flex-shrink: 0; }
-.toc a.is-current { color: var(--fg); font-weight: 700; background: var(--cta-soft); }
+.toc a em { font-style: normal; color: var(--fg-mute); font-size: .8rem; }
+.toc__num { font-family: var(--font-display); font-weight: 600; color: var(--fg-mute); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.toc a.is-current { color: var(--fg); font-weight: 700; box-shadow: inset 3px 0 0 var(--cta); padding-left: .9rem; }
 .toc a.is-current .toc__num { color: var(--cta); }
 
-/* Footer */
-.foot { border-top: 1px solid var(--border); margin-top: clamp(2rem, 5vw, 3rem); padding: 1.3rem 0 2.2rem; }
-.foot .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .82rem; color: var(--fg-mute); }
+/* ---------- Pie ---------- */
+.foot { border-top: 1px solid var(--fg); margin-top: clamp(2.2rem, 6vw, 3.5rem); }
+.foot .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 1.2rem 2.4rem; font-size: .8rem; color: var(--fg-mute); }
 </style>
 </head>
 <body>
 
-<header class="topbar">
+<header class="doc-head">
   <div class="wrap">
-    <div class="topbar__brand">
-      <span class="topbar__logo">RollerShow</span>
-      <span class="topbar__doc">Manual de Marca</span>
-    </div>
-    <span class="topbar__ver">v0.1 mockup</span>
+    <span class="doc-head__brand">RollerShow</span>
+    <span class="doc-head__meta">Manual de Marca<br>v0.2 mockup, julio 2026</span>
   </div>
 </header>
 
 <main class="wrap">
 
   <section class="chapter">
-    <p class="chapter__kicker">Capítulo 02, Color</p>
+    <div class="chapter__index">
+      <span class="cap"><b>02</b> Color</span>
+      <span class="tag num">pág. 02 / 11</span>
+    </div>
     <h1 class="chapter__title">Una base cálida y un solo color que grita.</h1>
     <p class="chapter__intro">
-      La paleta de RollerShow nace de los materiales del producto: telas crudas, madera clara, aluminio.
-      Todo el sistema es sereno a propósito, para que en cada pantalla o pieza impresa exista un único
-      punto de máxima intensidad: la acción que le pedimos al cliente. Ese punto es el Rojo Teja.
+      La paleta nace de los materiales del producto: telas crudas, madera clara, aluminio.
+      Todo el sistema es sereno a propósito, para que en cada pantalla o pieza impresa exista
+      un único punto de máxima intensidad: la acción que le pedimos al cliente. Ese punto es el Rojo Teja.
     </p>
   </section>
 
   <section class="spec">
-    <div class="spec__head"><span class="spec__num">2.1</span><h2 class="spec__title">Paleta base</h2></div>
-    <p class="spec__note">Los neutros hacen el 90% del trabajo. El terracota queda como acento cálido de apoyo (detalles, hovers, ilustración) y cede el rol de acción al Rojo Teja.</p>
-    <div class="swatches">
-      <div class="sw"><div class="sw__chip" style="background:#FAF7F2; border-bottom:1px solid var(--border)"></div><div class="sw__meta"><div class="sw__name">Crema</div><div class="sw__hex">#FAF7F2</div><div class="sw__use">Fondo general</div></div></div>
-      <div class="sw"><div class="sw__chip" style="background:#F1EBE0"></div><div class="sw__meta"><div class="sw__name">Arena</div><div class="sw__hex">#F1EBE0</div><div class="sw__use">Fondos alternos, bloques</div></div></div>
-      <div class="sw"><div class="sw__chip" style="background:#E4DCCE"></div><div class="sw__meta"><div class="sw__name">Lino</div><div class="sw__hex">#E4DCCE</div><div class="sw__use">Bordes y divisores</div></div></div>
-      <div class="sw"><div class="sw__chip" style="background:#87796D"></div><div class="sw__meta"><div class="sw__name">Topo</div><div class="sw__hex">#87796D</div><div class="sw__use">Texto secundario</div></div></div>
-      <div class="sw"><div class="sw__chip" style="background:#1C1816"></div><div class="sw__meta"><div class="sw__name">Tinta</div><div class="sw__hex">#1C1816</div><div class="sw__use">Texto principal, titulares</div></div></div>
-      <div class="sw"><div class="sw__chip" style="background:#B8662C"></div><div class="sw__meta"><div class="sw__name">Terracota</div><div class="sw__hex">#B8662C</div><div class="sw__use">Acento de apoyo</div></div></div>
+    <div class="spec__head"><h2 class="spec__title">Paleta base</h2><span class="spec__num num">02.1</span></div>
+    <p class="spec__note">Los neutros hacen el 90% del trabajo. El terracota queda como acento cálido de apoyo y cede el rol de acción al Rojo Teja.</p>
+    <div class="palette">
+      <div class="prow"><div class="prow__band" style="background:#FAF7F2"></div><div class="prow__meta"><span class="prow__name">Crema</span><span class="prow__use">Fondo general</span><span class="prow__hex">#FAF7F2</span></div></div>
+      <div class="prow"><div class="prow__band" style="background:#F1EBE0"></div><div class="prow__meta"><span class="prow__name">Arena</span><span class="prow__use">Fondos alternos, bloques de apoyo</span><span class="prow__hex">#F1EBE0</span></div></div>
+      <div class="prow"><div class="prow__band" style="background:#E4DCCE"></div><div class="prow__meta"><span class="prow__name">Lino</span><span class="prow__use">Bordes y divisores</span><span class="prow__hex">#E4DCCE</span></div></div>
+      <div class="prow"><div class="prow__band" style="background:#87796D"></div><div class="prow__meta"><span class="prow__name">Topo</span><span class="prow__use">Texto secundario y notas</span><span class="prow__hex">#87796D</span></div></div>
+      <div class="prow"><div class="prow__band" style="background:#1C1816"></div><div class="prow__meta"><span class="prow__name">Tinta</span><span class="prow__use">Texto principal y titulares</span><span class="prow__hex">#1C1816</span></div></div>
+      <div class="prow"><div class="prow__band" style="background:#B8662C"></div><div class="prow__meta"><span class="prow__name">Terracota</span><span class="prow__use">Acento de apoyo, nunca acción</span><span class="prow__hex">#B8662C</span></div></div>
     </div>
   </section>
 
   <section class="spec">
-    <div class="spec__head"><span class="spec__num">2.2</span><h2 class="spec__title">Rojo Teja, el color de acción</h2></div>
-    <div class="hero-color">
-      <div class="hero-color__swatch">
-        <div class="hero-color__name">Rojo<br>Teja</div>
-        <div class="hero-color__data">
-          <span><strong>HEX</strong> #C63A21</span>
-          <span><strong>RGB</strong> 198, 58, 33</span>
-          <span><strong>Contraste con blanco</strong> 5.2 : 1 (AA en texto de botón)</span>
-        </div>
+    <div class="spec__head"><h2 class="spec__title">Rojo Teja, el color de acción</h2><span class="spec__num num">02.2</span></div>
+    <div class="teja">
+      <div class="teja__name">Rojo Teja</div>
+      <dl class="teja__specs">
+        <div><dt>HEX</dt><dd>#C63A21</dd></div>
+        <div><dt>RGB</dt><dd>198, 58, 33</dd></div>
+        <div><dt>Contraste s/ blanco</dt><dd>5.2 : 1, apto AA en texto de botón</dd></div>
+        <div><dt>Rol</dt><dd>Acción primaria, exclusivamente</dd></div>
+      </dl>
+    </div>
+    <div class="scale">
+      <div style="background:var(--cta-soft); color:var(--fg-soft)">Suave #FAE3DC</div>
+      <div style="background:var(--cta); color:#fff">Base #C63A21</div>
+      <div style="background:var(--cta-deep); color:#fff">Profundo #97290F</div>
+    </div>
+    <ul class="clauses" style="margin-top: clamp(1.3rem, 3.5vw, 1.8rem)">
+      <li><span class="num">02.2.1</span>Se usa en una sola cosa por pantalla: la acción primaria.</li>
+      <li><span class="num">02.2.2</span>Siempre con texto blanco. Nunca sobre terracota ni sobre fotos.</li>
+      <li><span class="num">02.2.3</span>El tono Profundo es solo para hover y estados presionados.</li>
+      <li><span class="num">02.2.4</span>El tono Suave marca selección o resaltado, jamás botones.</li>
+      <li><span class="num">02.2.5</span>Si algo secundario compite en contraste con él, el error está en el secundario.</li>
+    </ul>
+  </section>
+
+  <section class="spec">
+    <div class="spec__head"><h2 class="spec__title">En uso</h2><span class="spec__num num">02.3</span></div>
+    <p class="spec__note">Especímenes reales del sistema web: rectangulares, radio 6, peso fuerte. La marca no usa botones píldora.</p>
+    <div class="stage">
+      <span class="tag stage__label">Acción primaria</span>
+      <div class="stage__row">
+        <a class="btn btn--teja" href="#" onclick="return false"><span>Recibir mi cotización</span></a>
+        <a class="btn btn--link" href="#" onclick="return false"><span>Ver telas</span></a>
+        <span class="stage__hint">El Rojo Teja manda y lo secundario baja el volumen.</span>
       </div>
-      <div class="hero-color__side">
-        <div>
-          <div class="scale">
-            <div style="background:var(--cta-soft); color:var(--fg-soft)">Suave<br>#FAE3DC</div>
-            <div style="background:var(--cta); color:#fff">Base<br>#C63A21</div>
-            <div style="background:var(--cta-deep); color:#fff">Profundo<br>#97290F</div>
-          </div>
-        </div>
-        <ul class="rules">
-          <li>Se usa en una sola cosa por pantalla: la acción primaria.</li>
-          <li>Siempre con texto blanco. Nunca sobre terracota ni sobre fotos.</li>
-          <li>El tono Profundo es solo para hover y estados presionados.</li>
-          <li>El tono Suave marca selección o resaltado, jamás botones.</li>
-          <li>Si un elemento secundario compite en contraste con él, el error está en el secundario.</li>
-        </ul>
+    </div>
+    <div class="stage">
+      <span class="tag stage__label">Segundo orden</span>
+      <div class="stage__row">
+        <a class="btn btn--ink" href="#" onclick="return false"><span>Ver cómo trabajamos</span></a>
+        <span class="stage__hint">La tinta con hover terracota queda para acciones de apoyo.</span>
       </div>
     </div>
   </section>
 
   <section class="spec">
-    <div class="spec__head"><span class="spec__num">2.3</span><h2 class="spec__title">En uso</h2></div>
-    <div class="demo">
-      <div class="demo__row">
-        <span class="demo__label">Ahora</span>
-        <a class="btn btn--teja" href="#" onclick="return false">Recibir mi cotización</a>
-        <a class="btn btn--ghost" href="#" onclick="return false">Ver telas</a>
-        <span class="demo__hint">El Rojo Teja manda y lo secundario baja el volumen.</span>
-      </div>
-      <div class="demo__row">
-        <span class="demo__label">Antes</span>
-        <a class="btn btn--terracota" href="#" onclick="return false">Recibir mi cotización</a>
-        <span class="demo__hint">El terracota es noble pero se funde con la paleta: no grita.</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="spec">
-    <div class="spec__head"><span class="spec__num">2.4</span><h2 class="spec__title">Alternativas evaluadas</h2></div>
+    <div class="spec__head"><h2 class="spec__title">Alternativas evaluadas</h2><span class="spec__num num">02.4</span></div>
     <p class="spec__note">Tres candidatos terrosos y rojizos, todos con contraste apto para texto blanco. La recomendación es la opción A por equilibrio entre temperatura de la paleta e intensidad.</p>
     <div class="alts">
-      <div class="alt">
-        <div class="alt__chip" style="background:#C63A21">#C63A21</div>
+      <div>
+        <div class="alt__field" style="background:#C63A21">#C63A21</div>
         <div class="alt__meta">
           <div class="alt__name">A. Rojo Teja</div>
-          <div class="alt__desc">Rojo de ladrillo vivo. Terroso pero encendido, contraste 5.2 : 1.</div>
-          <span class="alt__tag">Recomendado</span>
+          <p class="alt__desc">Rojo de ladrillo vivo. Terroso pero encendido, contraste 5.2 : 1.</p>
+          <span class="alt__pick">Recomendado</span>
         </div>
       </div>
-      <div class="alt">
-        <div class="alt__chip" style="background:#B5341C">#B5341C</div>
+      <div>
+        <div class="alt__field" style="background:#B5341C">#B5341C</div>
         <div class="alt__meta">
           <div class="alt__name">B. Óxido</div>
-          <div class="alt__desc">Más oscuro y serio, contraste 6.1 : 1. Pierde un poco de chispa.</div>
+          <p class="alt__desc">Más oscuro y serio, contraste 6.1 : 1. Pierde chispa.</p>
         </div>
       </div>
-      <div class="alt">
-        <div class="alt__chip" style="background:#D2451E">#D2451E</div>
+      <div>
+        <div class="alt__field" style="background:#D2451E">#D2451E</div>
         <div class="alt__meta">
           <div class="alt__name">C. Vermellón</div>
-          <div class="alt__desc">El más llamativo, casi naranja. Contraste 4.6 : 1, al límite.</div>
+          <p class="alt__desc">El más llamativo, casi naranja. Contraste 4.6 : 1, al límite.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="spec">
-    <div class="spec__head"><span class="spec__num">2.5</span><h2 class="spec__title">Proporción de uso</h2></div>
+    <div class="spec__head"><h2 class="spec__title">Proporción de uso</h2><span class="spec__num num">02.5</span></div>
     <div class="ratio">
       <div style="flex:60; background:#FAF7F2; color:var(--fg-mute); border-right:1px solid var(--border)">60</div>
       <div style="flex:25; background:#F1EBE0; color:var(--fg-soft); border-right:1px solid var(--border)">25</div>
       <div style="flex:10; background:#1C1816; color:#fff">10</div>
       <div style="flex:5; background:var(--cta); color:#fff">5</div>
     </div>
-    <div class="ratio__labels">
+    <div class="ratio__labels num">
       <span>60 Crema</span>
       <span>25 Arena y Lino</span>
       <span>10 Tinta</span>
@@ -302,19 +359,44 @@ img { max-width: 100%; display: block; }
   </section>
 
   <section class="spec">
-    <div class="spec__head"><span class="spec__num">i</span><h2 class="spec__title">Índice del manual</h2></div>
-    <p class="spec__note">Capítulos previstos. Esta página es el mockup del capítulo 02; el resto sigue el mismo formato.</p>
+    <div class="spec__head"><h2 class="spec__title">Materia y efectos</h2><span class="spec__num num">02.7</span></div>
+    <p class="spec__note">
+      Adelanto del capítulo 11: los recursos vivos que sacan a la marca de lo plano generado por plantilla.
+      Cada efecto tiene nombre, receta exacta y regla de uso; acá se muestran los tres primeros en funcionamiento.
+    </p>
+    <div class="fx">
+      <div class="fx__row">
+        <span class="fx__name">Barrido de luz</span>
+        <p class="fx__desc">Un reflejo cruza el botón primario, como la luz sobre una tela. Es la firma del CTA principal; una sola vez por pantalla.</p>
+        <a class="btn btn--teja" href="#" onclick="return false"><span>Cotizar mi cortina</span></a>
+      </div>
+      <div class="fx__row">
+        <span class="fx__name">Degradé brasa</span>
+        <p class="fx__desc">Vermellón que se apaga hacia el Profundo. Reservado a CTAs de campaña y promociones, nunca convive con el CTA estándar.</p>
+        <a class="btn btn--brasa" href="#" onclick="return false"><span>Quiero la promo</span></a>
+      </div>
+      <div class="fx__row">
+        <span class="fx__name">Grano de tela</span>
+        <p class="fx__desc">Textura de ruido fino sobre superficies grandes de color pleno, para que respiren como material y no como vinilo digital.</p>
+        <div class="grain"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spec">
+    <div class="spec__head"><h2 class="spec__title">Índice del manual</h2><span class="spec__num">i</span></div>
     <nav class="toc">
-      <a href="#" onclick="return false"><span class="toc__num">01</span>Marca: logo, usos, zona de seguridad, tamaños mínimos</a>
-      <a href="#" onclick="return false" class="is-current"><span class="toc__num">02</span>Color: paleta, Rojo Teja, proporciones</a>
-      <a href="#" onclick="return false"><span class="toc__num">03</span>Tipografía: Bricolage Grotesque y Manrope, escala y jerarquía</a>
-      <a href="#" onclick="return false"><span class="toc__num">04</span>Espaciado y retícula: contenedores, radios, sombras</a>
-      <a href="#" onclick="return false"><span class="toc__num">05</span>Voz y copy: voseo, tono, lo prohibido</a>
-      <a href="#" onclick="return false"><span class="toc__num">06</span>Componentes web: botones, formularios, cotizador</a>
-      <a href="#" onclick="return false"><span class="toc__num">07</span>Presupuesto y papelería: cotización PDF, firma de email, membrete</a>
-      <a href="#" onclick="return false"><span class="toc__num">08</span>WhatsApp y Ulises: plantillas de respuesta con la voz de la marca</a>
-      <a href="#" onclick="return false"><span class="toc__num">09</span>Redes y avisos: formatos de post, historia y anuncio</a>
-      <a href="#" onclick="return false"><span class="toc__num">10</span>Fotografía: estilo de ambientes, luz y encuadre</a>
+      <a href="#" onclick="return false"><span class="toc__num num">01</span>Marca<em>logo, usos, zona de seguridad</em></a>
+      <a href="#" onclick="return false" class="is-current"><span class="toc__num num">02</span>Color<em>esta página</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">03</span>Tipografía<em>Bricolage Grotesque y Manrope</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">04</span>Espaciado y retícula<em>contenedores, radios, sombras</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">05</span>Voz y copy<em>voseo, tono, lo prohibido</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">06</span>Componentes web<em>botones, formularios, cotizador</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">07</span>Presupuesto y papelería<em>cotización PDF, firma de email</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">08</span>WhatsApp y Ulises<em>plantillas con la voz de la marca</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">09</span>Redes y avisos<em>post, historia, anuncio</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">10</span>Fotografía<em>ambientes, luz, encuadre</em></a>
+      <a href="#" onclick="return false"><span class="toc__num num">11</span>Materia y efectos<em>recursos vivos, recetas exactas</em></a>
     </nav>
   </section>
 
@@ -322,8 +404,8 @@ img { max-width: 100%; display: block; }
 
 <footer class="foot">
   <div class="wrap">
-    <span>RollerShow, Manual de Marca v0.1</span>
-    <span>Página 02</span>
+    <span>RollerShow, Manual de Marca v0.2</span>
+    <span class="num">02 / 11</span>
   </div>
 </footer>
 
