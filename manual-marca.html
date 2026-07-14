@@ -84,7 +84,7 @@ a { color: inherit; }
   display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
   padding-block: 1.1rem;
 }
-.doc-head__brand { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
+.doc-head__brand { display: block; height: 20px; width: auto; }
 .doc-head__meta { font-size: .8rem; color: var(--fg-mute); text-align: right; font-style: italic; }
 
 /* ---------- Portada general ---------- */
@@ -120,14 +120,19 @@ a { color: inherit; }
 .spec__note { color: var(--fg-soft); max-width: 62ch; margin-bottom: clamp(1.3rem, 3.5vw, 1.8rem); }
 .spec__note + .spec__note { margin-top: -1rem; }
 
-/* Cláusulas numeradas (reemplazo de bullets) */
+/* Cláusulas numeradas (reemplazo de bullets) — sangría colgante, NUNCA grid/flex:
+   el contenido mezcla <b>/<code>/<a> con texto plano, y un grid de columnas fijas
+   convierte cada fragmento inline en un ítem aparte, rompiendo el renglón. */
 .clauses { border-top: 1px solid var(--border); }
 .clauses li {
-  list-style: none; display: grid; grid-template-columns: 4.4rem 1fr; gap: .8rem;
-  padding-block: .75rem; border-bottom: 1px solid var(--border);
+  list-style: none; position: relative; padding: .75rem 0 .75rem 4.4rem; min-height: 1.6rem;
+  border-bottom: 1px solid var(--border);
   font-size: .95rem; color: var(--fg-soft);
 }
-.clauses li span:first-child { font-family: var(--font-display); font-weight: 600; font-size: .8rem; color: var(--fg-mute); font-variant-numeric: tabular-nums; padding-top: .15rem; }
+.clauses li > span.num:first-child {
+  position: absolute; left: 0; top: .75rem;
+  font-family: var(--font-display); font-weight: 600; font-size: .8rem; color: var(--fg-mute); font-variant-numeric: tabular-nums;
+}
 .clauses li b { color: var(--fg); font-weight: 700; }
 
 /* Filas de dos columnas (reemplazo genérico de tarjetas) */
@@ -321,7 +326,7 @@ a { color: inherit; }
 .wa-row { border-bottom: 1px solid var(--border); padding-block: 1.2rem; display: grid; gap: .5rem; }
 @media (min-width: 700px) { .wa-row { grid-template-columns: 12rem 1fr; gap: 1.4rem; } }
 .wa-row__sit { font-weight: 700; font-size: .88rem; }
-.wa-bubble { background: var(--bg-muted); padding: .8rem 1rem; font-size: .92rem; color: var(--fg); max-width: 46ch; border-left: 3px solid var(--whatsapp); }
+.wa-bubble { font-size: .92rem; color: var(--fg); max-width: 46ch; }
 
 /* ---------- JSON tokens (visible, para lectura humana + LLM) ---------- */
 .tokens-block { background: var(--fg); color: var(--bg); padding: clamp(1.2rem, 3vw, 1.8rem); margin-inline: calc(-1 * var(--pad)); font-size: .78rem; overflow-x: auto; }
@@ -348,7 +353,7 @@ a { color: inherit; }
 
 <header class="doc-head">
   <div class="wrap">
-    <span class="doc-head__brand">RollerShow</span>
+    <img class="doc-head__brand" src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" />
     <span class="doc-head__meta">Manual de marca, edición 2026</span>
   </div>
 </header>
@@ -396,8 +401,8 @@ a { color: inherit; }
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">00.2</span>Tokens para lectura de máquina</h2></div>
-      <p class="spec__note">El capítulo 12 cierra el manual con un bloque <code>&lt;script type="application/json"&gt;</code> con todos los valores de este documento en un único objeto estructurado — colores, tipografía, espaciado, radios, sombras, movimiento y quiebres. Es la fuente de verdad para cualquier proceso automático; el resto del manual es la explicación humana de esos mismos números.</p>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">00.2</span>El capítulo 12 no hace falta leerlo</h2></div>
+      <p class="spec__note">El último capítulo repite todos los números de este manual pegados en un formato para que una IA los lea directo, sin tener que interpretar el texto — como pasarle al asistente "los datos ya digeridos" en vez de que los adivine. Es para cuando en el futuro alguien le pida a un agente que arme una pieza nueva de RollerShow: el agente lee ese bloque y usa los valores exactos, sin inventar nada. Vos no necesitás abrirlo ni entenderlo — está colapsado por default, es solo por las dudas.</p>
     </section>
 
     <section class="spec">
@@ -791,7 +796,27 @@ a { color: inherit; }
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.6</span>Así sí / así no</h2></div>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.6</span>Grilla de composición</h2></div>
+      <p class="spec__note"><b>Propuesto</b> — el producto real usa flexbox/grid por componente, no una grilla formal de columnas. Esta es la referencia para maquetar piezas nuevas (landing, presupuesto, redes) con la misma lógica.</p>
+      <div class="rows">
+        <div class="rows__item"><span class="rows__key">Columnas</span><span class="rows__val">12, dentro de <code>--container</code> (1280px) o <code>--container-narrow</code> (920px).</span></div>
+        <div class="rows__item"><span class="rows__key">Canaleta (gutter)</span><span class="rows__val">24px entre columnas.</span></div>
+        <div class="rows__item"><span class="rows__key">Margen lateral</span><span class="rows__val">El mismo <code>--pad</code> fluido de 04.1 — nunca un margen fijo distinto al del resto del sistema.</span></div>
+        <div class="rows__item"><span class="rows__key">Bloques típicos</span><span class="rows__val">Texto de lectura: 6 a 8 columnas. Imagen o media hero: 12 columnas (ancho completo). Card o formulario lateral: 4 columnas.</span></div>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.7</span>Márgenes y sangrado en impreso</h2></div>
+      <div class="rows">
+        <div class="rows__item"><span class="rows__key">Margen de seguridad</span><span class="rows__val">15mm en los cuatro lados — ningún texto, logo o dato relevante entra ahí.</span></div>
+        <div class="rows__item"><span class="rows__key">Sangrado (bleed)</span><span class="rows__val">3mm — cualquier fondo de color o imagen que llegue al borde del papel se extiende 3mm más allá del corte, para que no quede un filo blanco por error de guillotina.</span></div>
+        <div class="rows__item"><span class="rows__key">Folio / pie de página</span><span class="rows__val">A 10mm del borde inferior, dentro del margen de seguridad.</span></div>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.8</span>Así sí / así no</h2></div>
       <div class="compare">
         <div class="compare--no">
           <span class="compare__tag">Así no</span>
@@ -1326,13 +1351,18 @@ a { color: inherit; }
         <h1 class="chapter__title">Los mismos datos, en un objeto.</h1>
       </div>
       <p class="chapter__intro">
-        Todo lo de arriba, en un único bloque estructurado para lectura de máquina — sin prosa, sin ambigüedad.
+        Los mismos números de los capítulos 1 a 11, pegados una sola vez más en un formato que lee una máquina.
+        Este capítulo es opcional para vos — está pensado para un agente de IA, no para leerlo de corrido.
       </p>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">12.1</span>Bloque de tokens</h2></div>
-      <div class="tokens-block"><pre id="tokens-visible"></pre></div>
+      <p class="spec__note">Tocá "Ver los datos" solo si sos vos quien se lo va a pegar a una IA. Si no, seguí de largo — el manual termina acá.</p>
+      <details>
+        <summary style="cursor:pointer; font-weight:700; color:var(--cta); font-size:.9rem;">Ver los datos técnicos (opcional)</summary>
+        <div class="tokens-block" style="margin-top:1rem;"><pre id="tokens-visible"></pre></div>
+      </details>
     </section>
   </div>
   </section>
@@ -1364,6 +1394,8 @@ a { color: inherit; }
     "scale": { "display": "clamp(2.5rem,5.6vw,4.6rem)", "h2": "clamp(1.85rem,3.8vw,3rem)", "h3": "clamp(1.3rem,2.2vw,1.65rem)", "body": "1rem / 16px" }
   },
   "spacing": { "container": "1280px", "containerNarrow": "920px", "sectionY": "clamp(3.5rem,7vw,6rem)", "padInline": "clamp(1.1rem,4vw,2.5rem)" },
+  "grid": { "columns": 12, "gutter": "24px", "margin": "= padInline (fluido)", "status": "propuesto" },
+  "print": { "safeMargin": "15mm", "bleed": "3mm", "folioOffset": "10mm desde borde inferior" },
   "radius": { "button": "6px", "small": "8px", "medium": "14px", "large": "22px", "pillFunctionalOnly": "999px" },
   "shadow": {
     "sm": "0 1px 2px rgba(28,24,22,.05)",
