@@ -1,0 +1,18 @@
+{
+  "_comentario": "Pegar en <head> de la home (layout global) como <script type=\"application/ld+json\">. sameAs: completar con las URLs reales de cada red (confirmar handles exactos antes de publicar).",
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "RollerShow",
+  "url": "https://www.rollershow.com.ar/",
+  "logo": "https://www.rollershow.com.ar/COMPLETAR-URL-LOGO.png",
+  "description": "Fábrica argentina de cortinas a medida online desde 2010, con fabricación a pedido y envío nacional.",
+  "telephone": "0800-220-4010",
+  "sameAs": [
+    "https://www.instagram.com/cortinas.rollershow/",
+    "https://www.facebook.com/rollershow/",
+    "https://ar.linkedin.com/company/rollershow",
+    "https://www.youtube.com/@rollershow",
+    "COMPLETAR-URL-PINTEREST",
+    "COMPLETAR-URL-TIKTOK"
+  ]
+}
