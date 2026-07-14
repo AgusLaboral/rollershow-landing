@@ -31,30 +31,42 @@ Apenas tengas acceso, avisame y lo implemento directo — no hay research pendie
 
 ## 🟢 Ejecutable ya — sin ningún acceso técnico
 
-### 1. Google Business Profile (el de mayor impacto de todo el plan)
-No encontré una ficha de Maps de Rollershow claramente posicionada en las búsquedas — señal de que está débil, no reclamada, o duplicada/desactualizada. Acción inmediata:
-- Verificar en https://business.google.com quién tiene el perfil de cada local (Carlos Paz: Av. San Martín 1919; CABA: Av. Roseti 1674, Villa Ortúzar) — si nadie del equipo tiene acceso, reclamarlo es un trámite de Google (verificación por código postal/llamada), no depende de Nico.
-- Completar categoría, horarios (L-V 10-19, Sáb 10-13 — confirmado en llms.txt), fotos reales.
-- Esto lo puede accionar directamente Ornella/Cami sin tocar código.
+### 1. Google Business Profile (el de mayor impacto de todo el plan) — ⏳ pendiente de acceso a la cuenta
+No encontré una ficha de Maps de Rollershow claramente posicionada en las búsquedas — señal de que está débil, no reclamada, o duplicada/desactualizada. Esto **no lo pude ejecutar yo**: reclamar/auditar un GBP requiere login de Google del negocio, que no tengo. Queda en el bloque de pedidos manuales al final de este documento.
 
-### 2. Arrancar el pedido sistemático de reviews de Google
-Armé la plantilla de mensaje en [`assets/whatsapp-pedido-review.md`](assets/whatsapp-pedido-review.md) — falta pegarle el link de reseña de cada local (se genera desde el GBP una vez reclamado, punto 1). Circuito: técnico/vendedor lo manda por WhatsApp justo después de la instalación, mencionando su propio nombre.
+### 2. Pedido sistemático de reviews de Google — ✅ plantilla lista
+[`assets/whatsapp-pedido-review.md`](assets/whatsapp-pedido-review.md) — falta solo pegarle el link de reseña de cada local (se genera desde el GBP una vez reclamado, punto 1).
 
-### 3. Contenido escrito, listo para publicar cuando haya acceso
-Puedo escribir ya los textos completos (no requieren el sitio):
-- Página de precios (rangos "desde $X/m²")
-- Las 4 guías core: cómo medir, blackout vs sunscreen, precios, glosario de telas
-- Copy de las 2 páginas de local (Carlos Paz / CABA)
+### 3. Contenido escrito — ✅ ejecutado (2026-07-14)
+Todo en [`contenido/`](contenido/), grounded en datos reales de la API pública de Rollershow (`/api/v2/familias`, `/api/v2/colecciones`) y en `llms.txt`, no en cifras inventadas:
+- [`contenido/guia-como-medir-cortinas-roller.md`](contenido/guia-como-medir-cortinas-roller.md)
+- [`contenido/guia-blackout-vs-sunscreen.md`](contenido/guia-blackout-vs-sunscreen.md)
+- [`contenido/glosario-telas-cortinas-roller.md`](contenido/glosario-telas-cortinas-roller.md)
+- [`contenido/pagina-local-carlos-paz.md`](contenido/pagina-local-carlos-paz.md)
+- [`contenido/pagina-local-caba.md`](contenido/pagina-local-caba.md)
+- [`contenido/pagina-precios.md`](contenido/pagina-precios.md) — **esqueleto sin números**: la API confirma que no devuelve precios ("el vendedor cotiza por sus canales"), así que esto no lo puedo completar yo. Ver pedidos manuales.
 
-Todavía no los escribí — decime si querés que arranque con alguno en particular o los voy armando todos.
+Cada pieza tiene marcados `[COMPLETAR: ...]` puntuales donde faltaba un dato que no debía inventar (ver bloque de pedidos manuales). Todo revisado contra las reglas de voz del proyecto (voseo, sin tells de IA, sin repetición, CTA verbo+beneficio).
 
-### 4. GEO — monitoreo manual
-Puedo correr ya la batería de ~20 prompts contra buscadores (vía WebSearch, que aproxima Google/AI Overviews) para tener una primera foto. Para ChatGPT/Gemini/Perplexity puntual como chatbot no tengo acceso directo a esas interfaces — eso lo tiene que correr alguien del equipo a mano una vez por mes (5 minutos, prompts ya definidos en RESEARCH.md).
+### 4. GEO — monitoreo manual — ✅ baseline corrida (2026-07-14)
+Primera foto en [`_informes/geo-monitoreo-baseline.md`](_informes/geo-monitoreo-baseline.md) vía WebSearch (aproxima Google/AI Overviews). Hallazgo clave: **Casa Roller ya tiene más reseñas que Rollershow (10k+ vs 7.2k+)** — refuerza la urgencia del punto 2. Para ChatGPT/Gemini/Perplexity como chatbot puntual no tengo acceso directo a esas interfaces — eso lo tiene que correr alguien del equipo a mano una vez por mes (prompts completos en RESEARCH.md).
 
-### 5. Digital PR
-Puedo redactar el pitch para medios locales (Carlos Paz/Córdoba) usando el dato de +400.000 instalaciones — no depende de nadie más para arrancar el borrador.
+### 5. Digital PR — ✅ borrador listo
+[`contenido/pitch-digital-pr.md`](contenido/pitch-digital-pr.md) — pitch de email armado con el dato público (+402.000 instalaciones, +10 años). Los ángulos con más gancho (qué tela elige cada provincia, evolución de instalaciones en Carlos Paz) necesitan un cruce de datos internos que no tengo — ver pedidos manuales.
 
 ---
 
+## 📋 Pedidos manuales acumulados — para Agus/equipo
+
+Todo lo que quedó bloqueado por depender de una cuenta, un dato interno, o una decisión que no me corresponde tomar:
+
+1. **Google Business Profile** — confirmar si alguien del equipo ya tiene el login de las cuentas de Google de los 2 locales (Carlos Paz / CABA). Si no, iniciar el reclamo en business.google.com (verificación por código postal o llamada). Es el ítem de mayor impacto de todo el plan y está 100% frenado sin esto.
+2. **Precios reales** (Marcelo/ventas) — necesito precio "desde" por familia de producto y 3-4 ejemplos de cotización por medida típica, para terminar `contenido/pagina-precios.md`. La API pública no devuelve precios, así que no hay forma de sacarlo sin este dato.
+3. **Datos internos para el pitch de prensa** (Noe/administración o CRM de ventas) — confirmar si existe algún cruce de datos tipo "qué tela elige cada provincia" o "evolución de instalaciones en Carlos Paz por año". Sin esto, el pitch de PR queda con el ángulo institucional (más débil).
+4. **Coordenadas exactas y teléfono directo por local** (si existe uno distinto al 0800) — para completar `assets/schema-localbusiness-*.json`.
+5. **Puntos de referencia de cada showroom** (cómo llegar, transporte público cercano) — para terminar las 2 páginas de local sin inventar cruces de calle.
+6. **Margen de superposición recomendado** (cm) para instalación por fuera del marco, y si existe diferencia de precio entre colecciones Liviana/Intermedia/Pesada — para cerrar los `[COMPLETAR]` de las guías de medición y glosario.
+7. **Acceso al repo/CMS del sitio** (Nico) — sigue siendo el bloqueante de fondo para todo lo de Fase 0/2 del PLAN.md.
+
 ## Siguiente paso sugerido
-Lo de mayor impacto/menor esfuerzo que se puede arrancar HOY sin esperar a nadie: **reclamar/auditar los 2 Google Business Profile**. Decime si ya existen logins del equipo para esas cuentas o si hay que iniciar el reclamo de cero.
+De estos 7, el de mayor impacto/menor esfuerzo es el **punto 1 (GBP)** — no depende de Nico ni de research adicional, solo de encontrar o iniciar el login.
