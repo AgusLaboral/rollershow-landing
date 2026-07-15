@@ -645,6 +645,24 @@ a { color: inherit; }
         </div>
       </div>
     </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.7</span>Contraste y legibilidad</h2></div>
+      <p class="spec__note">Ratios de contraste medidos (norma WCAG). El mínimo para texto corriente es 4.5 : 1 y para texto grande 3 : 1. Toda combinación nueva se mide antes de usarse; estas son las permitidas.</p>
+      <div class="rows">
+        <div class="rows__item"><span class="rows__key">Tinta sobre Crema</span><span class="rows__val" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;"><span style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:44px; background:#FAF7F2; color:#1C1816; border:1px solid var(--border); font-family:var(--font-display); font-weight:700; font-size:1.05rem;">Aa</span><span><b class="num">16.5 : 1</b>, texto corriente y titulares: la dupla por defecto</span></span></div>
+        <div class="rows__item"><span class="rows__key">Gris cálido sobre Crema</span><span class="rows__val" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;"><span style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:44px; background:#FAF7F2; color:#4A4039; border:1px solid var(--border); font-family:var(--font-display); font-weight:700; font-size:1.05rem;">Aa</span><span><b class="num">9.4 : 1</b>, texto secundario largo</span></span></div>
+        <div class="rows__item"><span class="rows__key">Tinta sobre Arena</span><span class="rows__val" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;"><span style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:44px; background:#F1EBE0; color:#1C1816; border:1px solid var(--border); font-family:var(--font-display); font-weight:700; font-size:1.05rem;">Aa</span><span><b class="num">14.9 : 1</b>, texto sobre bloques de apoyo</span></span></div>
+        <div class="rows__item"><span class="rows__key">Blanco sobre Rojo Teja</span><span class="rows__val" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;"><span style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:44px; background:#C63A21; color:#FFFFFF; font-family:var(--font-display); font-weight:700; font-size:1.05rem;">Aa</span><span><b class="num">5.2 : 1</b>, texto de botón y banda de color</span></span></div>
+        <div class="rows__item"><span class="rows__key">Blanco sobre Rojo Profundo</span><span class="rows__val" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;"><span style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:44px; background:#97290F; color:#FFFFFF; font-family:var(--font-display); font-weight:700; font-size:1.05rem;">Aa</span><span><b class="num">8.0 : 1</b>, hover del CTA y fondo Brasa</span></span></div>
+        <div class="rows__item"><span class="rows__key">Topo sobre Crema</span><span class="rows__val" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;"><span style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:44px; background:#FAF7F2; color:#87796D; border:1px solid var(--border); font-family:var(--font-display); font-weight:700; font-size:1.05rem;">Aa</span><span><b class="num">3.9 : 1</b>, solo notas, folios y microcopy: nunca texto corriente</span></span></div>
+        <div class="rows__item"><span class="rows__key">Blanco sobre Terracota</span><span class="rows__val" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;"><span style="display:inline-flex; align-items:center; justify-content:center; width:72px; height:44px; background:#B8662C; color:#FFFFFF; font-family:var(--font-display); font-weight:700; font-size:1.05rem;">Aa</span><span><b class="num">4.2 : 1</b>, solo texto grande o peso 700: el terracota no carga texto chico</span></span></div>
+      </div>
+      <ul class="clauses" style="margin-top:1.4rem">
+        <li><span class="num">02.7.1</span>El botón del canal de mensajes (verde) mide 2.0 : 1 con texto blanco: está fuera de norma. Se tolera únicamente en ese botón, con verbo corto en peso 600 o más, porque el color es la identidad del canal. En cualquier otro elemento, prohibido.</li>
+        <li><span class="num">02.7.2</span>Texto en color sobre color (Terracota sobre Crema, Teja sobre Arena) no supera 4.5 : 1: se permite solo en cifras grandes o enlaces subrayados, nunca en párrafo.</li>
+      </ul>
+    </section>
   </div>
   </section>
 
@@ -1135,6 +1153,16 @@ a { color: inherit; }
         <li><span class="num">08.2.2</span>Titular de máximo dos líneas, en Bricolage Grotesque, siempre con scrim de contraste detrás, nunca texto plano directo sobre una foto clara.</li>
         <li><span class="num">08.2.3</span>El CTA de una story es una línea de texto en Rojo Teja con el sistema tipográfico propio, nunca el sticker/pill nativo de la plataforma, que es chrome ajeno a la marca.</li>
       </ul>
+      <div class="stage" style="margin-top:1.6rem;">
+        <div class="stage__row" style="align-items:flex-start;">
+          <div style="width:180px; aspect-ratio:9/16; border:1px solid var(--border-strong); position:relative; background:var(--bg-elev); flex-shrink:0;">
+            <div style="position:absolute; top:0; left:0; right:0; height:14%; background:repeating-linear-gradient(45deg, rgba(198,58,33,.16) 0 6px, transparent 6px 12px); border-bottom:1px dashed var(--border-strong); display:flex; align-items:center; justify-content:center; font-size:.66rem; font-weight:700; color:var(--cta);" class="num">14% libre</div>
+            <div style="position:absolute; top:14%; bottom:20%; left:0; right:0; display:flex; align-items:center; justify-content:center; text-align:center; font-size:.7rem; font-weight:700; color:var(--fg-soft); padding:0 .6rem;">zona de titular,<br>texto y CTA</div>
+            <div style="position:absolute; bottom:0; left:0; right:0; height:20%; background:repeating-linear-gradient(45deg, rgba(198,58,33,.16) 0 6px, transparent 6px 12px); border-top:1px dashed var(--border-strong); display:flex; align-items:center; justify-content:center; font-size:.66rem; font-weight:700; color:var(--cta);" class="num">20% libre</div>
+          </div>
+          <span class="stage__hint">Formato 9:16 (story y reel). Las franjas rayadas quedan libres de todo contenido propio: ahí la plataforma dibuja su interfaz. El titular, el texto y el CTA viven solo en la zona central.</span>
+        </div>
+      </div>
     </section>
 
     <section class="spec">
@@ -1192,6 +1220,27 @@ a { color: inherit; }
         <li><span class="num">09.1.4</span>Grado de color cálido consistente con la paleta del capítulo 2, nunca virado a azul o frío.</li>
         <li><span class="num">09.1.5</span>Para piezas de campaña, dejar 30–40% de espacio negativo en la composición para el titular y el CTA.</li>
       </ul>
+      <div class="stage" style="margin-top:1.6rem;">
+        <div class="stage__row" style="flex-direction:column; align-items:flex-start;">
+          <div style="width:100%; max-width:430px;">
+            <div style="width:36%; display:flex; align-items:center; margin-bottom:.35rem;">
+              <span style="width:1px; height:9px; background:var(--fg-mute);"></span>
+              <span style="flex:1; border-top:1px solid var(--fg-mute); position:relative; top:-4px;"></span>
+              <span class="num" style="font-size:.68rem; font-weight:700; color:var(--fg-soft); padding:0 .45rem; position:relative; top:-10px;">30 a 40%</span>
+              <span style="flex:1; border-top:1px solid var(--fg-mute); position:relative; top:-4px;"></span>
+              <span style="width:1px; height:9px; background:var(--fg-mute);"></span>
+            </div>
+            <div style="aspect-ratio:16/9; position:relative; background:linear-gradient(160deg,#E8D2B0,#C9A876); border:1px solid var(--border-strong); overflow:hidden;">
+              <div style="position:absolute; top:0; bottom:0; left:0; width:36%; background:rgba(250,247,242,.6); border-right:1px dashed var(--border-strong); display:flex; flex-direction:column; justify-content:center; gap:.45rem; padding:.8rem;">
+                <span style="font-family:var(--font-display); font-weight:800; font-size:.95rem; line-height:1.05;">Cortinas a medida</span>
+                <span style="background:var(--cta); color:#fff; font-size:.62rem; font-weight:700; padding:.32rem .55rem; align-self:flex-start; border-radius:4px;">Cotizar mi cortina</span>
+              </div>
+              <div style="position:absolute; top:0; bottom:0; right:0; width:64%; display:flex; align-items:flex-end; justify-content:flex-end; padding:.6rem;"><span style="font-size:.62rem; font-weight:700; color:rgba(28,24,22,.55);">producto en contexto</span></div>
+            </div>
+          </div>
+          <span class="stage__hint">La foto de campaña se compone dejando entre un 30 y un 40% del cuadro como espacio negativo (cielo, pared lisa, zona despejada): ahí entran el titular y la acción sin tapar el producto.</span>
+        </div>
+      </div>
     </section>
 
     <section class="spec">
@@ -1323,7 +1372,45 @@ a { color: inherit; }
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.6</span>Catálogo sí / no</h2></div>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.6</span>Aplicaciones por fondo</h2></div>
+      <p class="spec__note">Qué versión del logotipo y qué acción se permite sobre cada fondo del sistema. Cualquier combinación que no esté acá, no existe.</p>
+      <div class="palette">
+        <div class="prow"><div class="prow__band" style="background:#FAF7F2; border-bottom:1px solid var(--border);"><div style="display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; padding: .9rem 1rem; min-height:64px;"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" style="height:16px;" /><span style="display:inline-flex; padding:8px 14px; border-radius:6px; font-size:.72rem; font-weight:700; background:var(--cta); color:#fff;">Recibir mi cotización</span></div></div><div class="prow__meta"><span class="prow__name">Crema y blanco</span><span class="prow__use">Logo Tinta. CTA Rojo Teja. La combinación por defecto de toda la marca.</span><span class="prow__hex"></span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#F1EBE0;"><div style="display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; padding: .9rem 1rem; min-height:64px;"><span style="display:inline-flex; padding:8px 14px; border-radius:6px; font-size:.72rem; font-weight:700; background:var(--cta); color:#fff;">Recibir mi cotización</span></div></div><div class="prow__meta"><span class="prow__name">Arena y Lino</span><span class="prow__use">Sin logotipo (contraste insuficiente, ver 01.4.1). CTA Rojo Teja permitido.</span><span class="prow__hex"></span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#1C1816;"><div style="display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; padding: .9rem 1rem; min-height:64px;"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" style="height:16px; filter:brightness(0) invert(1);" /><span style="display:inline-flex; padding:8px 14px; border-radius:6px; font-size:.72rem; font-weight:700; background:var(--cta); color:#fff;">Recibir mi cotización</span></div></div><div class="prow__meta"><span class="prow__name">Tinta</span><span class="prow__use">Logo blanco. CTA Rojo Teja. Para pies de página y bloques oscuros.</span><span class="prow__hex"></span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#C63A21;"><div style="display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; padding: .9rem 1rem; min-height:64px;"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" style="height:16px; filter:brightness(0) invert(1);" /><span style="display:inline-flex; padding:8px 14px; border-radius:6px; font-size:.72rem; font-weight:700; background:#fff; color:var(--fg);">Recibir mi cotización</span></div></div><div class="prow__meta"><span class="prow__name">Rojo Teja y Brasa</span><span class="prow__use">Logo blanco. La acción se invierte: botón blanco con texto Tinta, nunca un segundo rojo.</span><span class="prow__hex"></span></div></div>
+        <div class="prow"><div class="prow__band" style="background:linear-gradient(0deg,rgba(28,24,22,.78),rgba(28,24,22,.15) 65%), linear-gradient(160deg,#E8D2B0,#C9A876); "><div style="display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; padding: .9rem 1rem; min-height:64px;"><span style="align-self:flex-end; margin-top:auto;"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" style="height:16px; filter:brightness(0) invert(1);" /></span><span style="display:inline-flex; padding:8px 14px; border-radius:6px; font-size:.72rem; font-weight:700; background:var(--cta); color:#fff;">Cotizar mi cortina</span></div></div><div class="prow__meta"><span class="prow__name">Fotografía</span><span class="prow__use">Solo con Penumbra (10.4). Logo blanco apoyado en la zona oscura del scrim. CTA Rojo Teja.</span><span class="prow__hex"></span></div></div>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.7</span>Iconografía</h2></div>
+      <p class="spec__note">Iconos de línea propios: trazo de 1.5px, terminaciones redondeadas, un solo color (el del texto que acompañan), retícula de 24px. Nunca emojis como íconos de interfaz, nunca íconos rellenos ni de dos colores.</p>
+      <div class="stage">
+        <div class="stage__row" style="gap:2rem;">
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.5rem; color:var(--fg-soft); font-size:.7rem; font-weight:700;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="3.5" rx="1"/><path d="M5 7.5v9M19 7.5v9M5 16.5h14"/><path d="M12 7.5v11.5"/><circle cx="12" cy="20" r="1"/></svg>
+            Cortina
+          </span>
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.5rem; color:var(--fg-soft); font-size:.7rem; font-weight:700;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="6" rx="1"/><path d="M7 9v3M11 9v2M15 9v3M19 9v2"/></svg>
+            Medida
+          </span>
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.5rem; color:var(--fg-soft); font-size:.7rem; font-weight:700;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><rect x="10" y="14" width="4" height="6"/></svg>
+            Ambiente
+          </span>
+        </div>
+      </div>
+      <ul class="clauses" style="margin-top:1.4rem">
+        <li><span class="num">10.7.1</span>Un ícono nunca va solo: siempre acompaña una palabra. El ícono ilustra, la palabra comunica.</li>
+        <li><span class="num">10.7.2</span>Tamaños permitidos: 20, 24 y 32px. El trazo no se escala: a mayor tamaño, mismo grosor visual de 1.5px.</li>
+        <li><span class="num">10.7.3</span>Nunca un ícono decorativo arriba de cada título de sección: ese es el molde de plantilla que el capítulo 10.8 prohíbe.</li>
+      </ul>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.8</span>Catálogo sí / no</h2></div>
       <p class="spec__note">Barrer esta lista antes de entregar cualquier pieza nueva. Si algo de la columna "No" apareció, se saca antes de mostrarlo.</p>
       <div class="verdict">
         <div class="verdict__row verdict--yes"><b>Sí</b><p>Barrido de luz, degradé brasa y grano de tela, recetas exactas arriba.</p></div>
@@ -1411,6 +1498,8 @@ a { color: inherit; }
   "motion": { "durationFast": "180ms", "duration": "280ms", "easing": "cubic-bezier(0.22,1,0.36,1)", "reducedMotionException": "animaciones de marca (barrido, brasa, anillos del logo) corren siempre" },
   "breakpoints": { "xs": "420px", "sm": "480px", "md": "720px", "lg": "980px" },
   "maxims": ["mobile primero (disenar a 375px)", "estructural antes que estetico", "una sola accion primaria por pantalla, maximo contraste", "cada elemento es parte de algo, nada flotando", "la percepcion de calidad vende", "la solucion mas simple gana", "nada terminado hasta verlo en vivo en un telefono"],
+  "contrast": { "tinta/crema": 16.5, "grisCalido/crema": 9.4, "tinta/arena": 14.9, "blanco/rojoTeja": 5.2, "blanco/rojoProfundo": 8.0, "topo/crema": "3.9 solo microcopy", "blanco/terracota": "4.2 solo texto grande", "blanco/whatsapp": "2.0 fuera de norma, solo el boton del canal" },
+  "iconography": { "style": "linea 1.5px, terminaciones redondeadas, monocolor, reticula 24px", "sizes": [20, 24, 32], "rules": ["nunca emoji como icono", "nunca icono sin palabra", "nunca icono decorativo sobre titulos"] },
   "backgrounds": { "amanecer-de-lino": "linear-gradient(180deg,#FFFFFF,#FAF7F2 55%,#F1EBE0)", "brasa": "linear-gradient(135deg,#D2451E,#97290F) + grano de tela", "penumbra-scrim": "linear-gradient(0deg,rgba(28,24,22,.78),transparent 65%)" },
   "recurringElements": ["banda-de-color-full-bleed", "hairline-editorial-1px-lino", "trama-de-tejido repeating-linear-gradient(90deg,#F1EBE0 0 3px,#FAF7F2 3px 6px)", "folio-cabecera-documento"],
   "ctaLibrary": { "cotizar": "Recibir mi cotización", "descuento": "Recibir mi descuento", "promocion": "Aprovechar la promo", "visualizar": "Ver cómo queda en tu ventana", "contacto": "Escribinos", "explorar": "Ver telas (enlace, no botón)", "instalacion": "Coordinar mi instalación", "descartar": "No, gracias", "prohibidos": ["Enviar", "Click acá", "Más info", "Quiero..."] },
