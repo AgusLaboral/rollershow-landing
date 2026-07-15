@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="es-AR"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><!-- Maqueta en desarrollo: evita que el navegador (sobre todo en mobile)
+         sirva una versión vieja cacheada mientras se itera. --><meta http-equiv="Cache-Control" content="no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://cdn.rollershow.com.ar"><link rel="preconnect" href="https://assets.rollershow.com.ar"><link rel="dns-prefetch" href="https://www.rollershow.com.ar"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- Tipografía: el sitio usa Geist + Instrument Serif (masterplan §26);
+         las landings con bareLayout traen su propio sistema (Bricolage + Manrope).
+         Se carga solo el set que la página usa — un único <link>, no @import. --><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"><title>Cortinas Roller 2x1, cotizá online | RollerShow</title><meta name="description" content="Llevás 2 y pagás 1. Cortinas Roller a medida. Elegí la tela, pasá las medidas y recibí tu cotización. Hasta 3 años de garantía."><link rel="canonical" href="https://www.rollershow.com.ar/landing-promo"><meta property="og:type" content="website"><meta property="og:title" content="Cortinas Roller 2x1, cotizá online | RollerShow"><meta property="og:description" content="Llevás 2 y pagás 1. Cortinas Roller a medida. Elegí la tela, pasá las medidas y recibí tu cotización. Hasta 3 años de garantía."><meta property="og:url" content="https://www.rollershow.com.ar/landing-promo"><meta property="og:image" content="https://www.rollershow.com.ar/assets/og-default.jpg"><meta property="og:site_name" content="RollerShow"><meta property="og:locale" content="es_AR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Cortinas Roller 2x1, cotizá online | RollerShow"><meta name="twitter:description" content="Llevás 2 y pagás 1. Cortinas Roller a medida. Elegí la tela, pasá las medidas y recibí tu cotización. Hasta 3 años de garantía."><meta name="twitter:image" content="https://www.rollershow.com.ar/assets/og-default.jpg"><!-- Alpine.js para interactividad puntual (mega-menú, modales, before/after, filtros). --><script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script><!-- Preloads / hints específicos de cada página (ej. imagen LCP de fondo). --><link rel="stylesheet" href="/rollershow-landing/_astro/_familia_.DsOpv4aC.css">
+<link rel="stylesheet" href="/rollershow-landing/_astro/landing-promo.aZ2cnlKb.css"></head> <body class="min-h-screen flex flex-col bg-bg ">    <header class="wrap hdr"> <img class="hdr__logo" src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" width="600" height="52"> <a class="hdr__tel" href="tel:08002204010">0800-220-4010</a> </header> <div class="banda" data-v="banda">Promo 2x1: dos cortinas al precio de una</div> <main class="wrap"> <section class="hero" aria-labelledby="hero-title"> <div class="hero__grid"> <div class="hero__copy"> <h1 class="hero__title" id="hero-title">
+Cotizá tus cortinas online fácil y rápido.
+<span class="hero__soft" data-v="soft">Empresa líder del mercado argentino, con asesores que te acompañan en el proceso.</span> </h1> <div class="hero__badges"> <span>Desde <b>2010</b></span> <span><b>+10.000</b> clientes nos recomiendan</span> <span>Fábrica <b>propia</b></span> </div> </div> <div class="quoter" id="cotizador" aria-label="Cotizador de cortinas Roller" role="region"> <form id="quoterForm" novalidate data-stage="config" data-tela="1" data-gracias="/rollershow-landing/gracias/"> <div class="qlist-wrap" id="qListWrap" hidden> <p class="qlist__title">Tus cortinas</p> <ul class="qlist" id="qList"></ul> </div> <p class="q-prompt">Elegí tu tela</p> <div class="fabric-grid" role="radiogroup" aria-label="Tipo de tela"> <label class="fabric-card" for="fabBlackout"> <input type="radio" id="fabBlackout" name="fabric" value="blackout" checked> <span class="fabric-card__media"> <img src="https://cdn.rollershow.com.ar/web/landing-whatsapp/compare/blackout-6a3b094104314.png?width=440&quality=70&auto=webp" alt="Cortina Roller Blackout cubriendo la ventana" loading="eager" fetchpriority="high" decoding="async" width="440" height="330"> </span> <span class="fabric-card__label"><b>Blackout</b><small>Oscuridad total</small></span> <span class="fabric-card__check" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> </span> </label> <label class="fabric-card" for="fabSunscreen"> <input type="radio" id="fabSunscreen" name="fabric" value="sunscreen"> <span class="fabric-card__media"> <img src="https://cdn.rollershow.com.ar/web/landing-whatsapp/compare/sunscreen-6a3b09455d334.png?width=440&quality=70&auto=webp" alt="Cortina Roller Sunscreen filtrando la luz en la misma ventana" loading="eager" decoding="async" width="440" height="330"> </span> <span class="fabric-card__label"><b>Sunscreen</b><small>Filtra y deja ver</small></span> <span class="fabric-card__check" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> </span> </label> </div> <div class="size-row"> <div class="size-field size-field--width" id="sfW"> <span class="size-field__label"> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"></line><polyline points="5.5 5.5 3 8 5.5 10.5"></polyline><polyline points="10.5 5.5 13 8 10.5 10.5"></polyline></svg>
+Ancho
+</span> <div class="stepper"> <button type="button" class="stepper__btn" data-target="width" data-step="-5" aria-label="Restar 5 cm al ancho">−</button> <input type="number" id="width" min="45" max="600" step="5" inputmode="numeric" placeholder="150" aria-label="Ancho en centímetros"> <span class="stepper__unit">cm</span> <button type="button" class="stepper__btn" data-target="width" data-step="5" aria-label="Sumar 5 cm al ancho">+</button> </div> <div class="size-tip" id="widthTip" role="status" aria-hidden="true">La tela queda unos <b>4 cm más angosta</b> que el ancho indicado, por el espacio de los soportes. Te recomendamos <b>sumar +15 cm</b>.</div> </div> <div class="size-field" id="sfH"> <span class="size-field__label"> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="3" x2="8" y2="13"></line><polyline points="5.5 5.5 8 3 10.5 5.5"></polyline><polyline points="5.5 10.5 8 13 10.5 10.5"></polyline></svg>
+Alto
+</span> <div class="stepper"> <button type="button" class="stepper__btn" data-target="height" data-step="-5" aria-label="Restar 5 cm al alto">−</button> <input type="number" id="height" min="40" max="500" step="5" inputmode="numeric" placeholder="150" aria-label="Alto en centímetros"> <span class="stepper__unit">cm</span> <button type="button" class="stepper__btn" data-target="height" data-step="5" aria-label="Sumar 5 cm al alto">+</button> </div> </div> <p class="qmed-error" id="qMedErr" role="alert" hidden></p> </div> <details class="measure-help"> <summary> <span>Cómo medir</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="measure-help__body"> <p><b>Sobre el marco (recomendado):</b> medí ancho y alto del marco y <b>sumá 15 cm</b> a cada lado para que no entre luz por los costados.</p> <p><b>Dentro del vano:</b> medí entre paredes y <b>restale 1 cm al ancho</b> para que entre cómoda. El alto va exacto.</p> <p>¿Dudás cuál te conviene? <a href="https://wa.me/5491140813223?text=Hola!%20Tengo%20una%20duda%20sobre%20mi%20cortina%20a%20medida.">Mandanos una foto por WhatsApp</a> y te decimos.</p> </div> </details> <p class="q-aplicada" data-v="aplicada">Tu <b>2x1</b> ya está aplicado a esta cotización.</p> <div class="qstep-config qstep-config-cta"> <button type="button" class="qcta" id="qNext"> <span class="qcta__txt">Cotizar</span> <span class="qcta__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 6 13 12 7 18"></polyline><polyline points="13 6 19 12 13 18"></polyline></svg></span> </button> <p class="qcta-hint">Gratis y sin compromiso.</p> </div> <div class="qstep-contact"> <button type="button" class="qadd" id="qAdd"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+Agregar otra cortina
+</button> <div class="qreveal" data-reveal="fmt" aria-hidden="true"> <div class="qreveal__inner"> <div class="qfmt"> <span class="qfmt__q">¿Cómo querés recibir tu cotización?</span> <div class="qfmt__opts" role="radiogroup" aria-label="Formato de la cotización"> <button type="button" class="qfmt__opt" data-fmt="imagen" aria-pressed="false"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg> <span>Imagen</span> </button> <button type="button" class="qfmt__opt is-sel" data-fmt="pdf" aria-pressed="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> <span>PDF</span> </button> </div> </div> </div> </div> <div class="qreveal" data-reveal="wa" aria-hidden="true"> <div class="qreveal__inner"> <label class="qfield qfield--wa"> <span class="qfield__lbl">¿A qué WhatsApp te la mandamos?<small>Sin compromiso, respuesta en minutos</small></span> <span class="qfield__input"> <input type="tel" id="qTel" name="telefono" inputmode="tel" autocomplete="tel" placeholder="11 5555 5555" required> <svg class="qfield__ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> </span> </label> </div> </div> <div class="qreveal" data-reveal="send" aria-hidden="true"> <div class="qreveal__inner"> <p class="qerror" id="qError" role="alert" hidden></p> <button type="submit" class="qcta" id="qSubmit"> <span class="qcta__txt">Recibir cotización</span> <span class="qcta__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 6 13 12 7 18"></polyline><polyline points="13 6 19 12 13 18"></polyline></svg></span> </button> </div> </div> <div class="qreveal" data-reveal="nombre" aria-hidden="true"> <div class="qreveal__inner"> <p class="qlisto">¡Listo! Te escribimos al WhatsApp en minutos.</p> <label class="qfield qfield--opt"><span>¿Cómo te llamás? (opcional)</span><input type="text" id="qNombre" name="nombre" autocomplete="name" placeholder="Tu nombre"></label> <button type="button" class="qcta" id="qNameDone"> <span class="qcta__txt">Continuar</span> <span class="qcta__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 6 13 12 7 18"></polyline><polyline points="13 6 19 12 13 18"></polyline></svg></span> </button> </div> </div> <div class="qreveal" data-reveal="email" aria-hidden="true"> <div class="qreveal__inner"> <label class="qfield qfield--opt"><span>¿Tu email? (opcional)</span><input type="email" id="qEmail" name="email" autocomplete="email" inputmode="email" placeholder="tu@email.com"></label> <button type="button" class="qcta" id="qEmailDone"> <span class="qcta__txt">Listo</span> <span class="qcta__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 6 13 12 7 18"></polyline><polyline points="13 6 19 12 13 18"></polyline></svg></span> </button> </div> </div> </div> </form> </div> </div> </section> <div class="trust"> <span>Desde <b>2010</b></span> <span><b>+10.000</b> clientes nos recomiendan</span> <span>Fábrica <b>propia</b></span> </div> <section class="sec"> <h2>Lo que dicen los que ya compraron</h2> <p class="rev">"Pasé las medidas y a los minutos tenía el precio cerrado. Sin vueltas."<b>Valeria, Palermo</b></p> <p class="rev">"Comparé con dos lugares más y acá salía menos. A la semana ya estaban instaladas."<b>Marcos, Quilmes</b></p> <p class="rev">"Aproveché la promo para el living y la pieza. Vinieron, midieron y quedó prolijo."<b>Carina, Villa Urquiza</b></p> </section> <section class="sec"> <h2>Cómo funciona</h2> <p class="paso"><i>1</i> Elegís la tela y pasás las medidas de tu ventana.</p> <p class="paso"><i>2</i> Recibís tu cotización con el 2x1 ya aplicado.</p> <p class="paso"><i>3</i> Coordinamos fabricación e instalación.</p> </section> <p class="urgencia">La promo termina el <span data-deadline></span>.</p> <section class="final"> <button type="button" class="final__btn js-scroll-quoter">
+Pedir mi cotización
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 6 13 12 7 18"></polyline><polyline points="13 6 19 12 13 18"></polyline></svg> </button> <p>¿Preferís hablar directo? <a href="https://wa.me/5491140813223?text=Hola!%20Tengo%20una%20duda%20sobre%20mi%20cortina%20a%20medida.">Escribinos por WhatsApp</a>.</p> </section> </main> <footer class="wrap ftr"> <p>RollerShow, cortinas a medida desde 2010. Atención de lunes a sábado.</p> <p><a href="tel:08002204010">0800-220-4010</a></p> </footer> <div class="sticky-cta" id="stickyCta" aria-hidden="true"> <button type="button" id="stickyBtn">
+Cotizar
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 6 13 12 7 18"></polyline><polyline points="13 6 19 12 13 18"></polyline></svg> </button> </div> <script>
+(() => {
+  /* Message match: la promo vive en la banda + la línea "aplicada" + el tag `origen`
+     que viaja en el payload (para que ventas sepa de qué anuncio vino el lead). */
+  var VARIANTES = {
+    '2x1':      { banda: 'Promo 2x1: dos cortinas al precio de una', soft: 'Empresa líder del mercado argentino, con asesores que te acompañan en el proceso.', aplicadaHtml: 'Tu <b>2x1</b> ya está aplicado a esta cotización.' },
+    'volvio':   { banda: '¡Volvió el 2x1! Dos cortinas al precio de una', soft: 'Renovar tu hogar nunca fue tan fácil: elegí entre una amplia variedad de telas.', aplicadaHtml: 'Tu <b>2x1</b> ya está aplicado a esta cotización.' },
+    'mecanica': { banda: '2 cortinas al precio de 1: pagás la mitad de cada una', soft: 'No hace falta que sean de la misma medida ni la misma tela.', aplicadaHtml: 'Cotizando dos, <b>pagás la mitad</b> de cada una.' }
+  };
+  var variantKey = new URLSearchParams(location.search).get('v') || '2x1';
+  var v = VARIANTES[variantKey] || VARIANTES['2x1'];
+  document.querySelectorAll('[data-v]').forEach(function (el) {
+    var key = el.getAttribute('data-v');
+    if (key === 'aplicada') { el.innerHTML = v.aplicadaHtml; return; }
+    if (v[key]) el.textContent = v[key];
+  });
+
+  var hoy = new Date();
+  var fin = new Date(hoy.getFullYear(), hoy.getMonth() + 1, 0);
+  var meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  document.querySelectorAll('[data-deadline]').forEach(function (el) { el.textContent = fin.getDate() + ' de ' + meses[fin.getMonth()]; });
+
+  /* ---------- Cotizador multi-producto -> API /api/v2/cotizar -> gracias ----------
+     Motor idéntico al de landing-cotizador.astro (la landing real). Único agregado:
+     el tag `origen` incluye la landing+variante para trazabilidad de ads. */
+  var TELA_ID = { blackout: 1746, sunscreen: 1755 };
+  var TELA_LABEL = { blackout: 'Blackout', sunscreen: 'Sunscreen' };
+  var quoterForm = document.getElementById('quoterForm');
+  if (!quoterForm) return;
+  var GRACIAS = quoterForm.dataset.gracias || '/gracias/';
+  var widthEl = document.getElementById('width');
+  var heightEl = document.getElementById('height');
+  var qTel = document.getElementById('qTel');
+  var qNombre = document.getElementById('qNombre');
+  var qNombreReveal = quoterForm.querySelector('[data-reveal="nombre"]');
+  var qNameDone = document.getElementById('qNameDone');
+  var qError = document.getElementById('qError');
+  var qSubmit = document.getElementById('qSubmit');
+  var qTxt = qSubmit.querySelector('.qcta__txt');
+  var qWaField = qTel.closest('.qfield--wa');
+  var qFmtReveal = quoterForm.querySelector('[data-reveal="fmt"]');
+  var qWaReveal = quoterForm.querySelector('[data-reveal="wa"]');
+  var qSendReveal = quoterForm.querySelector('[data-reveal="send"]');
+  var qNext = document.getElementById('qNext');
+  var qAdd = document.getElementById('qAdd');
+  var qListWrap = document.getElementById('qListWrap');
+  var qList = document.getElementById('qList');
+
+  document.querySelectorAll('input[name="fabric"]').forEach(function (r) {
+    r.addEventListener('change', function () { quoterForm.dataset.tela = '1'; });
+  });
+
+  var formato = 'pdf';
+  quoterForm.querySelectorAll('.qfmt__opt').forEach(function (o) {
+    o.addEventListener('click', function () {
+      formato = o.getAttribute('data-fmt');
+      quoterForm.querySelectorAll('.qfmt__opt').forEach(function (x) {
+        var s = x === o; x.classList.toggle('is-sel', s); x.setAttribute('aria-pressed', s ? 'true' : 'false');
+      });
+      if (!qWaReveal.classList.contains('is-open')) { qWaReveal.classList.add('is-open'); qWaReveal.setAttribute('aria-hidden', 'false'); }
+      setTimeout(function () { try { qTel.focus({ preventScroll: true }); } catch (e) {} qTel.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 120);
+    });
+  });
+
+  var cortinas = [];
+  var curFab = function () { var el = document.querySelector('input[name="fabric"]:checked'); return el ? el.value : 'blackout'; };
+  var readConfig = function () {
+    var w = parseFloat(widthEl.value), h = parseFloat(heightEl.value);
+    return { fab: curFab(), w: (w >= 45 ? w : null), h: (h >= 40 ? h : null) };
+  };
+  var medStr = function (c) { return (c.w && c.h) ? (c.w + ' × ' + c.h + ' cm') : 'medida a confirmar'; };
+  var renderList = function () {
+    qList.innerHTML = cortinas.map(function (c, i) {
+      return '<li class="qchip"><span class="qchip__n">' + (i + 1) + '</span>'
+        + '<span class="qchip__txt"><b>' + TELA_LABEL[c.fab] + '</b></span>'
+        + '<span class="qchip__meds">'
+        +   '<span class="qchip__med"><svg class="qchip__ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="5.5 5.5 3 8 5.5 10.5"/><polyline points="10.5 5.5 13 8 10.5 10.5"/></svg>'
+        +     '<input type="number" class="qchip__inp" data-i="' + i + '" data-dim="w" value="' + (c.w || '') + '" min="45" max="600" step="5" inputmode="numeric" aria-label="Ancho en cm" placeholder="Ancho" /></span>'
+        +   '<span class="qchip__x">×</span>'
+        +   '<span class="qchip__med"><svg class="qchip__ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="3" x2="8" y2="13"/><polyline points="5.5 5.5 8 3 10.5 5.5"/><polyline points="5.5 10.5 8 13 10.5 10.5"/></svg>'
+        +     '<input type="number" class="qchip__inp" data-i="' + i + '" data-dim="h" value="' + (c.h || '') + '" min="40" max="500" step="5" inputmode="numeric" aria-label="Alto en cm" placeholder="Alto" /></span>'
+        +   '<span class="qchip__unit">cm</span>'
+        + '</span>'
+        + '<button type="button" class="qchip__rm" data-i="' + i + '" aria-label="Quitar cortina"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></li>';
+    }).join('');
+    qListWrap.hidden = cortinas.length === 0;
+    qTxt.textContent = cortinas.length > 1 ? ('Recibir ' + cortinas.length + ' cotizaciones') : 'Recibir cotización';
+  };
+  qList.addEventListener('click', function (e) {
+    var b = e.target.closest('.qchip__rm'); if (!b) return;
+    cortinas.splice(+b.getAttribute('data-i'), 1); renderList();
+    if (!cortinas.length) goConfig();
+  });
+  qList.addEventListener('input', function (e) {
+    var inp = e.target.closest('.qchip__inp'); if (!inp) return;
+    var i = +inp.getAttribute('data-i'); if (!cortinas[i]) return;
+    var val = parseInt(inp.value, 10);
+    cortinas[i][inp.getAttribute('data-dim')] = isNaN(val) ? null : val;
+  });
+  qList.addEventListener('change', function (e) {
+    var inp = e.target.closest('.qchip__inp'); if (!inp) return;
+    var i = +inp.getAttribute('data-i'), dim = inp.getAttribute('data-dim');
+    var min = parseInt(inp.min, 10), max = parseInt(inp.max, 10);
+    var val = parseInt(inp.value, 10);
+    if (isNaN(val)) { inp.value = ''; if (cortinas[i]) cortinas[i][dim] = null; return; }
+    val = Math.min(max, Math.max(min, val));
+    inp.value = val; if (cortinas[i]) cortinas[i][dim] = val;
+  });
+  qList.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.closest('.qchip__inp')) { e.preventDefault(); e.target.blur(); }
+  });
+
+  var toTop = function () { quoterForm.scrollIntoView({ block: 'start', behavior: 'smooth' }); };
+  function goConfig() {
+    quoterForm.dataset.stage = 'config';
+    quoterForm.dataset.tela = '0';
+    widthEl.value = ''; heightEl.value = '';
+    document.querySelectorAll('input[name="fabric"]').forEach(function (r) { r.checked = false; });
+    toTop();
+  }
+  function enterContactStage() {
+    quoterForm.dataset.stage = 'contact';
+    var tip = document.getElementById('widthTip'); if (tip) tip.classList.remove('is-visible');
+    [qFmtReveal, qWaReveal, qSendReveal].forEach(function (r) {
+      if (!r.classList.contains('is-open')) { r.classList.add('is-open'); r.setAttribute('aria-hidden', 'false'); }
+    });
+  }
+  function settleContact() { toTop(); setTimeout(function () { try { qTel.focus({ preventScroll: true }); } catch (e) {} }, 420); }
+  function animateToContact() {
+    cortinas.push(readConfig()); renderList();
+    var flew = false, settled = false;
+    var finishUp = function () { if (settled) return; settled = true; settleContact(); };
+    try {
+      var sr = qNext.getBoundingClientRect();
+      if (typeof Element.prototype.animate === 'function') {
+        enterContactStage();
+        var chip = qList.querySelector('.qchip:last-child');
+        if (chip) {
+          var er = chip.getBoundingClientRect();
+          var dx = (sr.left + sr.width / 2) - (er.left + er.width / 2);
+          var dy = (sr.top + sr.height / 2) - (er.top + er.height / 2);
+          /* FLIP forzado siempre (regla de Agus: animaciones livianas/descriptivas corren
+             igual con reduced-motion). */
+          var anim = chip.animate([
+            { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(1.28)', opacity: 0, offset: 0 },
+            { opacity: 1, offset: 0.22 },
+            { transform: 'translate(0,0) scale(1.06)', opacity: 1, offset: 0.86 },
+            { transform: 'none', opacity: 1, offset: 1 }
+          ], { duration: 560, easing: 'cubic-bezier(.45,.05,.2,1)', fill: 'backwards' });
+          anim.onfinish = finishUp; anim.oncancel = finishUp;
+          setTimeout(finishUp, 950);
+          flew = true;
+        }
+      }
+    } catch (e) { flew = false; }
+    if (!flew) { enterContactStage(); finishUp(); }
+  }
+
+  var sfW = document.getElementById('sfW'), sfH = document.getElementById('sfH');
+  var qMedErr = document.getElementById('qMedErr');
+  var validarMedidas = function () {
+    var w = parseFloat(widthEl.value), h = parseFloat(heightEl.value);
+    var wOk = w >= 45 && w <= 600, hOk = h >= 40 && h <= 500;
+    sfW.classList.remove('is-error'); sfH.classList.remove('is-error');
+    void sfW.offsetWidth;
+    if (!wOk) sfW.classList.add('is-error');
+    if (!hOk) sfH.classList.add('is-error');
+    if (qMedErr) qMedErr.hidden = true;
+    if (wOk && hOk) return true;
+    (!wOk ? widthEl : heightEl).focus();
+    return false;
+  };
+  [widthEl, heightEl].forEach(function (el) {
+    el.addEventListener('input', function () {
+      el.closest('.size-field').classList.remove('is-error');
+      if (qMedErr) qMedErr.hidden = true;
+    });
+  });
+  qNext.addEventListener('click', function () { if (!validarMedidas()) return; animateToContact(); });
+  qAdd.addEventListener('click', goConfig);
+
+  document.querySelectorAll('.stepper__btn').forEach(function (btn) {
+    var LIM = { width: [45, 600], height: [40, 500] };
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      var lim = LIM[btn.getAttribute('data-target')];
+      var cur = parseFloat(el.value);
+      if (isNaN(cur)) cur = parseFloat(el.placeholder); else cur += parseFloat(btn.getAttribute('data-step'));
+      el.value = Math.max(lim[0], Math.min(lim[1], cur));
+      el.closest('.size-field').classList.remove('is-error');
+    });
+  });
+
+  var telOk = function () { return qTel.value.replace(/\D/g, '').length >= 8; };
+  var ctaCentered = false;
+  var syncCta = function () {
+    var ok = telOk();
+    qSubmit.classList.toggle('is-ready', ok);
+    qWaField.classList.toggle('is-ok', ok);
+    if (ok) qError.hidden = true;
+    if (ok) {
+      qSendReveal.classList.add('is-open'); qSendReveal.setAttribute('aria-hidden', 'false');
+      if (!ctaCentered) { ctaCentered = true; setTimeout(function () { qSubmit.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 380); }
+    } else { ctaCentered = false; }
+  };
+  qTel.addEventListener('input', syncCta);
+
+  widthEl.setAttribute('enterkeyhint', 'next');
+  heightEl.setAttribute('enterkeyhint', 'next');
+  qTel.setAttribute('enterkeyhint', 'send');
+  widthEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); heightEl.focus(); } });
+  heightEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); qNext.click(); } });
+  qTel.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); if (telOk()) qSubmit.click(); } });
+
+  var keepAboveKb = function (el) {
+    try {
+      if (!el) return;
+      var vv = window.visualViewport;
+      if (!vv) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+      var target = vv.offsetTop + vv.height * 0.30;
+      var delta = el.getBoundingClientRect().top - target;
+      if (Math.abs(delta) > 24) window.scrollBy({ top: delta, behavior: 'smooth' });
+    } catch (e) {}
+  };
+  var wireKb = function (input) {
+    if (!input) return;
+    input.addEventListener('focus', function () {
+      if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { keepAboveKb(input); }, { once: true });
+      setTimeout(function () { keepAboveKb(input); }, 380);
+    });
+  };
+  wireKb(qTel);
+  wireKb(qNombre);
+
+  var leadSent = false;
+  quoterForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!telOk()) {
+      qTel.focus();
+      qWaField.classList.remove('shake'); void qWaField.offsetWidth; qWaField.classList.add('shake');
+      qError.textContent = 'Dejanos tu WhatsApp y te enviamos la cotización.';
+      qError.hidden = false;
+      return;
+    }
+    if (leadSent) return;
+    if (!cortinas.length) cortinas.push(readConfig());
+    qError.hidden = true;
+    var main = cortinas[0];
+    var tieneMed = !!(main.w && main.h);
+    var payload = {
+      telefono: qTel.value.trim(),
+      tela_id: TELA_ID[main.fab],
+      formato: formato,
+      productos: cortinas.map(function (c) { return { tela_id: TELA_ID[c.fab], ancho_cm: c.w, alto_cm: c.h }; }),
+      detalle: cortinas.map(function (c, i) { return (i + 1) + ') ' + TELA_LABEL[c.fab] + ' ' + medStr(c); }).join(' | '),
+      origen: 'landing-promo:' + variantKey + (cortinas.length > 1 ? '-multi' : '') + (tieneMed ? '' : '-medida-a-confirmar')
+    };
+    if (main.w) payload.ancho_cm = main.w;
+    if (main.h) payload.alto_cm = main.h;
+    fetch('https://www.rollershow.com.ar/api/v2/cotizar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), keepalive: true }).catch(function () {});
+    leadSent = true;
+    qSendReveal.classList.remove('is-open'); qSendReveal.setAttribute('aria-hidden', 'true');
+    qNombreReveal.classList.add('is-open'); qNombreReveal.setAttribute('aria-hidden', 'false');
+    if (typeof Element.prototype.animate === 'function') {
+      try {
+        var inner = qNombreReveal.querySelector('.qreveal__inner') || qNombreReveal;
+        inner.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 440, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' });
+      } catch (e) {}
+    }
+    setTimeout(function () { try { qNombre.focus({ preventScroll: true }); } catch (e) {} qNombre.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 200);
+  });
+
+  var qEmail = document.getElementById('qEmail');
+  var qEmailReveal = quoterForm.querySelector('[data-reveal="email"]');
+  var qEmailDone = document.getElementById('qEmailDone');
+  var irAGracias = function () {
+    var nombre = qNombre.value.trim();
+    window.location.href = GRACIAS + (nombre ? '?n=' + encodeURIComponent(nombre) : '');
+  };
+  if (qNameDone) qNameDone.addEventListener('click', function () {
+    qNombreReveal.classList.remove('is-open'); qNombreReveal.setAttribute('aria-hidden', 'true');
+    qEmailReveal.classList.add('is-open'); qEmailReveal.setAttribute('aria-hidden', 'false');
+    if (typeof Element.prototype.animate === 'function') {
+      try {
+        var inner = qEmailReveal.querySelector('.qreveal__inner') || qEmailReveal;
+        inner.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 440, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' });
+      } catch (e) {}
+    }
+    setTimeout(function () { try { qEmail.focus({ preventScroll: true }); } catch (e) {} qEmail.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 200);
+  });
+  if (qEmailDone) qEmailDone.addEventListener('click', irAGracias);
+  if (qNombre) {
+    qNombre.setAttribute('enterkeyhint', 'next');
+    qNombre.addEventListener('keydown', function (e) { if (e.key === 'Enter' && qNameDone) { e.preventDefault(); qNameDone.click(); } });
+  }
+  if (qEmail) {
+    wireKb(qEmail);
+    qEmail.setAttribute('enterkeyhint', 'done');
+    qEmail.addEventListener('keydown', function (e) { if (e.key === 'Enter' && qEmailDone) { e.preventDefault(); qEmailDone.click(); } });
+  }
+
+  /* Sticky CTA + botón final: llevan al cotizador (no hay más un link directo a WA). */
+  var quoter = document.getElementById('cotizador');
+  var sticky = document.getElementById('stickyCta');
+  var ctaVisible = true, finalVisible = false;
+  var actualizarSticky = function () {
+    var mostrar = !ctaVisible && !finalVisible;
+    sticky.classList.toggle('is-visible', mostrar);
+    sticky.setAttribute('aria-hidden', String(!mostrar));
+  };
+  new IntersectionObserver(function (entries) { ctaVisible = entries[0].isIntersecting; actualizarSticky(); }, { threshold: 0.3 }).observe(qNext);
+  new IntersectionObserver(function (entries) { finalVisible = entries[0].isIntersecting; actualizarSticky(); }, { threshold: 0.1 }).observe(document.querySelector('.js-scroll-quoter'));
+  var irAlCotizador = function () {
+    quoter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function () {
+      if (quoterForm.dataset.stage === 'contact') { try { qTel.focus({ preventScroll: true }); } catch (e) {} }
+      else if (!widthEl.value) widthEl.focus({ preventScroll: true });
+      else if (!heightEl.value) heightEl.focus({ preventScroll: true });
+    }, 350);
+  };
+  document.getElementById('stickyBtn').addEventListener('click', irAlCotizador);
+  document.querySelector('.js-scroll-quoter').addEventListener('click', irAlCotizador);
+})();
+</script>   </body></html>
