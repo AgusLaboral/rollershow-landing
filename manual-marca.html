@@ -465,6 +465,26 @@ a { color: inherit; }
         <li><span class="num">01.2.2</span>Tamaño mínimo digital: <b>96px</b> de ancho para el lockup completo. Por debajo de eso, usar solo el isotipo circular (sin el wordmark), mínimo <b>24px</b>.</li>
         <li><span class="num">01.2.3</span>Tamaño mínimo impreso: <b>25mm</b> de ancho para el lockup completo.</li>
       </ul>
+      <div class="stage" style="margin-top:1.6rem;">
+        <div class="stage__row" style="align-items:flex-end; gap:2.5rem;">
+          <div>
+            <div style="display:inline-block; background:repeating-linear-gradient(45deg, rgba(198,58,33,.14) 0 6px, transparent 6px 12px); padding:22px;">
+              <div style="background:var(--bg-elev); padding:10px 14px;"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Zona de seguridad del logotipo" style="height:22px; display:block;" /></div>
+            </div>
+            <p class="num" style="font-size:.68rem; font-weight:700; color:var(--fg-soft); margin-top:.4rem;">zona rayada = despeje mínimo (un anillo)</p>
+          </div>
+          <div>
+            <img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo al ancho mínimo digital" style="width:96px; display:block;" />
+            <div style="width:96px; display:flex; align-items:center; margin-top:.35rem;">
+              <span style="width:1px; height:8px; background:var(--fg-mute);"></span>
+              <span style="flex:1; border-top:1px solid var(--fg-mute);"></span>
+              <span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-soft); padding:0 .4rem;">96px mín.</span>
+              <span style="flex:1; border-top:1px solid var(--fg-mute);"></span>
+              <span style="width:1px; height:8px; background:var(--fg-mute);"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="spec">
@@ -749,6 +769,22 @@ a { color: inherit; }
         </div>
       </div>
     </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">03.6</span>Jerarquía en composición</h2></div>
+      <p class="spec__note">La escala completa trabajando junta. Tres niveles alcanzan; una composición con más de tres tamaños de texto está mal armada.</p>
+      <div class="stage">
+        <div style="max-width:480px;">
+          <p style="font-family:var(--font-display); font-weight:800; font-size:clamp(1.7rem,5vw,2.4rem); line-height:1.05; letter-spacing:-0.02em;">La cortina exacta para tu ventana.</p>
+          <p style="color:var(--fg-soft); margin-top:.8rem;">Medís una sola vez, con nuestra guía, y fabricamos a medida. Instalación incluida y hasta 3 años de garantía.</p>
+          <p style="margin-top:1rem;"><a class="btn btn--teja" href="#" onclick="return false"><span>Recibir mi cotización</span></a></p>
+        </div>
+      </div>
+      <ul class="clauses" style="margin-top:1.4rem">
+        <li><span class="num">03.6.1</span>Titular display en Tinta, texto de apoyo en gris cálido, acción en Rojo Teja: la jerarquía la hacen el tamaño y el color juntos, sin elementos extra.</li>
+        <li><span class="num">03.6.2</span>El texto de apoyo nunca supera las tres líneas en mobile. Si necesita más, el titular está mal elegido.</li>
+      </ul>
+    </section>
   </div>
   </section>
 
@@ -852,6 +888,21 @@ a { color: inherit; }
           <div class="compare__stage"><a class="btn btn--teja" href="#" onclick="return false"><span>Cotizar</span></a></div>
           <p class="compare__why">Radio 6px (rol botón) y sombra tintada al color real del componente. Reglas 04.2 y 04.3.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.9</span>Escala de espaciado</h2></div>
+      <p class="spec__note">Todo espaciado es múltiplo de 4px y sale de esta escala. Para marcar jerarquía entre dos distancias, saltar al menos un paso (de 16 a 32, no de 16 a 24): los saltos chicos no se perciben y ensucian el ritmo.</p>
+      <div style="border-top:1px solid var(--border);">
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">4px</span><span style="width:4px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">entre ícono y palabra</span></div>
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">8px</span><span style="width:8px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">entre elementos de un mismo grupo</span></div>
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">12px</span><span style="width:12px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">padding interno chico</span></div>
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">16px</span><span style="width:16px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">entre grupos relacionados</span></div>
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">24px</span><span style="width:24px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">canaleta de grilla, padding de card</span></div>
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">32px</span><span style="width:32px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">entre bloques de una sección</span></div>
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">48px</span><span style="width:48px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">aire alrededor de la acción primaria</span></div>
+        <div style="display:flex; align-items:center; gap:1rem; padding-block:.45rem; border-bottom:1px solid var(--border);"><span class="num" style="width:3.2rem; font-size:.78rem; font-weight:700; color:var(--fg-soft); text-align:right;">64px</span><span style="width:64px; height:14px; background:var(--cta); flex-shrink:0;"></span><span style="font-size:.82rem; color:var(--fg-soft);">entre secciones (mínimo)</span></div>
       </div>
     </section>
   </div>
@@ -1052,6 +1103,34 @@ a { color: inherit; }
         </div>
       </div>
     </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">06.7</span>Anatomía y estados del botón</h2></div>
+      <p class="spec__note">Las medidas internas del botón, cotadas, y sus cinco estados. Cada estado cambia una sola cosa a la vez.</p>
+      <div class="stage">
+        <div class="stage__row" style="align-items:flex-start; gap:2.5rem;">
+          <div>
+            <div style="display:inline-block; position:relative; background:var(--cta); border-radius:6px;">
+              <div style="border:1px dashed rgba(255,255,255,.55); margin:14px 22px; padding:.1rem .2rem; color:#fff; font-weight:600; font-size:.94rem;">Recibir mi cotización</div>
+            </div>
+            <div style="display:flex; gap:1.6rem; margin-top:.45rem;">
+              <span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-soft);">vertical 14px</span>
+              <span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-soft);">horizontal 22px</span>
+              <span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-soft);">radio 6px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage__row">
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.45rem;"><span class="btn" style="background:var(--cta); color:#fff; animation:none;">Reposo</span><span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-mute);">#C63A21</span></span>
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.45rem;"><span class="btn" style="background:var(--cta-deep); color:#fff; transform:translateY(-1px); box-shadow:0 8px 22px -6px rgba(151,41,15,.45); animation:none;">Hover</span><span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-mute);">#97290F + sombra</span></span>
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.45rem;"><span class="btn" style="background:var(--cta-deep); color:#fff; transform:translateY(1px); animation:none;">Presionado</span><span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-mute);">baja 1px</span></span>
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.45rem;"><span class="btn" style="background:var(--cta); color:#fff; outline:2px solid var(--accent); outline-offset:3px; animation:none;">Foco</span><span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-mute);">anillo terracota</span></span>
+          <span style="display:inline-flex; flex-direction:column; align-items:center; gap:.45rem;"><span class="btn" style="background:var(--cta); color:#fff; opacity:.4; cursor:not-allowed; animation:none;">Deshabilitado</span><span class="num" style="font-size:.66rem; font-weight:700; color:var(--fg-mute);">opacidad 40%</span></span>
+        </div>
+      </div>
+    </section>
   </div>
   </section>
 
@@ -1118,6 +1197,31 @@ a { color: inherit; }
         <li><span class="num">07.5.1</span>Logotipo versión Tinta arriba a la izquierda, margen 20mm.</li>
         <li><span class="num">07.5.2</span>Pie de página con los dos locales: Villa Carlos Paz y Capital Federal (nunca "Córdoba Capital", no hay local ahí).</li>
         <li><span class="num">07.5.3</span>Tipografía exclusiva Manrope en el cuerpo, Bricolage solo en el nombre "RollerShow" del encabezado.</li>
+      </ul>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">07.6</span>Tarjeta personal</h2></div>
+      <p class="spec__note">Formato 85 × 54mm, papel mate de 300g, sangrado de 3mm (04.7). El frente identifica a la persona; el dorso es pura marca.</p>
+      <div class="stage">
+        <div class="stage__row" style="align-items:flex-start;">
+          <div style="width:255px; aspect-ratio:85/54; background:var(--bg-elev); border:1px solid var(--border-strong); padding:1rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" style="height:13px; align-self:flex-start;" />
+            <div style="border-top:1px solid var(--border); padding-top:.55rem;">
+              <p style="font-family:var(--font-display); font-weight:800; font-size:.95rem;">Nombre Apellido</p>
+              <p style="font-size:.68rem; color:var(--fg-mute);">Asesoramiento en cortinas a medida</p>
+              <p class="num" style="font-size:.68rem; color:var(--fg-soft); margin-top:.3rem;">+54 9 000 000 0000</p>
+            </div>
+          </div>
+          <div style="width:255px; aspect-ratio:85/54; background:var(--cta); position:relative; border:1px solid var(--border-strong); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+            <div style="position:absolute; inset:0; opacity:.28; mix-blend-mode:soft-light; background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n3)'/%3E%3C/svg%3E&quot;);"></div>
+            <img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" style="height:18px; filter:brightness(0) invert(1); position:relative;" />
+          </div>
+        </div>
+      </div>
+      <ul class="clauses" style="margin-top:1.4rem">
+        <li><span class="num">07.6.1</span>Frente sobre blanco: logo chico arriba, nombre en display abajo, datos en Manrope. Un solo teléfono, sin listado de redes.</li>
+        <li><span class="num">07.6.2</span>Dorso en Rojo Teja pleno con grano de tela (10.3) y el logo blanco centrado. Nada más.</li>
       </ul>
     </section>
   </div>
@@ -1193,6 +1297,23 @@ a { color: inherit; }
         <li><span class="num">08.4.2</span>Máximo 5 hashtags, todos relacionados al producto o la zona (#CortinasRoller #VillaCarlosPaz), nunca hashtags genéricos de engagement (#instagood #like4like).</li>
         <li><span class="num">08.4.3</span>Nunca emojis reemplazando palabras clave del mensaje, se usan como puntuación, no como sustituto del texto.</li>
       </ul>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">08.5</span>Plantilla de post 1 : 1</h2></div>
+      <p class="spec__note">La estructura fija del post de feed: foto de ambiente a sangre, Penumbra desde abajo, titular display en blanco y el logo siempre en la esquina inferior derecha, al 10% del ancho del cuadro.</p>
+      <div class="stage">
+        <div class="stage__row" style="align-items:flex-start;">
+          <div style="width:280px; aspect-ratio:1/1; position:relative; background:linear-gradient(160deg,#E8D2B0,#C9A876); border:1px solid var(--border-strong); overflow:hidden;">
+            <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(28,24,22,.78), transparent 55%);"></div>
+            <div style="position:absolute; left:1rem; right:1rem; bottom:.9rem; display:flex; align-items:flex-end; justify-content:space-between; gap:1rem;">
+              <span style="color:#fff; font-family:var(--font-display); font-weight:800; font-size:1.15rem; line-height:1.05; max-width:11ch;">La luz justa para dormir mejor.</span>
+              <img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" style="width:28px; filter:brightness(0) invert(1); flex-shrink:0; margin-bottom:.2rem;" />
+            </div>
+          </div>
+          <span class="stage__hint">El titular vive abajo a la izquierda sobre la Penumbra, máximo dos líneas. El logo no cambia de esquina entre posts: la repetición de posición es lo que construye reconocimiento en el feed.</span>
+        </div>
+      </div>
     </section>
   </div>
   </section>
@@ -1498,6 +1619,10 @@ a { color: inherit; }
   "motion": { "durationFast": "180ms", "duration": "280ms", "easing": "cubic-bezier(0.22,1,0.36,1)", "reducedMotionException": "animaciones de marca (barrido, brasa, anillos del logo) corren siempre" },
   "breakpoints": { "xs": "420px", "sm": "480px", "md": "720px", "lg": "980px" },
   "maxims": ["mobile primero (disenar a 375px)", "estructural antes que estetico", "una sola accion primaria por pantalla, maximo contraste", "cada elemento es parte de algo, nada flotando", "la percepcion de calidad vende", "la solucion mas simple gana", "nada terminado hasta verlo en vivo en un telefono"],
+  "spacingScale": [4, 8, 12, 16, 24, 32, 48, 64],
+  "buttonSpec": { "padding": "14px 22px", "radius": "6px", "states": { "hover": "#97290F + sombra tintada, sube 1px", "pressed": "baja 1px", "focus": "outline 2px terracota offset 3px", "disabled": "opacidad 40%" } },
+  "businessCard": { "size": "85x54mm", "paper": "mate 300g", "bleed": "3mm", "front": "blanco, logo tinta, nombre display", "back": "rojo teja pleno + grano, logo blanco centrado" },
+  "socialPost": { "ratio": "1:1", "structure": "foto a sangre + penumbra + titular blanco abajo-izquierda (max 2 lineas) + logo blanco esquina inferior derecha al 10% del ancho" },
   "contrast": { "tinta/crema": 16.5, "grisCalido/crema": 9.4, "tinta/arena": 14.9, "blanco/rojoTeja": 5.2, "blanco/rojoProfundo": 8.0, "topo/crema": "3.9 solo microcopy", "blanco/terracota": "4.2 solo texto grande", "blanco/whatsapp": "2.0 fuera de norma, solo el boton del canal" },
   "iconography": { "style": "linea 1.5px, terminaciones redondeadas, monocolor, reticula 24px", "sizes": [20, 24, 32], "rules": ["nunca emoji como icono", "nunca icono sin palabra", "nunca icono decorativo sobre titulos"] },
   "backgrounds": { "amanecer-de-lino": "linear-gradient(180deg,#FFFFFF,#FAF7F2 55%,#F1EBE0)", "brasa": "linear-gradient(135deg,#D2451E,#97290F) + grano de tela", "penumbra-scrim": "linear-gradient(0deg,rgba(28,24,22,.78),transparent 65%)" },
