@@ -1641,6 +1641,23 @@ code { overflow-wrap: anywhere; }
         <div class="verdict__row verdict--no"><b>No</b><p>Radio de botón en 999px (píldora) para una acción. <em>El radio de acción es siempre 6px, ver 06.1.</em></p></div>
       </div>
     </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.9</span>Control final antes de publicar</h2></div>
+      <p class="spec__note">Los diez barridos que se corren sobre toda pieza terminada, en este orden. Si uno falla, se corrige y se vuelve a empezar desde ese punto. Nada sale sin pasar los diez.</p>
+      <ul class="clauses">
+        <li><span class="num">10.9.1</span><b>Una sola acción primaria</b>, y es el elemento de mayor contraste de la pieza (00.4.3). Todo lo secundario bajó el volumen.</li>
+        <li><span class="num">10.9.2</span><b>Barrido de caracteres</b>: ni un middot, em-dash, estrella, check o flecha decorativa en texto visible (05.3).</li>
+        <li><span class="num">10.9.3</span><b>Barrido de tells</b>: sin eyebrows, cajas dentro de cajas, pills de acción, dots de color ni contadores de urgencia (10.8, la lista completa).</li>
+        <li><span class="num">10.9.4</span><b>Todos los valores salen de las escalas</b>: colores del capítulo 2, radios de 04.2, espaciados de 04.9. Un valor inventado es un error aunque se vea bien.</li>
+        <li><span class="num">10.9.5</span><b>Contraste medido</b>, no estimado, para cualquier combinación de texto sobre color que no esté en 02.7.</li>
+        <li><span class="num">10.9.6</span><b>El CTA sale de la biblioteca</b> (05.6) o se redactó con la fórmula verbo + beneficio y se sumó a ella.</li>
+        <li><span class="num">10.9.7</span><b>Números, precios y medidas</b> en los formatos fijos de 05.7.</li>
+        <li><span class="num">10.9.8</span><b>Logo correcto para el fondo</b> (10.6) con su zona de seguridad respetada (01.2).</li>
+        <li><span class="num">10.9.9</span><b>Mobile primero, medido</b>: sin desborde horizontal a 375px reales, y el layout revisado ahí antes que en desktop (00.4.1).</li>
+        <li><span class="num">10.9.10</span><b>Visto publicado, desde un teléfono</b>, antes de reportarlo terminado (00.4.7). "Debería verse bien" no es un estado.</li>
+      </ul>
+    </section>
   </div>
   </section>
 
@@ -1708,6 +1725,7 @@ code { overflow-wrap: anywhere; }
   },
   "motion": { "durationFast": "180ms", "duration": "280ms", "easing": "cubic-bezier(0.22,1,0.36,1)", "reducedMotionException": "animaciones de marca (barrido, brasa, anillos del logo) corren siempre" },
   "breakpoints": { "xs": "420px", "sm": "480px", "md": "720px", "lg": "980px" },
+  "preflight": ["una sola accion primaria con maximo contraste", "barrido de caracteres prohibidos", "barrido de tells de plantilla", "todos los valores salen de las escalas", "contraste medido no estimado", "CTA de la biblioteca o formula verbo+beneficio", "numeros y precios en formato fijo", "logo correcto para el fondo + zona de seguridad", "sin overflow a 375px reales", "visto publicado desde un telefono antes de reportar"],
   "maxims": ["mobile primero (disenar a 375px)", "estructural antes que estetico", "una sola accion primaria por pantalla, maximo contraste", "cada elemento es parte de algo, nada flotando", "la percepcion de calidad vende", "la solucion mas simple gana", "nada terminado hasta verlo en vivo en un telefono"],
   "writing": { "price": "$ 143.200 (espacio tras $, punto de miles, sin decimales)", "measure": "120 × 180 cm (signo ×, espacio antes de unidad)", "dateInCopy": "hasta el 30 de junio", "dateInDocs": "21/07/2026", "phone": "+54 9 351 000 0000", "warranty": "hasta 3 años de garantía" },
   "formField": { "radius": "8px", "border": "1.5px #E4DCCE", "focus": "borde terracota + anillo rgba(184,102,44,.14)", "error": "borde y mensaje #97290F, nunca rojo teja", "success": "confirmacion textual en tinta, sin verde" },
