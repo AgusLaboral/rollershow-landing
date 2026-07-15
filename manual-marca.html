@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#FAF7F2" />
 <meta name="robots" content="noindex" />
-<title>Manual de Marca — RollerShow</title>
+<title>Manual de Marca de RollerShow</title>
 
 <link rel="icon" type="image/svg+xml" href="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,7 +31,7 @@
   --whatsapp: #25D366;
   --whatsapp-deep: #1FAD53;
 
-  /* Rojo Teja — color de acción, confirmado en producción (rollershow-reviews) */
+  /* Rojo Teja, color de acción, confirmado en producción (rollershow-reviews) */
   --cta: #C63A21;
   --cta-glow: #D2451E;
   --cta-deep: #97290F;
@@ -120,7 +120,7 @@ a { color: inherit; }
 .spec__note { color: var(--fg-soft); max-width: 62ch; margin-bottom: clamp(1.3rem, 3.5vw, 1.8rem); }
 .spec__note + .spec__note { margin-top: -1rem; }
 
-/* Cláusulas numeradas (reemplazo de bullets) — sangría colgante, NUNCA grid/flex:
+/* Cláusulas numeradas (reemplazo de bullets): sangría colgante, NUNCA grid/flex:
    el contenido mezcla <b>/<code>/<a> con texto plano, y un grid de columnas fijas
    convierte cada fragmento inline en un ítem aparte, rompiendo el renglón. */
 .clauses { border-top: 1px solid var(--border); }
@@ -364,7 +364,7 @@ a { color: inherit; }
     <h1 class="cover__title">El manual de marca de RollerShow.</h1>
     <p class="cover__eyebrow-free">
       Doce capítulos que fijan cómo se ve, se lee y se comporta la marca en cualquier pieza:
-      web, WhatsApp, papelería, redes y fotografía. Cada regla trae su valor exacto — nada
+      web, WhatsApp, papelería, redes y fotografía. Cada regla trae su valor exacto. Nada
       queda librado a "más o menos así".
     </p>
     <div class="cover__meta">
@@ -393,20 +393,34 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">00.1</span>Convenciones del documento</h2></div>
       <ul class="clauses">
-        <li><span class="num">00.1.1</span><b>Numeración de cláusula</b> — capítulo.sección.regla (ej. <code>02.2.3</code>). Cada regla es atómica: se puede citar sola sin ambigüedad.</li>
-        <li><span class="num">00.1.2</span><b>Todo valor entre paréntesis o en monoespaciada</b> es literal — un hex, un px, un rem, un nombre de variable CSS. Copiar tal cual, no aproximar.</li>
-        <li><span class="num">00.1.3</span><b>"Confirmado" vs "propuesto"</b> — cuando una regla ya está en producción se dice explícitamente en qué proyecto y archivo. Lo que todavía no se implementó dice "propuesto" y no se debe tratar como si ya rigiera en todas partes.</li>
-        <li><span class="num">00.1.4</span><b>Cero decoración sin función</b> — este documento aplica sus propias reglas sobre sí mismo: sin badges, sin cajas anidadas, sin bullets, sin íconos decorativos. Si algo en este PDF se ve como plantilla genérica, es un error del documento, repórtalo.</li>
+        <li><span class="num">00.1.1</span><b>Numeración de cláusula</b>: capítulo.sección.regla (ej. <code>02.2.3</code>). Cada regla es atómica: se puede citar sola sin ambigüedad.</li>
+        <li><span class="num">00.1.2</span><b>Todo valor entre paréntesis o en monoespaciada</b> es literal, un hex, un px, un rem, un nombre de variable CSS. Copiar tal cual, no aproximar.</li>
+        <li><span class="num">00.1.3</span><b>"Confirmado" vs "propuesto"</b>: cuando una regla ya está en producción se dice explícitamente en qué proyecto y archivo. Lo que todavía no se implementó dice "propuesto" y no se debe tratar como si ya rigiera en todas partes.</li>
+        <li><span class="num">00.1.4</span><b>Cero decoración sin función</b>: este documento aplica sus propias reglas sobre sí mismo: sin badges, sin cajas anidadas, sin bullets, sin íconos decorativos. Si algo en este PDF se ve como plantilla genérica, es un error del documento, repórtalo.</li>
       </ul>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">00.2</span>El capítulo 12 no hace falta leerlo</h2></div>
-      <p class="spec__note">El último capítulo repite todos los números de este manual pegados en un formato para que una IA los lea directo, sin tener que interpretar el texto — como pasarle al asistente "los datos ya digeridos" en vez de que los adivine. Es para cuando en el futuro alguien le pida a un agente que arme una pieza nueva de RollerShow: el agente lee ese bloque y usa los valores exactos, sin inventar nada. Vos no necesitás abrirlo ni entenderlo — está colapsado por default, es solo por las dudas.</p>
+      <p class="spec__note">El último capítulo repite todos los números de este manual pegados en un formato para que una IA los lea directo, sin tener que interpretar el texto, como pasarle al asistente "los datos ya digeridos" en vez de que los adivine. Es para cuando en el futuro alguien le pida a un agente que arme una pieza nueva de RollerShow: el agente lee ese bloque y usa los valores exactos, sin inventar nada. Vos no necesitás abrirlo ni entenderlo, está colapsado por default, es solo por las dudas.</p>
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">00.3</span>Índice</h2></div>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">00.3</span>Las máximas</h2></div>
+      <p class="spec__note">Antes que cualquier regla puntual, estos son los principios que deciden los empates. Si una pieza cumple todas las cláusulas del manual pero rompe una máxima, la máxima gana.</p>
+      <ul class="clauses">
+        <li><span class="num">00.3.1</span><b>Mobile primero.</b> Más del 90% del tráfico real es desde el teléfono. Toda pieza se diseña y se revisa primero a 375px de ancho; el desktop es la adaptación, no al revés.</li>
+        <li><span class="num">00.3.2</span><b>Primero lo estructural, después lo estético.</b> La jerarquía, el orden de lectura y la acción se resuelven antes de tocar colores o efectos. Pulir una estructura equivocada es tirar el trabajo.</li>
+        <li><span class="num">00.3.3</span><b>Una sola acción primaria por pantalla.</b> El elemento de mayor contraste tiene que ser lo que el negocio necesita que el cliente haga. Todo lo demás baja el volumen.</li>
+        <li><span class="num">00.3.4</span><b>Cada elemento es parte de algo.</b> Nada de texto flotando sin contenedor ni legibilidad que dependa de un fondo variable. El contenido se integra a una composición, no se apila en cajas.</li>
+        <li><span class="num">00.3.5</span><b>La percepción de calidad es lo que vende.</b> El diferencial de RollerShow es calidad más asesoramiento humano. Una pieza que parece plantilla genérica destruye ese diferencial aunque "funcione".</li>
+        <li><span class="num">00.3.6</span><b>La solución más simple que funciona, gana.</b> Ante dos formas de resolver una pieza, la de menos elementos, menos efectos y menos texto. Se agrega solo lo que aporta a la decisión del cliente.</li>
+        <li><span class="num">00.3.7</span><b>Nada está terminado hasta verlo en vivo.</b> Toda pieza se revisa publicada y desde un teléfono real antes de darse por lista. "Debería verse bien" no es un estado.</li>
+      </ul>
+    </section>
+
+    <section class="spec">
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">00.4</span>Índice</h2></div>
       <nav class="toc">
         <a href="#cap-01"><span class="toc__num num">01</span>Marca<em>logotipo, usos, zona de seguridad</em></a>
         <a href="#cap-02"><span class="toc__num num">02</span>Color<em>paleta, Rojo Teja, proporciones</em></a>
@@ -445,9 +459,9 @@ a { color: inherit; }
         <img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow" style="height:44px; width:auto;" />
       </div>
       <div class="rows">
-        <div class="rows__item"><span class="rows__key">Archivo maestro</span><span class="rows__val"><code>img/logo.svg</code> — viewBox <code>0 0 600 52</code> (relación 11.5 : 1)</span></div>
+        <div class="rows__item"><span class="rows__key">Archivo maestro</span><span class="rows__val"><code>img/logo.svg</code>: viewBox <code>0 0 600 52</code> (relación 11.5 : 1)</span></div>
         <div class="rows__item"><span class="rows__key">Ícono / favicon</span><span class="rows__val"><code>https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg</code></span></div>
-        <div class="rows__item"><span class="rows__key">Animación</span><span class="rows__val">Los dos anillos del isotipo rotan 360° en 10s, <code>linear</code>, en loop continuo. Siempre activa en digital — no es un hover, es el estado de reposo del logo.</span></div>
+        <div class="rows__item"><span class="rows__key">Animación</span><span class="rows__val">Los dos anillos del isotipo rotan 360° en 10s, <code>linear</code>, en loop continuo. Siempre activa en digital, no es un hover, es el estado de reposo del logo.</span></div>
         <div class="rows__item"><span class="rows__key">En impreso</span><span class="rows__val">Fotograma inicial (0°), estático.</span></div>
       </div>
     </section>
@@ -465,17 +479,17 @@ a { color: inherit; }
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">01.3</span>Color del logotipo</h2></div>
       <p class="spec__note">Solo existen dos versiones. Nunca una tercera.</p>
       <div class="stage">
-        <span class="tag stage__label">Versión Tinta — sobre fondos claros</span>
+        <span class="tag stage__label">Versión Tinta, sobre fondos claros</span>
         <div class="stage__row"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow, versión tinta" style="height:36px;" /></div>
       </div>
       <div class="stage" style="background:var(--cta)">
-        <span class="tag stage__label" style="color:rgba(255,255,255,.75)">Versión Blanco — sobre Rojo Teja o foto oscura</span>
+        <span class="tag stage__label" style="color:rgba(255,255,255,.75)">Versión Blanco, sobre Rojo Teja o foto oscura</span>
         <div class="stage__row"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow, versión blanca" style="height:36px; filter:brightness(0) invert(1);" /></div>
       </div>
       <ul class="clauses" style="margin-top:1.4rem">
         <li><span class="num">01.3.1</span>Sobre Crema, Arena o blanco puro: versión Tinta (<code>#1C1816</code>).</li>
         <li><span class="num">01.3.2</span>Sobre Rojo Teja o foto oscura con buen contraste: versión blanca (<code>#FFFFFF</code>).</li>
-        <li><span class="num">01.3.3</span>El logotipo nunca se rellena en Terracota ni en Rojo Teja. Esos colores son del sistema, no del logo — mezclarlos hace que el logo compita con el CTA.</li>
+        <li><span class="num">01.3.3</span>El logotipo nunca se rellena en Terracota ni en Rojo Teja. Esos colores son del sistema, no del logo, mezclarlos hace que el logo compita con el CTA.</li>
         <li><span class="num">01.3.4</span>Nunca degradé, nunca contorno/outline, nunca sombra paño, nunca low-opacity como watermark decorativo.</li>
       </ul>
     </section>
@@ -485,7 +499,7 @@ a { color: inherit; }
       <ul class="clauses">
         <li><span class="num">01.4.1</span>Sobre Arena (<code>#F1EBE0</code>) o Lino (<code>#E4DCCE</code>): el contraste con la versión Tinta cae por debajo del mínimo legible para el trazo fino del logo. Usar siempre sobre Crema o blanco puro.</li>
         <li><span class="num">01.4.2</span>Sobre foto sin overlay: nunca directo. Requiere una franja o degradé de contraste detrás (ver <a href="#cap-11">cap. 11</a>).</li>
-        <li><span class="num">01.4.3</span>Nunca reconstruir el logo tipeando "ROLLERSHOW" en Bricolage Grotesque — el trazo del logo es un dibujo propio, no la fuente de marca.</li>
+        <li><span class="num">01.4.3</span>Nunca reconstruir el logo tipeando "ROLLERSHOW" en Bricolage Grotesque, el trazo del logo es un dibujo propio, no la fuente de marca.</li>
       </ul>
     </section>
 
@@ -495,7 +509,7 @@ a { color: inherit; }
         <div class="compare--no">
           <span class="compare__tag">Así no</span>
           <div class="compare__stage"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logo estirado, ejemplo de mal uso" style="height:30px; transform:scaleX(1.7); transform-origin:left;" /></div>
-          <p class="compare__why">Estirado fuera de proporción, y a un ancho menor al mínimo de 96px. Cualquier deformación del lockup queda prohibida — se escala siempre con la proporción bloqueada.</p>
+          <p class="compare__why">Estirado fuera de proporción, y a un ancho menor al mínimo de 96px. Cualquier deformación del lockup queda prohibida, se escala siempre con la proporción bloqueada.</p>
         </div>
         <div class="compare--yes">
           <span class="compare__tag">Así sí</span>
@@ -526,20 +540,20 @@ a { color: inherit; }
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.1</span>Paleta base</h2></div>
       <p class="spec__note">Los neutros hacen el 90% del trabajo. El terracota queda como acento cálido de apoyo y cede el rol de acción al Rojo Teja.</p>
       <div class="palette">
-        <div class="prow"><div class="prow__band" style="background:#FAF7F2"></div><div class="prow__meta"><span class="prow__name">Crema</span><span class="prow__use">Fondo general — <code>--bg</code></span><span class="prow__hex">#FAF7F2</span></div></div>
-        <div class="prow"><div class="prow__band" style="background:#FFFFFF; border:1px solid var(--border)"></div><div class="prow__meta"><span class="prow__name">Blanco</span><span class="prow__use">Superficies elevadas — <code>--bg-elev</code></span><span class="prow__hex">#FFFFFF</span></div></div>
-        <div class="prow"><div class="prow__band" style="background:#F1EBE0"></div><div class="prow__meta"><span class="prow__name">Arena</span><span class="prow__use">Fondos alternos, bloques de apoyo — <code>--bg-muted</code></span><span class="prow__hex">#F1EBE0</span></div></div>
-        <div class="prow"><div class="prow__band" style="background:#E4DCCE"></div><div class="prow__meta"><span class="prow__name">Lino</span><span class="prow__use">Bordes y divisores — <code>--border</code></span><span class="prow__hex">#E4DCCE</span></div></div>
-        <div class="prow"><div class="prow__band" style="background:#87796D"></div><div class="prow__meta"><span class="prow__name">Topo</span><span class="prow__use">Texto secundario y notas — <code>--fg-mute</code></span><span class="prow__hex">#87796D</span></div></div>
-        <div class="prow"><div class="prow__band" style="background:#1C1816"></div><div class="prow__meta"><span class="prow__name">Tinta</span><span class="prow__use">Texto principal y titulares — <code>--fg</code></span><span class="prow__hex">#1C1816</span></div></div>
-        <div class="prow"><div class="prow__band" style="background:#B8662C"></div><div class="prow__meta"><span class="prow__name">Terracota</span><span class="prow__use">Acento de apoyo (focus rings, hover secundario) — <code>--accent</code>. Nunca acción.</span><span class="prow__hex">#B8662C</span></div></div>
-        <div class="prow"><div class="prow__band" style="background:#25D366"></div><div class="prow__meta"><span class="prow__name">WhatsApp</span><span class="prow__use">Exclusivo del canal WhatsApp — <code>--whatsapp</code>. No usar como acento decorativo fuera de ese contexto.</span><span class="prow__hex">#25D366</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#FAF7F2"></div><div class="prow__meta"><span class="prow__name">Crema</span><span class="prow__use">Fondo general, <code>--bg</code></span><span class="prow__hex">#FAF7F2</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#FFFFFF; border:1px solid var(--border)"></div><div class="prow__meta"><span class="prow__name">Blanco</span><span class="prow__use">Superficies elevadas, <code>--bg-elev</code></span><span class="prow__hex">#FFFFFF</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#F1EBE0"></div><div class="prow__meta"><span class="prow__name">Arena</span><span class="prow__use">Fondos alternos, bloques de apoyo, <code>--bg-muted</code></span><span class="prow__hex">#F1EBE0</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#E4DCCE"></div><div class="prow__meta"><span class="prow__name">Lino</span><span class="prow__use">Bordes y divisores, <code>--border</code></span><span class="prow__hex">#E4DCCE</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#87796D"></div><div class="prow__meta"><span class="prow__name">Topo</span><span class="prow__use">Texto secundario y notas, <code>--fg-mute</code></span><span class="prow__hex">#87796D</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#1C1816"></div><div class="prow__meta"><span class="prow__name">Tinta</span><span class="prow__use">Texto principal y titulares, <code>--fg</code></span><span class="prow__hex">#1C1816</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#B8662C"></div><div class="prow__meta"><span class="prow__name">Terracota</span><span class="prow__use">Acento de apoyo (focus rings, hover secundario): <code>--accent</code>. Nunca acción.</span><span class="prow__hex">#B8662C</span></div></div>
+        <div class="prow"><div class="prow__band" style="background:#25D366"></div><div class="prow__meta"><span class="prow__name">WhatsApp</span><span class="prow__use">Exclusivo del canal WhatsApp, <code>--whatsapp</code>. No usar como acento decorativo fuera de ese contexto.</span><span class="prow__hex">#25D366</span></div></div>
       </div>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">02.2</span>Rojo Teja, el color de acción</h2></div>
-      <p class="spec__note"><b>Confirmado en producción</b> — en uso real en <code>rollershow-reviews/index.html</code> (CTA principal, botón "brasa" animado). Migración pendiente en la landing principal (ver 06.7).</p>
+      <p class="spec__note"><b>Confirmado en producción</b>: en uso real en <code>rollershow-reviews/index.html</code> (CTA principal, botón "brasa" animado). Migración pendiente en la landing principal (ver 06.7).</p>
       <div class="teja">
         <div class="teja__name">Rojo Teja</div>
         <dl class="teja__specs">
@@ -578,7 +592,7 @@ a { color: inherit; }
         </div>
         <div>
           <div class="alt__field" style="background:#D2451E">#D2451E</div>
-          <div class="alt__meta"><div class="alt__name">Vermellón</div><p class="alt__desc">El más llamativo, casi naranja. No se usa solo — quedó como el tono Glow del degradé animado.</p><span class="alt__pick">Reincorporado como Glow</span></div>
+          <div class="alt__meta"><div class="alt__name">Vermellón</div><p class="alt__desc">El más llamativo, casi naranja. No se usa solo, quedó como el tono Glow del degradé animado.</p><span class="alt__pick">Reincorporado como Glow</span></div>
         </div>
       </div>
     </section>
@@ -660,9 +674,9 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">03.1</span>Las dos familias</h2></div>
       <div class="rows">
-        <div class="rows__item"><span class="rows__key">Display</span><span class="rows__val"><b style="font-family:var(--font-display); font-weight:800;">Bricolage Grotesque</b> — variable, ejes <code>opsz 12–96</code> y <code>wght 400–800</code>. Títulos, cifras grandes, momentos de marca. Google Fonts: <code>family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700;800</code>.</span></div>
-        <div class="rows__item"><span class="rows__key">Texto</span><span class="rows__val"><b style="font-family:var(--font-body);">Manrope</b> — <code>wght 400–700</code>. Todo párrafo, formulario, botón y microcopy. Google Fonts: <code>family=Manrope:wght@400;500;600;700</code>.</span></div>
-        <div class="rows__item"><span class="rows__key">Por qué estas dos</span><span class="rows__val">El eje óptico de Bricolage la hace ver dibujada a mano en títulos grandes y se cierra sola en tamaños chicos. Manrope es geométrica pero cálida — evita el efecto "identidad completa en Inter" que se lee frío y genérico.</span></div>
+        <div class="rows__item"><span class="rows__key">Display</span><span class="rows__val"><b style="font-family:var(--font-display); font-weight:800;">Bricolage Grotesque</b>: variable, ejes <code>opsz 12–96</code> y <code>wght 400–800</code>. Títulos, cifras grandes, momentos de marca. Google Fonts: <code>family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700;800</code>.</span></div>
+        <div class="rows__item"><span class="rows__key">Texto</span><span class="rows__val"><b style="font-family:var(--font-body);">Manrope</b>: <code>wght 400–700</code>. Todo párrafo, formulario, botón y microcopy. Google Fonts: <code>family=Manrope:wght@400;500;600;700</code>.</span></div>
+        <div class="rows__item"><span class="rows__key">Por qué estas dos</span><span class="rows__val">El eje óptico de Bricolage la hace ver dibujada a mano en títulos grandes y se cierra sola en tamaños chicos. Manrope es geométrica pero cálida, evita el efecto "identidad completa en Inter" que se lee frío y genérico.</span></div>
       </div>
     </section>
 
@@ -673,11 +687,11 @@ a { color: inherit; }
         <div class="type-row__sample" style="font-size:clamp(1.8rem,5vw,3rem)">Aa Rr Cortina</div>
       </div>
       <div class="type-row">
-        <div class="type-row__meta"><b>H2</b><span class="num">clamp(1.85, 3.8vw, 3rem) · -0.022em</span></div>
+        <div class="type-row__meta"><b>H2</b><span class="num">clamp(1.85, 3.8vw, 3rem), tracking -0.022em</span></div>
         <div class="type-row__sample" style="font-size:clamp(1.4rem,3.8vw,2rem); font-weight:700;">Aa Rr Cortina</div>
       </div>
       <div class="type-row">
-        <div class="type-row__meta"><b>H3</b><span class="num">clamp(1.3, 2.2vw, 1.65rem) · -0.018em</span></div>
+        <div class="type-row__meta"><b>H3</b><span class="num">clamp(1.3, 2.2vw, 1.65rem), tracking -0.018em</span></div>
         <div class="type-row__sample" style="font-size:clamp(1.15rem,2.2vw,1.4rem); font-weight:700;">Aa Rr Cortina</div>
       </div>
       <div class="type-row">
@@ -685,7 +699,7 @@ a { color: inherit; }
         <div class="type-row__sample -body">Cortinas roller a medida, con asesoramiento al instante y hasta 3 años de garantía.</div>
       </div>
       <div class="type-row">
-        <div class="type-row__meta"><b>Caption</b><span class="num">.8rem · +.1em</span></div>
+        <div class="type-row__meta"><b>Caption</b><span class="num">.8rem, tracking +.1em</span></div>
         <div class="type-row__sample -caption">Ficha técnica</div>
       </div>
     </section>
@@ -693,9 +707,9 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">03.3</span>Line-height y tracking</h2></div>
       <div class="rows">
-        <div class="rows__item"><span class="rows__key"><code>--lh-tight</code></span><span class="rows__val">1.05 — titulares de una o dos líneas, hero.</span></div>
-        <div class="rows__item"><span class="rows__key"><code>--lh-heading</code></span><span class="rows__val">1.2 — subtítulos y H3.</span></div>
-        <div class="rows__item"><span class="rows__key"><code>--lh-body</code></span><span class="rows__val">1.55 — párrafo corrido, siempre.</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--lh-tight</code></span><span class="rows__val">1.05, titulares de una o dos líneas, hero.</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--lh-heading</code></span><span class="rows__val">1.2, subtítulos y H3.</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--lh-body</code></span><span class="rows__val">1.55, párrafo corrido, siempre.</span></div>
         <div class="rows__item"><span class="rows__key">Tracking</span><span class="rows__val">Negativo en display grande (<code>-0.02</code> a <code>-0.03em</code>), neutro en body, positivo solo en caption/microcopy uppercase (<code>+0.08</code> a <code>+0.16em</code>).</span></div>
       </div>
     </section>
@@ -746,21 +760,21 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.1</span>Contenedores y ritmo vertical</h2></div>
       <div class="rows">
-        <div class="rows__item"><span class="rows__key"><code>--container</code></span><span class="rows__val">1280px — secciones anchas de la landing.</span></div>
-        <div class="rows__item"><span class="rows__key"><code>--container-narrow</code></span><span class="rows__val">920px — bloques de lectura y formularios.</span></div>
-        <div class="rows__item"><span class="rows__key">Padding lateral</span><span class="rows__val"><code>clamp(1.1rem, 4vw, 2.5rem)</code> — fluido, nunca fijo.</span></div>
-        <div class="rows__item"><span class="rows__key"><code>--section-y</code></span><span class="rows__val"><code>clamp(3.5rem, 7vw, 6rem)</code> — separación vertical entre secciones grandes.</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--container</code></span><span class="rows__val">1280px: secciones anchas de la landing.</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--container-narrow</code></span><span class="rows__val">920px: bloques de lectura y formularios.</span></div>
+        <div class="rows__item"><span class="rows__key">Padding lateral</span><span class="rows__val"><code>clamp(1.1rem, 4vw, 2.5rem)</code>: fluido, nunca fijo.</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--section-y</code></span><span class="rows__val"><code>clamp(3.5rem, 7vw, 6rem)</code>: separación vertical entre secciones grandes.</span></div>
       </div>
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.2</span>Radios — escala de cuatro, rol fijo</h2></div>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.2</span>Radios, escala de cuatro, rol fijo</h2></div>
       <div class="rows">
         <div class="rows__item"><span class="rows__key">6px</span><span class="rows__val">Solo botones (<code>--radius-btn</code>). Nunca en cards ni inputs.</span></div>
         <div class="rows__item"><span class="rows__key">8px</span><span class="rows__val">Inputs y chips chicos (<code>--radius-sm</code>).</span></div>
         <div class="rows__item"><span class="rows__key">14px</span><span class="rows__val">Cards, stepper, contenedores medianos (<code>--radius</code>).</span></div>
         <div class="rows__item"><span class="rows__key">22px</span><span class="rows__val">Módulos grandes e imágenes hero (<code>--radius-lg</code>).</span></div>
-        <div class="rows__item"><span class="rows__key">999px</span><span class="rows__val">Solo pills funcionales del producto (ej. <code>.phone-pill</code> del header) — nunca botones de acción, ver 06.1.</span></div>
+        <div class="rows__item"><span class="rows__key">999px</span><span class="rows__val">Solo pills funcionales del producto (ej. <code>.phone-pill</code> del header): nunca botones de acción, ver 06.1.</span></div>
         <div class="rows__item"><span class="rows__key">0px</span><span class="rows__val">Este mismo manual: piel editorial, hairlines, sin radio en su propia estructura.</span></div>
       </div>
     </section>
@@ -768,20 +782,20 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.3</span>Sombras</h2></div>
       <div class="rows">
-        <div class="rows__item"><span class="rows__key">sm</span><span class="rows__val"><code>0 1px 2px rgba(28,24,22,.05)</code> — apenas separación, bordes de card.</span></div>
-        <div class="rows__item"><span class="rows__key">md</span><span class="rows__val"><code>0 6px 18px rgba(28,24,22,.08), 0 2px 6px rgba(28,24,22,.04)</code> — elementos flotantes (menús, tooltips).</span></div>
-        <div class="rows__item"><span class="rows__key">lg</span><span class="rows__val"><code>0 30px 60px -16px rgba(28,24,22,.22), 0 10px 24px -8px rgba(28,24,22,.08)</code> — modales, overlays.</span></div>
-        <div class="rows__item"><span class="rows__key">Regla de color</span><span class="rows__val">Siempre tintadas a Tinta (<code>rgba(28,24,22,…)</code>), nunca gris puro ni negro puro. La única excepción es la sombra tintada al Rojo Teja del botón primario en hover (ver 11.1).</span></div>
+        <div class="rows__item"><span class="rows__key">sm</span><span class="rows__val"><code>0 1px 2px rgba(28,24,22,.05)</code>: apenas separación, bordes de card.</span></div>
+        <div class="rows__item"><span class="rows__key">md</span><span class="rows__val"><code>0 6px 18px rgba(28,24,22,.08), 0 2px 6px rgba(28,24,22,.04)</code>: elementos flotantes (menús, tooltips).</span></div>
+        <div class="rows__item"><span class="rows__key">lg</span><span class="rows__val"><code>0 30px 60px -16px rgba(28,24,22,.22), 0 10px 24px -8px rgba(28,24,22,.08)</code>: modales, overlays.</span></div>
+        <div class="rows__item"><span class="rows__key">Regla de color</span><span class="rows__val">Siempre tintadas a Tinta (<code>rgba(28,24,22,…)</code>), nunca gris puro ni negro puro. La única excepción es la sombra tintada al Rojo Teja del botón primario en hover (ver 11.3).</span></div>
       </div>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.4</span>Movimiento</h2></div>
       <div class="rows">
-        <div class="rows__item"><span class="rows__key"><code>--dur-fast</code></span><span class="rows__val">180ms — micro-interacciones (hover, focus).</span></div>
-        <div class="rows__item"><span class="rows__key"><code>--dur</code></span><span class="rows__val">280ms — transiciones de layout o estado.</span></div>
-        <div class="rows__item"><span class="rows__key"><code>--ease</code></span><span class="rows__val"><code>cubic-bezier(0.22, 1, 0.36, 1)</code> — el único easing del sistema. Nunca <code>ease</code>, <code>linear</code> ni <code>ease-in-out</code> por defecto del navegador.</span></div>
-        <div class="rows__item"><span class="rows__key">Reduced motion</span><span class="rows__val">Las animaciones de marca (barrido, brasa, anillos del logo) corren siempre, incluso con <code>prefers-reduced-motion: reduce</code> activado — son livianas y aportan información, no decoración pura. Sí se respeta <code>reduced-motion</code> en transiciones de layout grandes (parallax, scroll-jacking).</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--dur-fast</code></span><span class="rows__val">180ms: micro-interacciones (hover, focus).</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--dur</code></span><span class="rows__val">280ms: transiciones de layout o estado.</span></div>
+        <div class="rows__item"><span class="rows__key"><code>--ease</code></span><span class="rows__val"><code>cubic-bezier(0.22, 1, 0.36, 1)</code>: el único easing del sistema. Nunca <code>ease</code>, <code>linear</code> ni <code>ease-in-out</code> por defecto del navegador.</span></div>
+        <div class="rows__item"><span class="rows__key">Reduced motion</span><span class="rows__val">Las animaciones de marca (barrido, brasa, anillos del logo) corren siempre, incluso con <code>prefers-reduced-motion: reduce</code> activado, son livianas y aportan información, no decoración pura. Sí se respeta <code>reduced-motion</code> en transiciones de layout grandes (parallax, scroll-jacking).</span></div>
       </div>
     </section>
 
@@ -797,11 +811,11 @@ a { color: inherit; }
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.6</span>Grilla de composición</h2></div>
-      <p class="spec__note"><b>Propuesto</b> — el producto real usa flexbox/grid por componente, no una grilla formal de columnas. Esta es la referencia para maquetar piezas nuevas (landing, presupuesto, redes) con la misma lógica.</p>
+      <p class="spec__note"><b>Propuesto</b>: el producto real usa flexbox/grid por componente, no una grilla formal de columnas. Esta es la referencia para maquetar piezas nuevas (landing, presupuesto, redes) con la misma lógica.</p>
       <div class="rows">
         <div class="rows__item"><span class="rows__key">Columnas</span><span class="rows__val">12, dentro de <code>--container</code> (1280px) o <code>--container-narrow</code> (920px).</span></div>
         <div class="rows__item"><span class="rows__key">Canaleta (gutter)</span><span class="rows__val">24px entre columnas.</span></div>
-        <div class="rows__item"><span class="rows__key">Margen lateral</span><span class="rows__val">El mismo <code>--pad</code> fluido de 04.1 — nunca un margen fijo distinto al del resto del sistema.</span></div>
+        <div class="rows__item"><span class="rows__key">Margen lateral</span><span class="rows__val">El mismo <code>--pad</code> fluido de 04.1, nunca un margen fijo distinto al del resto del sistema.</span></div>
         <div class="rows__item"><span class="rows__key">Bloques típicos</span><span class="rows__val">Texto de lectura: 6 a 8 columnas. Imagen o media hero: 12 columnas (ancho completo). Card o formulario lateral: 4 columnas.</span></div>
       </div>
     </section>
@@ -809,8 +823,8 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">04.7</span>Márgenes y sangrado en impreso</h2></div>
       <div class="rows">
-        <div class="rows__item"><span class="rows__key">Margen de seguridad</span><span class="rows__val">15mm en los cuatro lados — ningún texto, logo o dato relevante entra ahí.</span></div>
-        <div class="rows__item"><span class="rows__key">Sangrado (bleed)</span><span class="rows__val">3mm — cualquier fondo de color o imagen que llegue al borde del papel se extiende 3mm más allá del corte, para que no quede un filo blanco por error de guillotina.</span></div>
+        <div class="rows__item"><span class="rows__key">Margen de seguridad</span><span class="rows__val">15mm en los cuatro lados, ningún texto, logo o dato relevante entra ahí.</span></div>
+        <div class="rows__item"><span class="rows__key">Sangrado (bleed)</span><span class="rows__val">3mm: cualquier fondo de color o imagen que llegue al borde del papel se extiende 3mm más allá del corte, para que no quede un filo blanco por error de guillotina.</span></div>
         <div class="rows__item"><span class="rows__key">Folio / pie de página</span><span class="rows__val">A 10mm del borde inferior, dentro del margen de seguridad.</span></div>
       </div>
     </section>
@@ -851,12 +865,12 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">05.1</span>Principios</h2></div>
       <ul class="clauses">
-        <li><span class="num">05.1.1</span><b>Cierre asuntivo</b> — no se pregunta si quiere, se da por hecho el sí y se pregunta el cómo/dónde. "¿A qué WhatsApp preferís recibirlo?", no "¿Querés que te lo mandemos?".</li>
-        <li><span class="num">05.1.2</span><b>El beneficio ya está logrado</b> — "Tu descuento ya está listo", no "te damos un descuento".</li>
-        <li><span class="num">05.1.3</span><b>CTA = verbo + beneficio concreto, primera persona</b> — "Recibir mi descuento", nunca un genérico "Enviar" ni un rogado "Quiero…".</li>
-        <li><span class="num">05.1.4</span><b>Cero repetición de palabras</b> en una misma pieza — usar sinónimos, no clonar el mismo término tres veces.</li>
+        <li><span class="num">05.1.1</span><b>Cierre asuntivo</b>: no se pregunta si quiere, se da por hecho el sí y se pregunta el cómo/dónde. "¿A qué WhatsApp preferís recibirlo?", no "¿Querés que te lo mandemos?".</li>
+        <li><span class="num">05.1.2</span><b>El beneficio ya está logrado</b>: "Tu descuento ya está listo", no "te damos un descuento".</li>
+        <li><span class="num">05.1.3</span><b>CTA = verbo + beneficio concreto, primera persona</b>: "Recibir mi descuento", nunca un genérico "Enviar" ni un rogado "Quiero…".</li>
+        <li><span class="num">05.1.4</span><b>Cero repetición de palabras</b> en una misma pieza, usar sinónimos, no clonar el mismo término tres veces.</li>
         <li><span class="num">05.1.5</span><b>Directo, sin relleno, sin ruego.</b> Confiado pero nunca condescendiente.</li>
-        <li><span class="num">05.1.6</span><b>Cero doble sentido</b> — releer todo copy en voz alta antes de publicar.</li>
+        <li><span class="num">05.1.6</span><b>Cero doble sentido</b>: releer todo copy en voz alta antes de publicar.</li>
       </ul>
     </section>
 
@@ -888,8 +902,8 @@ a { color: inherit; }
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">05.4</span>Tono según canal</h2></div>
       <div class="rows">
         <div class="rows__item"><span class="rows__key">Web</span><span class="rows__val">Conciso, escaneable, sin relleno.</span></div>
-        <div class="rows__item"><span class="rows__key">WhatsApp</span><span class="rows__val">Conversacional, oraciones cortas, emojis moderados — ver capítulo 8.</span></div>
-        <div class="rows__item"><span class="rows__key">Redes</span><span class="rows__val">Directo, gancho en la primera línea — ver capítulo 9.</span></div>
+        <div class="rows__item"><span class="rows__key">WhatsApp</span><span class="rows__val">Conversacional, oraciones cortas, emojis moderados, ver capítulo 8.</span></div>
+        <div class="rows__item"><span class="rows__key">Redes</span><span class="rows__val">Directo, gancho en la primera línea, ver capítulo 9.</span></div>
       </div>
     </section>
 
@@ -910,11 +924,11 @@ a { color: inherit; }
       </div>
       <div class="compare">
         <div class="compare--no"><span class="compare__tag">Genérico</span><p class="compare__why" style="font-size:.95rem; color:var(--fg);">Estado vacío: "No hay resultados para tu búsqueda."</p></div>
-        <div class="compare--yes"><span class="compare__tag">RollerShow</span><p class="compare__why" style="font-size:.95rem; color:var(--fg);">"No tenemos esa tela en stock — te avisamos apenas vuelva a entrar."</p></div>
+        <div class="compare--yes"><span class="compare__tag">RollerShow</span><p class="compare__why" style="font-size:.95rem; color:var(--fg);">"No tenemos esa tela en stock, te avisamos apenas vuelva a entrar."</p></div>
       </div>
       <div class="compare">
         <div class="compare--no"><span class="compare__tag">Genérico</span><p class="compare__why" style="font-size:.95rem; color:var(--fg);">"¡Últimos días de descuento! No te lo pierdas."</p></div>
-        <div class="compare--yes"><span class="compare__tag">RollerShow</span><p class="compare__why" style="font-size:.95rem; color:var(--fg);">"El descuento de este mes termina el 30 — después vuelve al precio de lista."</p></div>
+        <div class="compare--yes"><span class="compare__tag">RollerShow</span><p class="compare__why" style="font-size:.95rem; color:var(--fg);">"El descuento de este mes termina el 30. Después vuelve al precio de lista."</p></div>
       </div>
     </section>
   </div>
@@ -958,7 +972,7 @@ a { color: inherit; }
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">06.2</span>Foco y accesibilidad</h2></div>
       <ul class="clauses">
         <li><span class="num">06.2.1</span><code>outline: 2px solid var(--accent); outline-offset: 3px;</code> en todo elemento interactivo. Nunca <code>outline: none</code> sin un reemplazo visible equivalente.</li>
-        <li><span class="num">06.2.2</span>Contraste mínimo AA (4.5:1) en todo texto sobre color — verificado en cada swatch del capítulo 2.</li>
+        <li><span class="num">06.2.2</span>Contraste mínimo AA (4.5:1) en todo texto sobre color, verificado en cada swatch del capítulo 2.</li>
       </ul>
     </section>
 
@@ -986,7 +1000,7 @@ a { color: inherit; }
           <div class="pick"><span class="pick__check"></span><b>Sunscreen</b><small>Filtra luz, mantiene vista</small></div>
         </div>
       </div>
-      <p class="spec__note">Borde <code>1.5px</code> que pasa a Terracota al seleccionar; check circular de <code>24px</code> que se rellena. Sin sombra decorativa — el cambio de estado es solo de borde y relleno.</p>
+      <p class="spec__note">Borde <code>1.5px</code> que pasa a Terracota al seleccionar; check circular de <code>24px</code> que se rellena. Sin sombra decorativa, el cambio de estado es solo de borde y relleno.</p>
     </section>
 
     <section class="spec">
@@ -999,12 +1013,12 @@ a { color: inherit; }
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">06.6</span>⚠ Violación detectada en producción</h2></div>
-      <p class="spec__note">El pill de teléfono del header (<code>index.html</code>, líneas 242–250) tiene un <code>::before</code> con <code>border-radius: 50%</code> y <code>animation: pulse</code> — un punto verde titilante junto al número. Es exactamente el tell de "dot de online" que este mismo manual prohíbe en el capítulo 11.4. Se documenta acá como caso real; queda pendiente de remoción en el código fuente.</p>
+      <p class="spec__note">El pill de teléfono del header (<code>index.html</code>, líneas 242–250) tiene un <code>::before</code> con <code>border-radius: 50%</code> y <code>animation: pulse</code>: un punto verde titilante junto al número. Es exactamente el tell de "dot de online" que este mismo manual prohíbe en el capítulo 11.4. Se documenta acá como caso real; queda pendiente de remoción en el código fuente.</p>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">06.7</span>Migración pendiente</h2></div>
-      <p class="spec__note">El botón hero de <code>index.html</code> (<code>.btn--hero</code>) todavía usa Tinta con hover Terracota — el sistema de color anterior a la confirmación del Rojo Teja. <code>rollershow-reviews</code> ya migró su CTA principal a Rojo Teja con el degradé "brasa" (11.2). Cuando se actualice la landing principal, <code>.btn--hero</code> debe pasar a <code>--cta</code>/<code>--cta-deep</code> con barrido de luz, reemplazando la paleta Tinta/Terracota en ese único lugar.</p>
+      <p class="spec__note">El botón hero de <code>index.html</code> (<code>.btn--hero</code>) todavía usa Tinta con hover Terracota, el sistema de color anterior a la confirmación del Rojo Teja. <code>rollershow-reviews</code> ya migró su CTA principal a Rojo Teja con el degradé "brasa" (11.2). Cuando se actualice la landing principal, <code>.btn--hero</code> debe pasar a <code>--cta</code>/<code>--cta-deep</code> con barrido de luz, reemplazando la paleta Tinta/Terracota en ese único lugar.</p>
     </section>
 
     <section class="spec">
@@ -1039,12 +1053,12 @@ a { color: inherit; }
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">07.1</span>Presupuesto — anatomía</h2></div>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">07.1</span>Presupuesto, anatomía</h2></div>
       <ul class="clauses">
         <li><span class="num">07.1.1</span>Encabezado: logotipo versión Tinta + tipo y número de documento a la derecha.</li>
         <li><span class="num">07.1.2</span>Datos del cliente y validez, en dos columnas.</li>
-        <li><span class="num">07.1.3</span>Detalle de partidas: producto, medida, cantidad, subtotal — filas con hairline, nunca celdas con fondo alterno tipo zebra.</li>
-        <li><span class="num">07.1.4</span>Total destacado en Rojo Teja — es la única vez que el color de acción aparece en texto grande dentro de un documento, porque acá "la acción" es literalmente el monto a pagar.</li>
+        <li><span class="num">07.1.3</span>Detalle de partidas: producto, medida, cantidad, subtotal, filas con hairline, nunca celdas con fondo alterno tipo zebra.</li>
+        <li><span class="num">07.1.4</span>Total destacado en Rojo Teja, es la única vez que el color de acción aparece en texto grande dentro de un documento, porque acá "la acción" es literalmente el monto a pagar.</li>
         <li><span class="num">07.1.5</span>Condiciones (garantía, forma de pago) y firma al pie.</li>
       </ul>
     </section>
@@ -1067,7 +1081,7 @@ a { color: inherit; }
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">07.3</span>Especimen completo</h2></div>
-      <p class="spec__note">Pendiente — se incorpora el modelo real de presupuesto que Agus va a compartir como referencia, en vez de un ejemplo inventado. La anatomía de 07.1 y el tratamiento del total de 07.2 ya quedan fijados para esa pieza.</p>
+      <p class="spec__note">Pendiente, se incorpora el modelo real de presupuesto que Agus va a compartir como referencia, en vez de un ejemplo inventado. La anatomía de 07.1 y el tratamiento del total de 07.2 ya quedan fijados para esa pieza.</p>
     </section>
 
     <section class="spec">
@@ -1075,19 +1089,19 @@ a { color: inherit; }
       <div class="stage">
         <div class="sig">
           <b>Camila</b>
-          <small>Atención al Cliente — RollerShow</small>
-          <small>+54 9 351 000 0000 · Villa Carlos Paz y CABA</small>
+          <small>Atención al Cliente, RollerShow</small>
+          <small>+54 9 351 000 0000, Villa Carlos Paz y CABA</small>
         </div>
       </div>
-      <p class="spec__note">Solo nombre, rol, marca y teléfono en Manrope sobre Tinta. Sin foto, sin ícono de estado, sin banda de color, sin el punto de "online" — la misma regla del capítulo 11.</p>
+      <p class="spec__note">Solo nombre, rol, marca y teléfono en Manrope sobre Tinta. Sin foto, sin ícono de estado, sin banda de color, sin el punto de "online", la misma regla del capítulo 11.</p>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">07.5</span>Membrete impreso</h2></div>
       <ul class="clauses">
         <li><span class="num">07.5.1</span>Logotipo versión Tinta arriba a la izquierda, margen 20mm.</li>
-        <li><span class="num">07.5.2</span>Pie de página con los dos locales: Villa Carlos Paz y Capital Federal (nunca "Córdoba Capital" — no hay local ahí).</li>
-        <li><span class="num">07.5.3</span>Tipografía exclusiva Manrope en el cuerpo — Bricolage solo en el nombre "RollerShow" del encabezado.</li>
+        <li><span class="num">07.5.2</span>Pie de página con los dos locales: Villa Carlos Paz y Capital Federal (nunca "Córdoba Capital", no hay local ahí).</li>
+        <li><span class="num">07.5.3</span>Tipografía exclusiva Manrope en el cuerpo, Bricolage solo en el nombre "RollerShow" del encabezado.</li>
       </ul>
     </section>
   </div>
@@ -1118,11 +1132,11 @@ a { color: inherit; }
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">08.2</span>Plantillas por situación</h2></div>
-      <div class="wa-row"><span class="wa-row__sit">Cotización recibida</span><div class="wa-bubble">¡Hola! Soy Ulises, el asistente de RollerShow 👋 Ya tengo tu medida — en un momento te paso el presupuesto.</div></div>
+      <div class="wa-row"><span class="wa-row__sit">Cotización recibida</span><div class="wa-bubble">¡Hola! Soy Ulises, el asistente de RollerShow 👋 Ya tengo tu medida. En un momento te paso el presupuesto.</div></div>
       <div class="wa-row"><span class="wa-row__sit">Presupuesto enviado</span><div class="wa-bubble">Tu presupuesto ya está listo. ¿A qué WhatsApp preferís que te lo confirme un asesor?</div></div>
       <div class="wa-row"><span class="wa-row__sit">Seguimiento sin respuesta</span><div class="wa-bubble">Quedó pendiente tu cotización de la cortina para el living. ¿Seguís necesitándola?</div></div>
       <div class="wa-row"><span class="wa-row__sit">Confirmación de medidas</span><div class="wa-bubble">Para no fallar ni un centímetro: ¿me confirmás el ancho y el alto tal como quedaron en la foto que mandaste?</div></div>
-      <div class="wa-row"><span class="wa-row__sit">Turno de instalación</span><div class="wa-bubble">Tu cortina ya está lista. Tengo turno el jueves a la mañana o el viernes a la tarde — ¿cuál te queda mejor?</div></div>
+      <div class="wa-row"><span class="wa-row__sit">Turno de instalación</span><div class="wa-bubble">Tu cortina ya está lista. Tengo turno el jueves a la mañana o el viernes a la tarde. ¿Cuál te queda mejor?</div></div>
       <div class="wa-row"><span class="wa-row__sit">Postventa</span><div class="wa-bubble">¿Cómo quedó la instalación? Cualquier ajuste lo resolvemos sin cargo dentro de la garantía.</div></div>
     </section>
 
@@ -1167,21 +1181,21 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">09.2</span>Zonas seguras y texto</h2></div>
       <ul class="clauses">
-        <li><span class="num">09.2.1</span>En 9:16, reservar 14% arriba y 20% abajo libres de texto — ahí van los controles nativos de la plataforma.</li>
-        <li><span class="num">09.2.2</span>Titular de máximo dos líneas, en Bricolage Grotesque, siempre con scrim de contraste detrás — nunca texto plano directo sobre una foto clara.</li>
-        <li><span class="num">09.2.3</span>El CTA de una story es una línea de texto en Rojo Teja con el sistema tipográfico propio — nunca el sticker/pill nativo de la plataforma, que es chrome ajeno a la marca.</li>
+        <li><span class="num">09.2.1</span>En 9:16, reservar 14% arriba y 20% abajo libres de texto, ahí van los controles nativos de la plataforma.</li>
+        <li><span class="num">09.2.2</span>Titular de máximo dos líneas, en Bricolage Grotesque, siempre con scrim de contraste detrás, nunca texto plano directo sobre una foto clara.</li>
+        <li><span class="num">09.2.3</span>El CTA de una story es una línea de texto en Rojo Teja con el sistema tipográfico propio, nunca el sticker/pill nativo de la plataforma, que es chrome ajeno a la marca.</li>
       </ul>
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">09.3</span>Texto sobre foto — así sí / así no</h2></div>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">09.3</span>Texto sobre foto, así sí / así no</h2></div>
       <div class="compare">
         <div class="compare--no">
           <span class="compare__tag">Así no</span>
           <div style="position:relative; height:140px; max-width:280px; background:linear-gradient(160deg,#E8D2B0,#C9A876); display:flex; align-items:flex-end; padding:.8rem;">
             <span style="color:#fff; font-family:var(--font-display); font-weight:800; font-size:1.05rem; line-height:1.1;">Cortinas a medida</span>
           </div>
-          <p class="compare__why">Texto blanco directo sobre una foto clara, sin scrim. Se pierde contra el fondo — regla 09.2.2.</p>
+          <p class="compare__why">Texto blanco directo sobre una foto clara, sin scrim. Se pierde contra el fondo, regla 09.2.2.</p>
         </div>
         <div class="compare--yes">
           <span class="compare__tag">Así sí</span>
@@ -1189,7 +1203,7 @@ a { color: inherit; }
             <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(28,24,22,.78), transparent 65%);"></div>
             <span style="position:relative; color:#fff; font-family:var(--font-display); font-weight:800; font-size:1.05rem; line-height:1.1;">Cortinas a medida</span>
           </div>
-          <p class="compare__why">Scrim degradé de Tinta detrás del texto — contraste garantizado sin tapar la foto.</p>
+          <p class="compare__why">Scrim degradé de Tinta detrás del texto, contraste garantizado sin tapar la foto.</p>
         </div>
       </div>
     </section>
@@ -1197,9 +1211,9 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">09.4</span>Copy de pie y hashtags</h2></div>
       <ul class="clauses">
-        <li><span class="num">09.4.1</span>Primera línea del copy es el gancho — se lee sin desplegar "ver más". Sigue la misma voz del capítulo 5.</li>
+        <li><span class="num">09.4.1</span>Primera línea del copy es el gancho, se lee sin desplegar "ver más". Sigue la misma voz del capítulo 5.</li>
         <li><span class="num">09.4.2</span>Máximo 5 hashtags, todos relacionados al producto o la zona (#CortinasRoller #VillaCarlosPaz), nunca hashtags genéricos de engagement (#instagood #like4like).</li>
-        <li><span class="num">09.4.3</span>Nunca emojis reemplazando palabras clave del mensaje — se usan como puntuación, no como sustituto del texto.</li>
+        <li><span class="num">09.4.3</span>Nunca emojis reemplazando palabras clave del mensaje, se usan como puntuación, no como sustituto del texto.</li>
       </ul>
     </section>
   </div>
@@ -1215,28 +1229,28 @@ a { color: inherit; }
       </div>
       <p class="chapter__intro">
         Referencia de calibración: <code>img/blackout-gris-bedroom.jpg</code>, <code>img/sunscreen-living-bright.jpg</code>
-        y el resto de la carpeta <code>img/</code> — ambientes reales, no un banco de fotos genérico.
+        y el resto de la carpeta <code>img/</code>: ambientes reales, no un banco de fotos genérico.
       </p>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.1</span>Reglas de toma</h2></div>
       <ul class="clauses">
-        <li><span class="num">10.1.1</span>Luz natural cálida — hora dorada o luz difusa de mediodía. Nunca flash directo.</li>
+        <li><span class="num">10.1.1</span>Luz natural cálida, hora dorada o luz difusa de mediodía. Nunca flash directo.</li>
         <li><span class="num">10.1.2</span>Ambiente real habitado, con objetos de vida cotidiana. Nunca un showroom vacío y perfecto.</li>
         <li><span class="num">10.1.3</span>La cortina siempre entra completa en cuadro, nunca cortada en el encuadre.</li>
-        <li><span class="num">10.1.4</span>Grado de color cálido consistente con la paleta del capítulo 2 — nunca virado a azul o frío.</li>
+        <li><span class="num">10.1.4</span>Grado de color cálido consistente con la paleta del capítulo 2, nunca virado a azul o frío.</li>
         <li><span class="num">10.1.5</span>Para piezas de campaña, dejar 30–40% de espacio negativo en la composición para el titular y el CTA.</li>
       </ul>
     </section>
 
     <section class="spec">
-      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.2</span>Grado de color — así sí / así no</h2></div>
+      <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.2</span>Grado de color, así sí / así no</h2></div>
       <div class="compare">
         <div class="compare--no">
           <span class="compare__tag">Así no</span>
           <div style="height:100px; max-width:220px; background:linear-gradient(160deg,#B9C9D6,#7E93A8);"></div>
-          <p class="compare__why">Virado a azul/frío — luz de flash o balance de blancos artificial. Choca con toda la paleta del capítulo 2.</p>
+          <p class="compare__why">Virado a azul/frío, luz de flash o balance de blancos artificial. Choca con toda la paleta del capítulo 2.</p>
         </div>
         <div class="compare--yes">
           <span class="compare__tag">Así sí</span>
@@ -1249,10 +1263,10 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">10.3</span>Escenarios frecuentes</h2></div>
       <ul class="clauses">
-        <li><span class="num">10.3.1</span><b>Foto de producto (macro de tela)</b> — plano cerrado de la textura con un borde de luz lateral suave, fondo neutro sin distracción. Sirve para catálogo y ficha de producto.</li>
-        <li><span class="num">10.3.2</span><b>Foto de ambiente (lifestyle)</b> — la cortina en contexto, con al menos un objeto de vida cotidiana en cuadro (una planta, un sillón usado, ropa de cama). Nunca un cuarto vacío recién pintado.</li>
-        <li><span class="num">10.3.3</span><b>Showroom vacío y luz pareja de estudio</b> — prohibido como imagen principal de campaña. Sirve solo como material técnico interno (referencia de color de tela), nunca de cara al cliente.</li>
-        <li><span class="num">10.3.4</span><b>Cortina cortada en el encuadre</b> — prohibido en piezas de venta. El producto completo es el protagonista, no un detalle recortado.</li>
+        <li><span class="num">10.3.1</span><b>Foto de producto (macro de tela)</b>: plano cerrado de la textura con un borde de luz lateral suave, fondo neutro sin distracción. Sirve para catálogo y ficha de producto.</li>
+        <li><span class="num">10.3.2</span><b>Foto de ambiente (lifestyle)</b>: la cortina en contexto, con al menos un objeto de vida cotidiana en cuadro (una planta, un sillón usado, ropa de cama). Nunca un cuarto vacío recién pintado.</li>
+        <li><span class="num">10.3.3</span><b>Showroom vacío y luz pareja de estudio</b>: prohibido como imagen principal de campaña. Sirve solo como material técnico interno (referencia de color de tela), nunca de cara al cliente.</li>
+        <li><span class="num">10.3.4</span><b>Cortina cortada en el encuadre</b>: prohibido en piezas de venta. El producto completo es el protagonista, no un detalle recortado.</li>
       </ul>
     </section>
   </div>
@@ -1274,7 +1288,7 @@ a { color: inherit; }
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">11.1</span>Barrido de luz</h2></div>
-      <p class="spec__note">Un reflejo cruza el botón primario, como la luz sobre una tela. Firma del CTA principal — una sola vez por pantalla, nunca en dos botones a la vez.</p>
+      <p class="spec__note">Un reflejo cruza el botón primario, como la luz sobre una tela. Firma del CTA principal, una sola vez por pantalla, nunca en dos botones a la vez.</p>
       <div class="fx">
         <div class="fx__row">
           <span class="fx__name">Receta</span>
@@ -1286,7 +1300,7 @@ a { color: inherit; }
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">11.2</span>Degradé brasa</h2></div>
-      <p class="spec__note">Confirmado en producción (<code>rollershow-reviews</code>). Reservado a CTAs de campaña y promociones — nunca convive con el botón primario estándar en la misma pantalla.</p>
+      <p class="spec__note">Confirmado en producción (<code>rollershow-reviews</code>). Reservado a CTAs de campaña y promociones, nunca convive con el botón primario estándar en la misma pantalla.</p>
       <div class="fx">
         <div class="fx__row">
           <span class="fx__name">Receta</span>
@@ -1306,7 +1320,7 @@ a { color: inherit; }
         </div>
         <div class="fx__row">
           <span class="fx__name">Sombra tintada</span>
-          <p class="fx__desc">La única sombra que rompe la regla "siempre tintada a Tinta" (04.3): el botón primario en hover proyecta sombra tintada al propio Rojo Teja — refuerza que es el color de acción sin agregar un color nuevo al sistema.</p>
+          <p class="fx__desc">La única sombra que rompe la regla "siempre tintada a Tinta" (04.3): el botón primario en hover proyecta sombra tintada al propio Rojo Teja, refuerza que es el color de acción sin agregar un color nuevo al sistema.</p>
           <div class="tinted-shadow">hover del CTA</div>
         </div>
         <div class="fx__row">
@@ -1321,14 +1335,14 @@ a { color: inherit; }
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">11.4</span>Catálogo sí / no</h2></div>
       <p class="spec__note">Barrer esta lista antes de entregar cualquier pieza nueva. Si algo de la columna "No" apareció, se saca antes de mostrarlo.</p>
       <div class="verdict">
-        <div class="verdict__row verdict--yes"><b>Sí</b><p>Barrido de luz, degradé brasa y grano de tela — recetas exactas arriba.</p></div>
-        <div class="verdict__row verdict--yes"><b>Sí</b><p>Hairlines para separar contenido — nunca cajas con fondo + borde + sombra.</p></div>
-        <div class="verdict__row verdict--yes"><b>Sí</b><p>Numeración de sección fundida en el mismo renglón del título (ver 00.1.1) — nunca una etiqueta separada antes del título.</p></div>
+        <div class="verdict__row verdict--yes"><b>Sí</b><p>Barrido de luz, degradé brasa y grano de tela, recetas exactas arriba.</p></div>
+        <div class="verdict__row verdict--yes"><b>Sí</b><p>Hairlines para separar contenido, nunca cajas con fondo + borde + sombra.</p></div>
+        <div class="verdict__row verdict--yes"><b>Sí</b><p>Numeración de sección fundida en el mismo renglón del título (ver 00.1.1): nunca una etiqueta separada antes del título.</p></div>
         <div class="verdict__row verdict--yes"><b>Sí</b><p>Sombra tintada al color de marca en vez de gris genérico (11.3).</p></div>
         <div class="verdict__row verdict--yes"><b>Sí</b><p>Un solo elemento de máximo contraste por pantalla: el Rojo Teja de la acción primaria.</p></div>
         <div class="verdict__row verdict--no"><b>No</b><p>Gradientes púrpura-azul genéricos, orbes borrosos, bokeh, partículas decorativas. <em>No pertenecen a esta paleta ni a este rubro.</em></p></div>
         <div class="verdict__row verdict--no"><b>No</b><p>Cajas dentro de cajas, tarjetas flotantes como sección completa. <em>El contenido se funde con el fondo; separa con hairline.</em></p></div>
-        <div class="verdict__row verdict--no"><b>No</b><p>Punto de color titilante junto a un teléfono o estado ("dot de online"). <em>Ver la violación real detectada en 06.6 — es reincidente, no se vuelve a introducir.</em></p></div>
+        <div class="verdict__row verdict--no"><b>No</b><p>Punto de color titilante junto a un teléfono o estado ("dot de online"). <em>Ver la violación real detectada en 06.6, es reincidente, no se vuelve a introducir.</em></p></div>
         <div class="verdict__row verdict--no"><b>No</b><p>Botón píldora verde-WhatsApp genérico con ícono + la palabra "WhatsApp". <em>Usar sólido sobrio con verbo, ver 06.1.</em></p></div>
         <div class="verdict__row verdict--no"><b>No</b><p>Etiqueta chica antes de un título (eyebrow), badges que repiten lo que el título ya dice. <em>Fundir el número o dato en el mismo renglón del título, ver 00.1.1.</em></p></div>
         <div class="verdict__row verdict--no"><b>No</b><p>Contadores de urgencia falsa tipo caja "07 DÍAS : 09 HORAS". <em>Ver 05.3.3.</em></p></div>
@@ -1352,13 +1366,13 @@ a { color: inherit; }
       </div>
       <p class="chapter__intro">
         Los mismos números de los capítulos 1 a 11, pegados una sola vez más en un formato que lee una máquina.
-        Este capítulo es opcional para vos — está pensado para un agente de IA, no para leerlo de corrido.
+        Este capítulo es opcional para vos, está pensado para un agente de IA, no para leerlo de corrido.
       </p>
     </section>
 
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">12.1</span>Bloque de tokens</h2></div>
-      <p class="spec__note">Tocá "Ver los datos" solo si sos vos quien se lo va a pegar a una IA. Si no, seguí de largo — el manual termina acá.</p>
+      <p class="spec__note">Tocá "Ver los datos" solo si sos vos quien se lo va a pegar a una IA. Si no, seguí de largo, el manual termina acá.</p>
       <details>
         <summary style="cursor:pointer; font-weight:700; color:var(--cta); font-size:.9rem;">Ver los datos técnicos (opcional)</summary>
         <div class="tokens-block" style="margin-top:1rem;"><pre id="tokens-visible"></pre></div>
@@ -1371,7 +1385,7 @@ a { color: inherit; }
 
 <footer class="foot">
   <div class="wrap">
-    <span>RollerShow, Manual de Marca — v1.0, julio 2026</span>
+    <span>Manual de Marca de RollerShow, v1.0, julio 2026</span>
     <span class="num">12 capítulos</span>
   </div>
 </footer>
@@ -1405,6 +1419,7 @@ a { color: inherit; }
   },
   "motion": { "durationFast": "180ms", "duration": "280ms", "easing": "cubic-bezier(0.22,1,0.36,1)", "reducedMotionException": "animaciones de marca (barrido, brasa, anillos del logo) corren siempre" },
   "breakpoints": { "xs": "420px", "sm": "480px", "md": "720px", "lg": "980px" },
+  "maxims": ["mobile primero (disenar a 375px)", "estructural antes que estetico", "una sola accion primaria por pantalla, maximo contraste", "cada elemento es parte de algo, nada flotando", "la percepcion de calidad vende", "la solucion mas simple gana", "nada terminado hasta verlo en vivo en un telefono"],
   "effectsApproved": ["barrido-de-luz", "degrade-brasa", "grano-de-tela", "sombra-tintada", "revelado-scroll-clip-path"],
   "effectsBanned": ["dot-online-pulsante", "boton-pildora-accion", "gradiente-purpura-azul-generico", "caja-dentro-de-caja", "eyebrow-badge", "contador-urgencia-falsa", "estrellas-ascii", "glassmorphism-pesado", "carrusel-autoplay", "fake-dashboard"],
   "knownViolations": [{ "file": "index.html", "lines": "242-250", "issue": "dot-online-pulsante junto a phone-pill", "status": "pendiente de remocion" }],
