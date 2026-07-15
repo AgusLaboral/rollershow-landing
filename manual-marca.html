@@ -67,6 +67,7 @@ body {
   overflow-x: hidden;
 }
 a { color: inherit; }
+code { overflow-wrap: anywhere; }
 
 .wrap { max-width: var(--container); margin: 0 auto; padding-inline: var(--pad); }
 .wrap--wide { max-width: 1160px; }
@@ -141,7 +142,7 @@ a { color: inherit; }
 @media (min-width: 700px) { .rows__item { grid-template-columns: 13rem 1fr; gap: 1.4rem; align-items: baseline; } }
 .rows__key { font-weight: 700; font-size: .92rem; }
 .rows__val { font-size: .92rem; color: var(--fg-soft); }
-.rows__val code { font-family: var(--font-body); font-variant-numeric: tabular-nums; background: var(--bg-muted); padding: .1rem .4rem; border-radius: 4px; font-size: .88rem; }
+.rows__val code { overflow-wrap: anywhere; font-family: var(--font-body); font-variant-numeric: tabular-nums; background: var(--bg-muted); padding: .1rem .4rem; border-radius: 4px; font-size: .88rem; }
 
 /* ---------- Paleta: filas de color ---------- */
 .palette { border-top: 1px solid var(--border); }
@@ -448,7 +449,7 @@ a { color: inherit; }
     <section class="spec">
       <div class="spec__head"><h2 class="spec__title"><span class="spec__title-num num">01.1</span>El archivo</h2></div>
       <div class="stage">
-        <img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow" style="height:44px; width:auto;" />
+        <img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow" style="width:min(100%, 507px); height:auto;" />
       </div>
       <div class="rows">
         <div class="rows__item"><span class="rows__key">Archivo maestro</span><span class="rows__val"><code>img/logo.svg</code>: viewBox <code>0 0 600 52</code> (relación 10.5 : 1)</span></div>
@@ -492,11 +493,11 @@ a { color: inherit; }
       <p class="spec__note">Solo existen dos versiones. Nunca una tercera.</p>
       <div class="stage">
         <span class="tag stage__label">Versión Tinta, sobre fondos claros</span>
-        <div class="stage__row"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow, versión tinta" style="height:36px;" /></div>
+        <div class="stage__row"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow, versión tinta" style="width:min(100%, 415px); height:auto;" /></div>
       </div>
       <div class="stage" style="background:var(--cta)">
         <span class="tag stage__label" style="color:rgba(255,255,255,.75)">Versión Blanco, sobre Rojo Teja o foto oscura</span>
-        <div class="stage__row"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow, versión blanca" style="height:36px; filter:brightness(0) invert(1);" /></div>
+        <div class="stage__row"><img src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="Logotipo RollerShow, versión blanca" style="width:min(100%, 415px); height:auto; filter:brightness(0) invert(1);" /></div>
       </div>
       <ul class="clauses" style="margin-top:1.4rem">
         <li><span class="num">01.3.1</span>Sobre Crema, Arena o blanco puro: versión Tinta (<code>#1C1816</code>).</li>
