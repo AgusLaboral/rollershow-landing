@@ -9,6 +9,12 @@
       "port": 4321
     },
     {
+      "name": "promo",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:\\Users\\Agus\\Desktop\\rollershow-src-promo", "run", "dev", "--", "--port", "4322"],
+      "port": 4322
+    },
+    {
       "name": "landing",
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8099"],
